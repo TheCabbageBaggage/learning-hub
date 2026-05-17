@@ -634,3 +634,32 @@ body {
   .btn-flip { display: inline-block; }
   .flashcard-hint { display: none; }
 }
+
+/* ── Rendered Markdown in cards/quiz ── */
+.intro-text p,
+.quiz-question,
+.quiz-option span {
+  line-height: 1.65;
+}
+.intro-text h3 { font-size: 1.05rem; margin: 14px 0 6px; color: #fff; }
+.intro-text h4 { font-size: 0.95rem; margin: 10px 0 4px; color: #d0e8f0; }
+.intro-text ul { padding-left: 20px; margin: 6px 0 12px; }
+.intro-text ul ul { margin: 4px 0 8px; }
+.intro-text li { margin-bottom: 3px; }
+.intro-text code {
+  background: rgba(255,255,255,0.15);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+.intro-text strong { color: #fff; }
+.quiz-question { margin-bottom: 14px; line-height: 1.6; }
+.quiz-option span { line-height: 1.5; }
+.quiz-explanation {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 8px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}

@@ -230,7 +230,7 @@ const App = (() => {
 
       ${hasIntro ? html`
         <div class="chapter-intro" id="chapter-intro">
-          <div class="intro-text">${chapter.intro}</div>
+          <div class="intro-text">${chapter.intro ? renderMarkdown(chapter.intro) : ''}</div>
           ${chapter.images ? chapter.images.map(img => html`
             <figure class="intro-figure">
               <img src="${img.src}" alt="${img.alt || ''}" loading="lazy" />
@@ -310,12 +310,47 @@ const App = (() => {
       </div>`;
   }
 
+  function renderMarkdown(text) {
+    if (!text) return '';
+    // Escape HTML first
+    let out = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+    // Code blocks (before other processing)
+    out = out.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+    out = out.replace(/`([^`]+)`/g, '<code>$1</code>');
+    // Headers
+    out = out.replace(/^### (.+)$/gm, '<h4>$1</h4>');
+    out = out.replace(/^## (.+)$/gm, '<h3>$1</h3>');
+    out = out.replace(/^# (.+)$/gm, '<h2>$1</h2>');
+    // Bold + italic
+    out = out.replace(/\*\*\*(.+?)\*\*\*/g, '<strong><em>$1</em></strong>');
+    out = out.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/\*(.+?)\*/g, '<em>$1</em>');
+    // Unordered lists (block-level, not inline)
+    out = out.replace(/^(\s*)- (.+)$/gm, (_, space, item) => {
+      const indent = space.length;
+      return `<li style="margin-left:${indent * 12}px">${item}</li>`;
+    });
+    // Wrap consecutive <li> in <ul>
+    out = out.replace(/(<li[^>]*>[\s\S]*?<\/li>\s*)+/g, match => {
+      const indent = match.match(/margin-left:(\d+)/);
+      const extra = indent && indent[1] > '12' ? ' style="margin-left:24px"' : '';
+      return `<ul${extra}>${match}</ul>`;
+    });
+    // Line breaks (double newline = paragraph, single = br)
+    out = out.replace(/\n\n/g, '</p><p>');
+    out = out.replace(/\n/g, '<br>');
+    return `<p>${out}</p>`;
+  }
+
   function updateFlashcardDisplay() {
     if (!fcState || fcState.current >= fcState.cards.length) return;
     const card = fcState.cards[fcState.current];
     $1('#flashcard')?.classList.remove('flipped');
-    $1('#fc-front-text').textContent = card.front;
-    $1('#fc-back-text').textContent = card.back;
+    $1('#fc-front-text').innerHTML = renderMarkdown(card.front);
+    $1('#fc-back-text').innerHTML = renderMarkdown(card.back);
     $1('#fc-count').textContent = fcState.current + 1;
     const pct = Math.round(((fcState.current) / fcState.cards.length) * 100);
     const fill = $1('#fc-progress-fill');
@@ -339,12 +374,12 @@ const App = (() => {
           Question ${quizState.current + 1} of ${quizState.questions.length}
         </div>
         <div class="quiz-card" id="quiz-card">
-          <div class="quiz-question">${q.question}</div>
+          <div class="quiz-question">${renderMarkdown(q.question)}</div>
           <div class="quiz-options" id="quiz-options">
             ${q.options.map((opt, i) => html`
               <button class="quiz-option" data-opt="${i}" onclick="App.selectQuizOption(${i})">
                 <span class="opt-letter">${letters[i]}</span>
-                <span>${opt}</span>
+                <span>${renderMarkdown(opt)}</span>
               </button>`).join('')}
           </div>
           <div id="quiz-feedback" style="display:none;margin-top:14px"></div>
@@ -371,17 +406,17 @@ const App = (() => {
       const q = quizState.questions[i];
       return html`
         <div class="quiz-card ${a.correct ? 'correct' : 'wrong'}">
-          <div class="quiz-question">${i + 1}. ${q.question}</div>
+          <div class="quiz-question">${i + 1}. ${renderMarkdown(q.question)}</div>
           <div class="quiz-options">
             ${q.options.map((opt, j) => html`
               <div class="quiz-option disabled ${j === q.correct ? 'correct-answer' : ''} ${j === a.selected && !a.correct ? 'wrong-answer' : ''}">
                 <span class="opt-letter">${letters[j]}</span>
-                <span>${opt}</span>
+                <span>${renderMarkdown(opt)}</span>
                 ${j === q.correct ? ' ✓' : ''}
                 ${j === a.selected && !a.correct ? ' ✗' : ''}
               </div>`).join('')}
           </div>
-          <div class="quiz-explanation">${q.explanation}</div>
+          <div class="quiz-explanation">${renderMarkdown(q.explanation)}</div>
         </div>`;
     }).join('');
 
@@ -556,8 +591,8 @@ const App = (() => {
     if (feedback) {
       feedback.style.display = 'block';
       feedback.innerHTML = correct
-        ? `<span style="color:var(--success)">✓ Correct!</span>`
-        : `<span style="color:var(--danger)">✗ Wrong! Correct answer: ${q.options[q.correct]}</span>`;
+        ? `<span style="color:var(--success)">✓ Correct!</span><div style="margin-top:8px;font-size:0.85rem">${renderMarkdown(q.explanation)}</div>`
+        : `<span style="color:var(--danger)">✗ Wrong!</span><div style="margin-top:8px;font-size:0.85rem">Richtige Antwort: ${q.options[q.correct]}</div><div style="margin-top:6px;font-size:0.85rem">${renderMarkdown(q.explanation)}</div>`;
     }
 
     // Show next button

@@ -66,26 +66,30 @@ const App = (() => {
     const stats = Store.getStats();
     const nextUp = Store.getNextUp(tracks);
 
-    const tracksHtml = tracks.map(t => {
-      const totalBooks = t.books.length;
+    // Load chapter counts in parallel for all tracks/books
+    const trackProgress = await Promise.all(tracks.map(async (t) => {
       let totalChapters = 0;
       let completedChapters = 0;
-      for (const book of t.books) {
-        const cnt = book.chapters ? book.chapters.length : 0;
-        totalChapters += cnt;
-        completedChapters += Store.getChapterProgress(t.id, book.id, cnt);
-      }
-      const pct = totalBooks > 0 ? Math.round((completedChapters / totalBooks)) : 0;
+      const booksWithChapters = await Promise.all(t.books.map(async (b) => {
+        const chapters = await Data.getChapters(t.id, b.id);
+        totalChapters += chapters.length;
+        completedChapters += chapters.filter(c => Store.isChapterComplete(t.id, b.id, c.id)).length;
+        return { ...b, chapters };
+      }));
+      const pct = totalChapters > 0 ? Math.round((completedChapters / totalChapters) * 100) : 0;
+      return { ...t, pct, totalChapters, completedChapters, booksWithChapters };
+    }));
 
+    const tracksHtml = trackProgress.map(t => {
       return html`
         <a class="track-card" href="#/track/${t.id}">
           <div class="track-icon">${t.icon}</div>
           <div class="track-title">${t.title}</div>
           <div class="track-desc">${t.description}</div>
-          ${totalBooks > 0 ? html`
+          ${t.totalChapters > 0 ? html`
             <div class="progress-wrap">
-              <div class="progress-label"><span>${pct}% complete</span></div>
-              <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+              <div class="progress-label"><span>${t.pct}% complete (${t.completedChapters}/${t.totalChapters} chapters)</span></div>
+              <div class="progress-bar"><div class="progress-fill" style="width:${t.pct}%"></div></div>
             </div>
           ` : `<div class="track-empty">Coming soon</div>`}
         </a>`;
@@ -138,9 +142,15 @@ const App = (() => {
       return;
     }
 
-    const booksHtml = track.books.length === 0
+    // Load all book chapter data in parallel
+    const booksWithChapters = await Promise.all(track.books.map(async (book) => {
+      const chapters = await Data.getChapters(trackId, book.id);
+      return { ...book, chapters };
+    }));
+
+    const booksHtml = booksWithChapters.length === 0
       ? '<div class="empty-state"><div class="icon">📖</div><p>No books available yet</p></div>'
-      : track.books.map(book => {
+      : booksWithChapters.map(book => {
         const chapters = book.chapters || [];
         const total = chapters.length;
         const completed = chapters.filter(c => Store.isChapterComplete(trackId, book.id, c.id)).length;

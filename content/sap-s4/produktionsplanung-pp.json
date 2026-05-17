@@ -76,7 +76,8 @@
           "correct": 1,
           "explanation": "MDG = Workflow + 4-Augen-Prinzip für Stammdatenpflege. Stellt Datenqualität sicher, essentiell für MRP-Korrektheit und Compliance."
         }
-      ]
+      ],
+      "intro": "**Produktionsplanung in SAP S/4HANA** bildet das Rückgrat der Manufacturing Operations. Das **PP-Modul** (*Production Planning*) koordiniert Materialflüsse, Kapazitäten und Termine — von der Bedarfsplanung bis zur Fertigmeldung.\n\n## Die Planungspyramide\nDie Produktionsplanung ist hierarchisch strukturiert: **SOP** (*Sales and Operations Planning*) auf aggregierter Ebene (Produktgruppen, Monate). **MPS** (*Master Production Schedule*) für Endprodukte (Wochen). **MRP** (*Material Requirements Planning*) für alle Stufen der Stückliste (Tage). **Shop Floor Control** für einzelne Aufträge und Arbeitsgänge (Stunden).\n\n## Stammdaten als Fundament\nOhne korrekte Stammdaten keine funktionierende Planung: **Materialstamm** mit MRP-Parametern (Losgröße, Beschaffungsart, Planungskalender). **Stücklisten (BOM)** definieren die Komponentenstruktur. **Arbeitspläne (Routing)** beschreiben Fertigungsabläufe mit Zeiten und Kapazitätsbedarf. **Arbeitsplätze und Betriebsmittel** als begrenzte Ressourcen.\n\n## Integration über das Unternehmen\nPP ist kein isoliertes Modul. Es liest Verkaufsbedarfe aus **SD**, prüft Lagerbestände via **MM**, reserviert Kapazitäten in **PM**, und meldet Kosten an **CO**. S/4HANA integriert diese Flüsse durch *Universal Journal* (ACDOCA) und *Core Data Services* (CDS).\n\n## Von SAP ECC zu S/4HANA\nS/4HANA vereinfacht das Datenmodell: Keine Aggregat- und Indextabellen mehr, stattdessen Echtzeit-CDS-Views. **MRP Live** nutzt HANA-In-Memory für parallele Bedarfsauflösung."
     },
     {
       "id": "ch2",
@@ -148,7 +149,8 @@
           "correct": 1,
           "explanation": "IBP = Cloud-native Advanced Planning mit KI (Demand Sensing), Multi-Echelon Inventory Optimization und Echtzeit-Szenariorechnung. ERP S&OP ist Basisplanung."
         }
-      ]
+      ],
+      "intro": "**Bedarfsplanung und MRP** (*Material Requirements Planning*) ist der Kernalgorithmus der Produktionsplanung. Sie wandelt Bruttobedarfe (z.B. Kundenaufträge, Prognosen) in geplante Aufträge für Beschaffung und Fertigung um.\n\n## Brutto vs. Nettobedarf\nDer **Bruttobedarf** ergibt sich aus Primärbedarf (Verkauf) und Sekundärbedarf (Stücklistenauflösung). Abzüglich **Bestand**, **zugewiesene Wareneingänge**, und **Sicherheitsbestand** entsteht der **Nettobedarf**. Nur dieser löst Planungslaufaktionen aus.\n\n## MRP-Logik und Lot-Sizing\nMRP prüft für jeden Bedarfsposten: Bedarfsdatum minus Beschaffungszeit = Freigabedatum. Die **Losbildung** (*Lot Sizing*) entscheidet, wie Bedarfe zusammengefasst werden: EX (Exakt), FX (Fixe Losgröße), WB (Wochenbedarf), TB (Tagesbedarf). Jede Methode hat Implikationen für Bestandshöhe und Rüstkosten.\n\n## MRP-Typen in SAP\n**PD** (*Plant-dependent*): Klassische Termin- und Mengenplanung. **ND** (*No MRP*): Manuelle Disposition. **VB** (*Reorder Point*): Bestellpunktverfahren für C-Artikel. **MPS** (*Master Production Schedule*): Separate, priorisierte Planungsebene für kritische Materialien.\n\n## MRP Live auf HANA\nTraditionelles MRP arbeitet sequentiell — dauert Stunden bei komplexen Stücklisten. **MRP Live** nutzt SAP HANA-In-Memory-Technologie für massiv-parallele Berechnung: Ein Planungslauf, der früher 8 Stunden dauerte, ist in Minuten erledigt."
     },
     {
       "id": "ch3",
@@ -220,7 +222,8 @@
           "correct": 1,
           "explanation": "Safety Stock = statistischer Puffer für Prognosefehler und Lieferanten-Schwankungen. Servicegrad (z.B. 95%) bestimmt Höhe."
         }
-      ]
+      ],
+      "intro": "**Fertigungsaufträge und Shop Floor Control** realisieren die Planung in der physischen Produktion. Hier werden Arbeitsgänge terminiert, Material entnommen, Leistungen erfasst — und das Endprodukt fertig gemeldet.\n\n## Auftragsarten und -status\n**Fertigungsaufträge** (*Production Orders*) sind die zentrale Steuerungseinheit. **Planned Order**: Von MRP vorgeschlagen, noch nicht freigegeben. **Production Order**: Freigegeben, Rückstand gebucht, Kapazitäten reserviert. **Technically Completed (TECO)**: Produktion beendet, aber noch nicht abgerechnet. **Closed (CLSD)**: Vollständig abgeschlossen, keine weiteren Buchungen möglich.\n\n## Arbeitsgangsteuerung\nEin Auftrag durchläuft mehrere **Arbeitsgänge** (*Operations*): Vorbereitung, Bearbeitung, Qualitätsprüfung, Montage. Jeder Gang hat geplante und tatsächliche Zeiten (Setup, Processing, Teardown), sowie Soll- und Ist-Kosten. **Dispatching** ordnet Aufträge Kapazitäten zu, **Sequencing** bestimmt die Reihenfolge.\n\n## Materialentnahme und Rückmeldung\n**Materialentnahme** (*GI — Goods Issue*) belastet Lager und Auftrag. S/4HANA unterstützt *Backflushing*: Automatische Entnahme bei Fertigmeldung, basierend auf Soll-Stücklisten — geeignet für repetitive Fertigung mit geringer Ausschussrate. **Rückmeldung** (*Confirmation*) erfasst Ist-Mengen, Zeiten, Abweichungen.\n\n## Integration mit QM und PM\n**QM** (*Quality Management*): Arbeitsgänge können Prüflosen generieren. **PM** (*Plant Maintenance*): Kapazitätsplanung berücksichtigt Wartungsfenster. Störungen an Betriebsmitteln blockieren betroffene Arbeitsplätze in Echtzeit."
     },
     {
       "id": "ch4",
@@ -292,7 +295,8 @@
           "correct": 1,
           "explanation": "PP/DS = Advanced Planning für komplexe Fertigung mit endlicher Kapazität, Optimierungsalgorithmen und interaktiver Plantafel."
         }
-      ]
+      ],
+      "intro": "**Kapazitätsplanung und Feinplanung** (*Capacity Planning and Scheduling*) optimieren die Nutzung begrenzter Ressourcen. Wo MRP *was* und *wann* plant, bestimmt die Kapazitätsplanung *wie* — unter Berücksichtigung von Maschinen, Arbeitskräften und Schichtmodellen.\n\n## Kapazitätsarten und -bewertung\n**Betriebsmittel** (*Work Centers*) haben definierte Kapazitäten: Maschinenstunden, Personalkapazität, Fläche. Die **Verfügbarkeit** ergibt sich aus Kalender (Arbeitstage), Schichtmodell (Stunden/Tag), und Auslastungsgrad (z.B. 85% für Instandhaltungspuffer). **Überlastung** entsteht, wenn Soll-Belastung > Verfügbarkeit.\n\n## Mittel- und Feinplanung\n**Mittelfristige Kapazitätsplanung** (auf Wochen-/Monatsebene) prüft grobe Übereinstimmung von Bedarf und Kapazität. Bei Diskrepanzen: Überstunden, Schichtzuschaltung, Fremdvergabe. **Feinplanung** (*Detailed Scheduling*, PP/DS) ordnet Aufträge exakten Terminen zu unter Berücksichtigung von Reihenfolgeabhängigkeiten, Rüstzeiten, und Prioritäten.\n\n## Planungsstrategien\n**Vorwärsterminierung** (*Forward Scheduling*): Startet beim frühesten Starttermin, terminiert vorwärts. Garantiert Einhaltung des Startdatums, riskiert Verspätung bei Überlastung. **Rückwärsterminierung** (*Backward Scheduling*): Startet beim geforderten Endtermin, terminiert rückwärts. Garantiert Liefertermin, riskiert unmögliche Starttermine.\n\n## Optimierung in PP/DS\n**SAP PP/DS** nutzt Heuristiken und Algorithmen zur Auftragsreihenfolgeoptimierung. Ziele: Minimierung der Durchlaufzeit, Maximierung der Kapazitätsauslastung, Reduktion von Rüstzeiten (Sequenzierung nach Setup-Ähnlichkeit). In S/4HANA integriert."
     }
   ]
 }

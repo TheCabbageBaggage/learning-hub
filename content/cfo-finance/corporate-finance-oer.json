@@ -76,7 +76,8 @@
           "correct": 1,
           "explanation": "NPV diskontiert alle Cashflows mit risikoangepassten Kapitalkosten über die gesamte Projektlaufzeit. Payback bricht nach dem Break-Even ab."
         }
-      ]
+      ],
+      "intro": "**Finanzmanagement** (*Corporate Finance*) ist die strategische Steuerung der finanziellen Ressourcen eines Unternehmens. Es umfasst drei Kernentscheidungen: Die **Investitionsentscheidung** (in welche Projekte investieren?), die **Finanzierungsentscheidung** (wie sollten wir finanzieren?) und die **Ausschüttungspolitik** (wie viel an Aktionäre ausschütten?).\n\n## Das Ziel: Shareholder Value Maximization\nIm Idealfall konzentriert sich das Finanzmanagement auf die Maximierung des langfristigen Unternehmenswerts für Aktionäre. Dies impliziert nicht Kurzfristdenken, sondern nachhaltige Wertschaffung — durch profitable Investitionen, optimale Kapitalstruktur und angemessene Risikobewertung.\n\n## Agency Conflicts\nIn der Realität divergieren Manager- und Aktionärsinteressen. **Agency Costs** entstehen durch Überwachung (*Monitoring*), Anreizsysteme (*Incentive Alignment*) und Restriktionen. Aktienoptionen, Restricted Stock Units und Leistungsboni sollen Manager dazu bringen, wie Eigentümer zu denken.\n\n## Finanzmärkte und Effizienz\nDie **Efficient Market Hypothesis (EMH)** postuliert, dass Preise alle verfügbaren Informationen reflektieren. In *semi-strong efficient* Märkten können Analysten durch Fundamentalanalyse keine systematische Überrendite erzielen — was die Rolle aktiver versus passiver Anlagestrategien fundamental verändert."
     },
     {
       "id": "ch2",
@@ -148,7 +149,8 @@
           "correct": 1,
           "explanation": "WACC ist die gewichtete Mischung aller Kapitalkosten und dient als Hurdle Rate für Investitionsentscheidungen."
         }
-      ]
+      ],
+      "intro": "**Kapitalstruktur und Kapitalkosten** (*Capital Structure and Cost of Capital*) erklärt, warum Unternehmen unterschiedlich verschuldet sind — und wie diese Entscheidung den Unternehmenswert beeinflusst.\n\n## WACC — Weighted Average Cost of Capital\nDer **WACC** ist der durchschnittliche Kapitalkostensatz, gewichtet nach Marktwerten: WACC = (E/V) × Re + (D/V) × Rd × (1−Tc). Er repräsentiert die Opportunitätskosten des investierten Kapitals und ist die Diskontierungsrate für Investitionsprojekte.\n\n## Die Kosten des Eigenkapitals\n**Re** (*Cost of Equity*) wird typischerweise mit dem **CAPM** geschätzt: Re = Rf + β × (Rm − Rf). Der Beta-Faktor misst das systematische Risiko eines Unternehmens relativ zum Markt. Ein β > 1 bedeutet überdurchschnittliche Marktsensitivität; β < 1 defensive Charakteristik.\n\n## Steuervorteile der Verschuldung\nZinsaufwendungen sind steuerlich absetzbar — das **Tax Shield** (Dt × rd × Tc) reduziert den effektiven Kapitalkostensatz. Die **Trade-off Theory** besagt: Unternehmen balancieren Steuervorteile gegen Insolvenzkosten (Financial Distress Costs). Die **Pecking Order Theory** ergänzt: Firmen bevorzugen interne Finanzierung, dann Fremdkapital, zuletzt Eigenkapital (wegen *Asymmetric Information*)."
     },
     {
       "id": "ch3",
@@ -220,7 +222,8 @@
           "correct": 1,
           "explanation": "Käufer zahlen Kontrollprämie (20-40%) und bewerten Synergien ein. Trading Multiples zeigen nur Minderheitsbeteiligungen."
         }
-      ]
+      ],
+      "intro": "**Investitionsentscheidungen und Kapitalbudgetierung** (*Capital Budgeting*) sind die Herzstücke strategischer Unternehmensführung. Hier entscheidet sich, ob ein Unternehmen wächst, stagniert oder schrumpft — und ob es Wert für seine Eigentümer schafft.\n\n## Barwertmethoden\nDer **Net Present Value (NPV)** ist die Königsdisziplin: Summe aller diskontierten Cashflows abzüglich Anfangsinvestition. Ein positiver NPV signalisiert Wertschaffung über die Opportunitätskosten hinaus. Die **Internal Rate of Return (IRR)** ist der Diskontierungssatz, bei dem NPV = 0. IRR und NPV führen bei konventionellen Cashflows zu identischen Entscheidungen — bei nicht-konventionellen (mehrere Vorzeichenwechsel) kann IRR mehrfache oder keine Lösung haben.\n\n## Alternative Kriterien\n**Payback Period**: Wie schnell wird die Investition zurückverdient? Einfach, ignoriert aber Zeitwert des Geldes und Cashflows nach dem Break-even. **Profitability Index (PI)**: PV of Future Cashflows / Initial Investment. PI > 1 entspricht NPV > 0. Nützlich bei Kapitalrationierung.\n\n## Projektevaluation in der Praxis\nReale Investitionsentscheidungen beinhalten Unsicherheit (*Sensitivity Analysis*, *Scenario Analysis*, *Monte Carlo Simulation*), strategische Optionen (*Real Options*) und organische versus externe Wachstumsentscheidungen."
     },
     {
       "id": "ch4",
@@ -292,7 +295,8 @@
           "correct": 2,
           "explanation": "Working Capital Management betrifft das Umlaufvermögen und kurzfristige Verbindlichkeiten — nicht das Anlagevermögen (das ist Capital Budgeting)."
         }
-      ]
+      ],
+      "intro": "**Unternehmensbewertung** (*Valuation*) ist die Kunst und Wissenschaft, den Wert eines Unternehmens zu bestimmen. Diese Bewertungen treiben Mergers and Acquisitions (M&A), Börsengänge (IPOs), Aktienrückkäufe und viele andere strategische Entscheidungen.\n\n## Discounted Cash Flow (DCF)\nDer **DCF-Ansatz** diskontiert zukünftige freie Cashflows (FCF) auf den heutigen Wert: Enterprise Value = Σ FCFₜ / (1+WACC)ᵗ + Terminal Value / (1+WACC)ⁿ. Die **Terminal Value** (Endwert) repräsentiert oft 60–80% des Gesamtwerts — ihre Schätzung ist daher kritisch.\n\n## Multiples und Vergleichsbewertung\n**Trading Multiples** (P/E, EV/EBITDA, EV/Sales) vergleichen das Zielunternehmen mit börsennotierten Peers. **Transaction Multiples** nutzen vergleichbare Akquisitionen. Der **EV/EBITDA**-Multiple ist besonders beliebt, weil er EBITDA vor Zinsen, Steuern und Abschreibungen neutral gegenüber der Kapitalstruktur macht.\n\n## Kontrolle und Synergien\nBei Akquisitionen zahlt der Käufer typischerweise eine **Kontrollprämie** (20–40% über Marktkurs). Dies rechtfertigt sich durch erwartete Synergien (Kosteneinsparungen, Umsatzsteigerungen), unter der Annahme, dass der Käufer sie besser realisieren kann als der Markt allein. Die **Post-Merger Integration** ist jedoch oft schwieriger als erwartet — viele Fusionen enttäuschen."
     }
   ]
 }

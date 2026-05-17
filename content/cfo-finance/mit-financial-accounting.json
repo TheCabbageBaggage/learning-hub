@@ -76,7 +76,8 @@
           "correct": 1,
           "explanation": "IFRS 16 eliminiert die Operating-Lease-Außerbilanzierung für Leasingnehmer. Alle wesentlichen Leasingverhältnisse kommen in die Bilanz."
         }
-      ]
+      ],
+      "intro": "**Finanzbuchhaltung** (*Financial Accounting*) ist das Rückgrat der Unternehmenskommunikation. Sie transformiert tägliche Geschäftsvorfälle in standardisierte, vergleichbare Informationen für externe Stakeholder — Investoren, Gläubiger, Behörden. Anders als die interne Controlling-Rechnung ist sie durch Gesetze (US-GAAP, IFRS) stark reguliert.\n\n## Die Sprache der Wirtschaft\nFinanzberichte sind die *lingua franca* der Wirtschaft. Ein Investor in New York versteht eine deutsche Bilanz, weil beide nach IFRS aufbereitet sind. Diese Vergleichbarkeit reduziert Informationsasymmetrien zwischen Management und Kapitalgebern, senkt Kapitalakkquisitionskosten und erhöht Markteffizienz.\n\n## Bilanz vs. Gewinn- und Verlustrechnung\nDie **Balance Sheet** (*Bilanz*) zeigt einen Zeitpunkt: Was besitzt das Unternehmen (Assets) und wer hat Ansprüche darauf (Liabilities = Fremdkapital, Equity = Eigenkapital)? Die **Income Statement** zeigt eine Periode: Wie viel wurde erwirtschaftet (Revenues) abzüglich Kosten (Expenses)?\n\n## Akkualprinzip (Accrual Accounting)\nEntscheidend ist nicht, wann Cash fließt, sondern wann Leistung erbracht und Forderungen entstehen. Ein verkaufter PC wird im Januar als Revenue erfasst — egal ob der Kunde in 30, 60 oder 90 Tagen zahlt. Dieses Prinzip zeigt die wirtschaftliche Realität besser als reine Cash-Flow-Betrachtung."
     },
     {
       "id": "ch2",
@@ -148,7 +149,8 @@
           "correct": 1,
           "explanation": "Revenue ist wiederkehrend und nachhaltig, Gains sind einmalig. Für Forecasting und Bewertungsmultiples ist diese Trennung essentiell."
         }
-      ]
+      ],
+      "intro": "**Buchhaltungsgrundlagen und das Akkualprinzip** formen die technische Basis aller Finanzberichte. Sie bestimmen, *wann* ein Geschäftsvorfall erfasst wird und *wie* er gemessen wird — Entscheidungen mit weitreichenden Konsequenzen für ausgewiesene Gewinne.\n\n## Das Matching Principle\nKosten und Erlöse müssen zeitlich zugeordnet werden. Wenn im Januar ein Produkt verkauft wird, zählt nicht nur der Verkaufspreis als Revenue — auch die Herstellkosten müssen derselben Periode zugeordnet werden (*Matching Principle*). Erst dann zeigt die Rechnung den wahren Periodenerfolg.\n\n## Debit und Credit\nDas **Doppelte Buchführungssystem** basiert auf der Gleichung: Assets = Liabilities + Equity. Jede Transaktion erfasst zwei Seiten: Debit (Soll) erhöht Assets, Credit (Haben) erhöht Liabilities oder Equity. Ein Kaufverkauf: Debit Inventory, Credit Accounts Payable.\n\n## Zeitwert und Erfüllung\n**IFRS 15 / ASC 606** regulieren die Umsatzrealisierung. Revenue wird erfasst, wenn (1) ein Vertrag existiert, (2) Leistungspflichten identifiziert sind, (3) der Preis bestimmt ist, (4) die Leistung erbracht ist. Ein Jahresabonnement wird ratierlich über 12 Monate erkannt — nicht sofort beim Verkauf.\n\n## Earnings Quality\nKreative Buchhaltung (*Earnings Management*) verschiebt Umsätze zwischen Perioden. **Channel Stuffing** (Kanalbefüllung) schiebt Waren auf Kunden, die sie nicht brauchen. **Cookie Jar Accounting** bildet überhöhte Rückstellungen, um schlechte Jahre zu glätten. Analysten bewerten solche *Red Flags* scharf."
     },
     {
       "id": "ch3",
@@ -220,7 +222,8 @@
           "correct": 2,
           "explanation": "10 − 3 (Forderungen steigen = weniger Cash) + 2 (Vorräte sinken = Cash frei) + 4 (Abschreibungen sind Non-Cash) = 13 Mio Operating Cash Flow."
         }
-      ]
+      ],
+      "intro": "**Vorräte und Anlagevermögen** (*Inventories and PP&E*) sind die zwei größten Posten auf der Aktivseite der Bilanz. Ihre Bewertung hat erhebliche Auswirkungen auf ausgewiesene Gewinne — und birgt viele Entscheidungsspielräume für das Management.\n\n## Bewertungsmethoden für Vorräte\n**FIFO** (*First In, First Out*): Erste eingegangene Waren werden zuerst verkauft. In Zeiten steigender Preise führt FIFO zu niedrigeren COGS (alte, günstigere Waren) und höheren ausgewiesenen Gewinnen. **LIFO** (*Last In, First Out*): Neueste Waren werden zuerst verkauft — unterstellt steigende Preise höhere COGS, niedrigere Gewinne, aber auch niedrigere Steuern (in den USA). **Weighted Average**: Durchschnittspreis aller Bestände.\n\n## Abschreibung von Anlagevermögen\n**PP&E** (*Property, Plant and Equipment*) werden über ihre Nutzungsdauer abgeschrieben. Die Wahl der **Abschreibungsmethode** beeinflusst Gewinn und Bilanzsumme: Linear (gleiche Beträge), Degressiv (höhere Anfangswerte), Units-of-Production (nach tatsächlicher Nutzung). IFRS erlaubt Modellwechsel bei signifikanter Änderung der Nutzungsmuster.\n\n## Wertminderungen (Impairments)\nWenn der Buchwert eines Assets seinen erzielbaren Betrag übersteigt, muss eine Abschreibung erfolgen — nicht über die Zeit, sondern sofort. Diese *Impairment Tests* sind besonders bei Goodwill (Kaufpreis über fairem Wert) kritisch und oft Auslöser für Gewinneinbrüche."
     },
     {
       "id": "ch4",
@@ -292,7 +295,8 @@
           "correct": 1,
           "explanation": "Der Aufwand wurde schon bei Allowance-Bildung erfasst. Der Write-Off ist reine Bilanzbereinigung: Allowance sinkt, AR sinkt. Kein GuV-Effekt."
         }
-      ]
+      ],
+      "intro": "**Kapitalstruktur und Bilanzierung von Schulden** (*Debt and Equity*) bestimmt, wie Unternehmen finanziert werden und wie diese Entscheidungen in der Bilanz sichtbar werden. Die Grenze zwischen Eigen- und Fremdkapital ist nicht immer klar — hybride Instrumente und Bilanzierungsmanipulation verschärfen das Problem.\n\n## Verbindlichkeiten und Eigenkapital\n**Current Liabilities** (kurzfristig): Accounts Payable (Lieferverbindlichkeiten), Accrued Expenses (transitorische Passiva), Short-term Debt. **Long-term Liabilities**: Bonds Payable (Anleihen), Deferred Taxes (latente Steuern), Pension Obligations. **Equity**: Common Stock, Additional Paid-in Capital, Retained Earnings, Treasury Stock.\n\n## Hybridinstrumente\n**Convertible Bonds** sind Anleihen mit Umtauschrecht in Aktien. Sind das Debt oder Equity? US-GAAP und IFRS behandeln sie unterschiedlich — was zu unterschiedlichen Verschuldungsgraden (*Leverage Ratios*) führt. **Preferred Stock** hat Merkmale beider Kategorien: Fixe Dividenden wie Anleihen, aber kein Rückzahlungsrecht wie Equity.\n\n## Off-Balance-Sheet-Finanzierung\nKreative Strukturen verschieben Schulden aus der Bilanz. **Leasing** (vor IFRS 16): Operating Leases erschienen nur als Mietaufwand, nicht als Asset+Debt. **Special Purpose Entities (SPEs)**: Enron nutzte sie, um Schulden zu verbergen. Moderne Standards haben viele dieser Spielräume geschlossen, aber Innovation in Finanzierungsstrukturen geht weiter."
     },
     {
       "id": "ch5",
@@ -364,7 +368,8 @@
           "correct": 1,
           "explanation": "EBITDA blendet CapEx-Folgekosten (Abschreibungen) aus. Ein Unternehmen mit hohem EBITDA aber massiven Investitionen kann Cash verbrennen. Deshalb FCF + EBITDA zusammen betrachten."
         }
-      ]
+      ],
+      "intro": "**Cash Flows und die Kapitalflussrechnung** (*Statement of Cash Flows*) sind der wahrscheinlich wichtigste Bericht für Investoren — denn Gewinne können manipuliert werden, Cashflows nicht. Die Frage \"Woher kam das Geld, wohin ging es?\" ist fundamental.\n\n## Drei Cashflow-Kategorien\n**Operating Activities**: Cash aus Kerngeschäft (Kunden +, Lieferanten −, Löhne −). **Investing Activities**: Investitionen/Divestitionen in Anlagevermögen (Maschinen +/−, Akquisitionen +/−). **Financing Activities**: Kapitalmaßnahmen (Aktienemission +, Dividenden −, Anleihen +/−, Tilgungen −).\n\n## Direct vs. Indirect Method\nBeide Methoden führen zum gleichen Ergebnis, aber zeigen unterschiedliche Informationen. Die **Direct Method** listet konkrete Cashflows: \"Received from customers\", \"Paid to suppliers\". Die **Indirect Method** (Standard) startet mit Net Income und eliminiert nicht-cash Positionen (Abschreibungen, Wertminderungen) sowie Working Capital-Änderungen.\n\n## Free Cash Flow\n**FCF** = Operating Cash Flow − Capital Expenditures. Zeigt, wie viel Cash nach notwendigen Investitionen übrig bleibt — für Dividenden, Aktienrückkäufe, Schuldentilgung oder Akquisitionen. Negative FCF können Wachstumsanzeichen sein (Investitionen in Zukunft), anhaltend negativ signalisieren strukturelle Probleme."
     }
   ]
 }

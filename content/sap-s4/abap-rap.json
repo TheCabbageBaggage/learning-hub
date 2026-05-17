@@ -76,7 +76,8 @@
           "correct": 1,
           "explanation": "ADT = Eclipse-Plugin. SAP GUI SE80 ist Legacy. Alle neuen Entwicklungsparadigmen (RAP, CDS) setzen ADT voraus."
         }
-      ]
+      ],
+      "intro": "**ABAP Restful Application Programming (RAP)** ist SAPs moderne Entwicklungsplattform für das *Clean Core*-Paradigma von S/4HANA. Es ersetzt klassische ABAP-Entwicklung durch ein model-driven, REST-basiertes Framework — deklarativ, testbar und cloud-ready.\n\n## Das RAP-Modell\nRAP basiert auf Geschäftsobjekten (*Business Objects*), nicht auf technischen Tabellen. Ein BO definiert Datenstruktur (Entities), Geschäftslogik (Behavior), und Services (Projection) deklarativ. Diese Trennung ermöglicht echte *Separation of Concerns* und erleichtert Unit-Tests erheblich.\n\n## CDS und Data Modeling\n**Core Data Services (CDS)** definieren das semantische Datenmodell: Entities, Associations, Projections. CDS-Views sind mehr als SQL-Abstraktionen — sie transportieren Metadaten für UI-Annotations, Suchhilfen, Wertehilfen (*Value Helps*) und Autorisierungsprüfungen.\n\n## Behavior Definition\nDie *.behavior*-Datei deklariert, *was* ein BO kann: Create, Update, Delete; Actions (Funktionen); Validations; Determinations. Das *wie* implementiert der Entwickler in einer Behavior-Pool-Klasse.\n\n## Warum RAP statt klassisch?\nRAP ist: (1) Upgrade-sicher durch *Stable Interfaces*, (2) *Fiori-ready* durch automatische UI-Generierung, (3) testbar durch Unit-Test-Framework, (4) cloud-fähig für SAP BTP Extensions."
     },
     {
       "id": "ch2",
@@ -148,7 +149,8 @@
           "correct": 1,
           "explanation": "Table Functions = AMDP-Implementierung für Fälle, die Declarative CDS nicht abdecken kann. Aber vorsichtig: DB-spezifisch (HANA)."
         }
-      ]
+      ],
+      "intro": "**RAP-Business-Objekte und Entitäten** bilden das strukturelle Fundament jeder RAP-Anwendung. Sie definieren nicht nur Datenfelder, sondern Beziehungen, Hierarchien und das Verhalten im Geschäftskontext.\n\n## Entity-Typen\n**RAP Business Object (BO)**: Das Root-Element mit eindeutigem Schlüssel und eigenem Lebenszyklus. **Child Entities**: Abhängige Entitäten mit Fremdschlüssel zum Parent (1:n-Beziehung). **Grandchild Entities**: Weitere Ebenen bei komplexen Hierarchien (z.B. Auftrag → Position → Zeitplan).\n\n## Composition und Association\n**Composition** ist eine starke *Containment*-Beziehung: Ein Child existiert nur im Kontext seines Parents (z.B. Auftragsposition ohne Auftrag sinnlos). **Association** ist eine lose Verknüpfung: Referenz zu einem externen BO, das eigenständig existiert (z.B. Auftrag verweist auf Kundenstamm).\n\n## Standard-Operationen\nJede RAP-Entity implementiert implizit Create, Read, Update, Delete (CRUD). Zusätzlich können **Factory Actions**, **Instance Actions**, und **Static Actions** definiert werden.\n\n## Eager vs. Lazy Loading\nRAP optimiert Datenbankzugriffe durch *Eager Loading*: Bei einem Root-Read werden automatisch alle Child-Entities mitgeladen (via Expand). Dies reduziert Roundtrips und ist essenziell für performante Fiori-Apps mit hierarchischen Listen."
     },
     {
       "id": "ch3",
@@ -220,7 +222,8 @@
           "correct": 2,
           "explanation": "BDL ist deklarativ — sie beschreibt das Verhalten (Operationen, Validations, Draft) ohne Implementierung. Die Implementierung folgt in ABAP-Klassen."
         }
-      ]
+      ],
+      "intro": "**Behavior Definition und -Implementierung** ist, wo das \"Business\" in Business Object zum Tragen kommt. Hier definieren Sie Regeln, Prüfungen, Berechnungen und Interaktionen — deklarativ beschrieben, imperativ implementiert.\n\n## Behavior Characteristics\nDie *.behavior*-Datei definiert **Modifizierbarkeit**: `strict` (nur deklarierte Felder änderbar) vs. `non-strict`. **Locking**: Pessimistisch (Sperre beim Lesen) vs. Optimistisch (Sperre beim Schreiben). **Authorization**: Autorisierungsprüfungen auf Entity-Ebene.\n\n## Validations und Determinations\n**Validations** prüfen Datenkonsistenz *vor* dem Speichern: Pflichtfelder, Wertebereiche, Plausibilitäten. Fehler werden gesammelt und dem Nutzer präsentiert. **Determinations** berechnen abgeleitete Werte automatisch: Total-Preis aus Menge × Einzelpreis, Statusänderungen basierend auf Datum.\n\n## Actions und Functions\n**Actions** sind Operationen auf BO-Instanzen: \"Genehmigen\", \"Stornieren\", \"Freigeben\". Sie ändern Zustände, können Side Effects haben (E-Mails, Workflow-Starts), und werden typischerweise per Button in der Fiori-Oberfläche ausgelöst. **Functions** sind schreibgeschützte Berechnungen, die Ergebnisse zurückgeben.\n\n## Transactional Processing\nRAP verwendet intern das *ABAP RESTful Programming Model Transactional Processing*: Änderungen werden zunächst im *Transaction Buffer* gehalten, erst beim Save commitet. Das ermöglicht *Draft*-Funktionalität."
     },
     {
       "id": "ch4",
@@ -292,7 +295,8 @@
           "correct": 1,
           "explanation": "Definition = Welche CDS Views werden exponiert. Binding = Welches Protokoll (OData V2/V4) + Wo publiziert (Launchpad)."
         }
-      ]
+      ],
+      "intro": "**Service Binding und Fiori-Integration** machen aus einem internen BO einen konsumierbaren Service. Dieser Schritt verbindet das Datenmodell mit der Benutzeroberfläche — oder mit externen Systemen via OData.\n\n## Service Definition\nDie *.srvdef*-Datei deklariert, welche Entities und Features eines BOs extern verfügbar gemacht werden. Nicht alles muss exponiert werden — Sie können interne Entities (Hilfstabellen, Berechnungszwischenspeicher) vor dem API-Verbraucher verbergen.\n\n## Service Binding\nDas Binding konkretisiert den Service: **OData V2** (für ältere Fiori-Versionen), **OData V4** (empfohlen, moderne Features), **Web API** (generische REST-JSON). Die Bindung generiert Metadaten-URLs, die von Fiori-Elementen oder externen Clients konsumiert werden.\n\n## Fiori Elements vs. Freestyle\n**Fiori Elements** generieren UI5-Apps vollständig aus Annotations: List Report, Object Page, Formulare, Tabellen — ohne JavaScript-Code. Für Standardprozesse ideal. **Freestyle**-Entwicklung ermöglicht maßgeschneiderte UX, erfordert aber UI5/JavaScript-Kenntnisse. RAP-Services funktionieren mit beiden Ansätzen.\n\n## Side Effects und Navigation\n**Side Effects** definieren UI-Abhängigkeiten: Wenn Feld X geändert wird, aktualisiere automatisch Feld Y. **Intent-Based Navigation** erlaubt das Springen zu verwandten BOs (Kunde → Aufträge)."
     },
     {
       "id": "ch5",
@@ -364,7 +368,8 @@
           "correct": 1,
           "explanation": "ATC (ABAP Test Cockpit) scannt automatisch den gesamten Custom Code und prüft auf Simplification Items. Ergebnis = Migrations-Backlog."
         }
-      ]
+      ],
+      "intro": "**RAP Best Practices und Testbarkeit** entscheiden über langfristigen Erfolg. Professionelle RAP-Entwicklung folgt Clean Code-Prinzipien, ermöglicht automatisierte Tests, und berücksichtigt Performance von Anfang an.\n\n## ABAP Testseams und Dependency Injection\nKlassische ABAP-Entwicklung ist schwer testbar wegen enger Kopplung. RAP nutzt **ABAP Testseams** und **Dependency Injection**: Datenbankzugriffe, externe Services, Zeitabhängigkeiten werden durch Interfaces abstrahiert und im Test durch Mock-Implementierungen ersetzt.\n\n## Unit Tests mit ABAP Unit\n**ABAP Unit** ist das integrierte Testframework. RAP-Unit-Tests prüfen Behavior-Implementierungen: Gegeben ein BO-Zustand, wenn Action X ausgeführt wird, dann erwarte Zustand Y. Die Testklasse nutzt EML (*Entity Manipulation Language*) für BO-Operationen, nicht direkte SQL-Statements.\n\n## Performance-Optimierung\n**Buffering**: Häufig gelesene Stammdaten sollten gepuffert werden. **Lazy vs. Eager Loading**: Entscheiden Sie bewusst, wann Assoziationen expandiert werden. **CUD-Operationen bündeln**: Massenoperationen über interne Tabellen, nicht Schleifen mit Einzelsätzen.\n\n## Clean Core Konformität\nS/4HANA Clean Core bedeutet: Keine Modifikationen von SAP-Standardobjekten (*Modification-free*). RAP-Extensions sind upgrade-sicher, wenn Sie auf *Released APIs* und *Extension Points* basieren."
     }
   ]
 }

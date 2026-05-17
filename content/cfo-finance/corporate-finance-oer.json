@@ -10,68 +10,288 @@
       "id": "ch1",
       "title": "Kapitalbudgetierung (Capital Budgeting)",
       "flashcards": [
-        {"front": "Was ist Capital Budgeting und welche Methoden gibt es?", "back": "Capital Budgeting = Prozess zur Bewertung langfristiger Investitionsprojekte.\nMethoden:\n1. NPV (Net Present Value / Kapitalwert): Diskontiert alle Cashflows, zeigt absolute Wertsteigerung\n2. IRR (Internal Rate of Return): Zinssatz bei dem NPV = 0\n3. Payback Period: Zeit bis zur Amortisation\n4. Profitability Index: NPV / Investition\n→ NPV ist theoretisch überlegen (berücksichtigt Zeitwert, alle Cashflows, Risiko über Diskontsatz)."},
-        {"front": "Wie berechnet und interpretiert man den NPV?", "back": "NPV = Σ(CF_t / (1+r)^t) − Initial Investment\n• CF_t = Cashflow in Periode t\n• r = Diskontsatz (Cost of Capital / Kapitalkosten)\nInterpretation:\nNPV > 0 → Projekt schafft Wert → ANNEHMEN\nNPV = 0 → Wertneutral\nNPV < 0 → Projekt vernichtet Wert → ABLEHNEN\n→ NPV ist die einzig korrekte Entscheidungsregel (keine Kapitalmarktwidrigkeiten)."},
-        {"front": "Was sind die Schwächen des IRR (Internal Rate of Return)?", "back": "1. Multiple IRRs möglich bei wechselnden Cashflow-Vorzeichen (z.B. Sanierungsprojekt: Auszahlung, Einzahlung, spätere Entsorgungskosten)\n2. Reinvestitionsannahme: IRR unterstellt, dass Zwischen-Cashflows ZUM IRR-Satz reinvestiert werden können — unrealistisch bei sehr hohem IRR\n3. Keine Größeninformation: IRR 50% auf 1.000 € vs IRR 15% auf 1 Mrd €?\n→ NPV ist robuster, IRR als Ergänzung für Kommunikation (Prozent ist intuitiver)."},
-        {"front": "Was ist die Payback Period und wann ist sie sinnvoll?", "back": "Payback = Zeit, bis kumulierte Cashflows die Investition decken.\nSimpelste Methode, ignoriert Zeitwert des Geldes (außer Discounted Payback).\nSinnvoll:\n• Als erstes Screening bei sehr unsicheren Projekten (Emerging Markets)\n• Wenn Liquidität kritisch ist (KMU)\n• Als Zusatzkriterium neben NPV\nProbleme: Ignoriert Cashflows NACH Payback komplett. Ein Projekt mit kurzem Payback und negativem NPV ist trotzdem schlecht."},
-        {"front": "Was sind Real Options (Realoptionen) im Capital Budgeting?", "back": "Realoptionen = Flexibilität, Entscheidungen bei neuen Informationen anzupassen.\nTypen:\n1. Option to Defer (Aufschieben): Warten bis Unsicherheit geringer\n2. Option to Expand (Erweitern): Bei Erfolg skalieren\n3. Option to Abandon (Abbrechen): Bei Misserfolg Liquidationswert realisieren\n4. Option to Switch (Wechseln): Input/Output ändern\n→ Klassischer NPV unterschätzt flexible Projekte. Realoptionsbewertung mit Black-Scholes oder Binomialmodellen."}
+        {
+          "front": "Was ist Capital Budgeting und welche Methoden gibt es?",
+          "back": "Capital Budgeting = Prozess zur Bewertung langfristiger Investitionsprojekte.\nMethoden:\n1. NPV (Net Present Value / Kapitalwert): Diskontiert alle Cashflows, zeigt absolute Wertsteigerung\n2. IRR (Internal Rate of Return): Zinssatz bei dem NPV = 0\n3. Payback Period: Zeit bis zur Amortisation\n4. Profitability Index: NPV / Investition\n→ NPV ist theoretisch überlegen (berücksichtigt Zeitwert, alle Cashflows, Risiko über Diskontsatz)."
+        },
+        {
+          "front": "Wie berechnet und interpretiert man den NPV?",
+          "back": "NPV = Σ(CF_t / (1+r)^t) − Initial Investment\n• CF_t = Cashflow in Periode t\n• r = Diskontsatz (Cost of Capital / Kapitalkosten)\nInterpretation:\nNPV > 0 → Projekt schafft Wert → ANNEHMEN\nNPV = 0 → Wertneutral\nNPV < 0 → Projekt vernichtet Wert → ABLEHNEN\n→ NPV ist die einzig korrekte Entscheidungsregel (keine Kapitalmarktwidrigkeiten)."
+        },
+        {
+          "front": "Was sind die Schwächen des IRR (Internal Rate of Return)?",
+          "back": "1. Multiple IRRs möglich bei wechselnden Cashflow-Vorzeichen (z.B. Sanierungsprojekt: Auszahlung, Einzahlung, spätere Entsorgungskosten)\n2. Reinvestitionsannahme: IRR unterstellt, dass Zwischen-Cashflows ZUM IRR-Satz reinvestiert werden können — unrealistisch bei sehr hohem IRR\n3. Keine Größeninformation: IRR 50% auf 1.000 € vs IRR 15% auf 1 Mrd €?\n→ NPV ist robuster, IRR als Ergänzung für Kommunikation (Prozent ist intuitiver)."
+        },
+        {
+          "front": "Was ist die Payback Period und wann ist sie sinnvoll?",
+          "back": "Payback = Zeit, bis kumulierte Cashflows die Investition decken.\nSimpelste Methode, ignoriert Zeitwert des Geldes (außer Discounted Payback).\nSinnvoll:\n• Als erstes Screening bei sehr unsicheren Projekten (Emerging Markets)\n• Wenn Liquidität kritisch ist (KMU)\n• Als Zusatzkriterium neben NPV\nProbleme: Ignoriert Cashflows NACH Payback komplett. Ein Projekt mit kurzem Payback und negativem NPV ist trotzdem schlecht."
+        },
+        {
+          "front": "Was sind Real Options (Realoptionen) im Capital Budgeting?",
+          "back": "Realoptionen = Flexibilität, Entscheidungen bei neuen Informationen anzupassen.\nTypen:\n1. Option to Defer (Aufschieben): Warten bis Unsicherheit geringer\n2. Option to Expand (Erweitern): Bei Erfolg skalieren\n3. Option to Abandon (Abbrechen): Bei Misserfolg Liquidationswert realisieren\n4. Option to Switch (Wechseln): Input/Output ändern\n→ Klassischer NPV unterschätzt flexible Projekte. Realoptionsbewertung mit Black-Scholes oder Binomialmodellen."
+        }
       ],
       "quiz": [
-        {"question": "Ein Projekt hat NPV = −50.000 €. Was bedeutet das?", "options": ["Das Projekt sollte angenommen werden", "Das Projekt vernichtet Wert, Kapitalkosten werden nicht gedeckt", "NPV ist irrelevant", "Das Projekt ist risikoarm"], "correct": 1, "explanation": "Negativer NPV = Projekt erwirtschaftet nicht einmal die Kapitalkosten. Annahme würde Wert vernichten."},
-        {"question": "Welche IRR-Schwäche ist am gravierendsten bei Projekten mit wechselnden Vorzeichen?", "options": ["Zu komplizierte Berechnung", "Multiple IRRs möglich (keine eindeutige Lösung)", "Zu niedrige Werte", "Keine Berücksichtigung von Steuern"], "correct": 1, "explanation": "Bei nicht-normativen Cashflows (+/−/+/−) kann die IRR-Gleichung mehrere Lösungen haben. Der NPV ist in diesem Fall die einzig verlässliche Methode."},
-        {"question": "Die Option, ein Projekt bei schlechter Marktentwicklung abzubrechen, ist eine:", "options": ["Option to Expand", "Option to Abandon", "Option to Defer", "Finanz-Option"], "correct": 1, "explanation": "Abandonment Option = Recht, bei Misserfolg den Liquidationswert zu realisieren. Erhöht den Projektwert gegenüber starrem NPV."},
-        {"question": "Warum ist NPV theoretisch überlegen gegenüber Payback?", "options": ["NPV ist einfacher zu berechnen", "NPV berücksichtigt ALLE Cashflows und den Zeitwert des Geldes", "NPV ignoriert Risiko", "Payback ist genauer"], "correct": 1, "explanation": "NPV diskontiert alle Cashflows mit risikoangepassten Kapitalkosten über die gesamte Projektlaufzeit. Payback bricht nach dem Break-Even ab."}
+        {
+          "question": "Ein Projekt hat NPV = −50.000 €. Was bedeutet das?",
+          "options": [
+            "Das Projekt sollte angenommen werden",
+            "Das Projekt vernichtet Wert, Kapitalkosten werden nicht gedeckt",
+            "NPV ist irrelevant",
+            "Das Projekt ist risikoarm"
+          ],
+          "correct": 1,
+          "explanation": "Negativer NPV = Projekt erwirtschaftet nicht einmal die Kapitalkosten. Annahme würde Wert vernichten."
+        },
+        {
+          "question": "Welche IRR-Schwäche ist am gravierendsten bei Projekten mit wechselnden Vorzeichen?",
+          "options": [
+            "Zu komplizierte Berechnung",
+            "Multiple IRRs möglich (keine eindeutige Lösung)",
+            "Zu niedrige Werte",
+            "Keine Berücksichtigung von Steuern"
+          ],
+          "correct": 1,
+          "explanation": "Bei nicht-normativen Cashflows (+/−/+/−) kann die IRR-Gleichung mehrere Lösungen haben. Der NPV ist in diesem Fall die einzig verlässliche Methode."
+        },
+        {
+          "question": "Die Option, ein Projekt bei schlechter Marktentwicklung abzubrechen, ist eine:",
+          "options": [
+            "Option to Expand",
+            "Option to Abandon",
+            "Option to Defer",
+            "Finanz-Option"
+          ],
+          "correct": 1,
+          "explanation": "Abandonment Option = Recht, bei Misserfolg den Liquidationswert zu realisieren. Erhöht den Projektwert gegenüber starrem NPV."
+        },
+        {
+          "question": "Warum ist NPV theoretisch überlegen gegenüber Payback?",
+          "options": [
+            "NPV ist einfacher zu berechnen",
+            "NPV berücksichtigt ALLE Cashflows und den Zeitwert des Geldes",
+            "NPV ignoriert Risiko",
+            "Payback ist genauer"
+          ],
+          "correct": 1,
+          "explanation": "NPV diskontiert alle Cashflows mit risikoangepassten Kapitalkosten über die gesamte Projektlaufzeit. Payback bricht nach dem Break-Even ab."
+        }
       ]
     },
     {
       "id": "ch2",
       "title": "Kapitalkosten & Kapitalstruktur (Cost of Capital & Capital Structure)",
       "flashcards": [
-        {"front": "Wie berechnet man den WACC (Weighted Average Cost of Capital)?", "back": "WACC = (E/V × r_E) + (D/V × r_D × (1−T))\n• E = Market Value of Equity, D = Market Value of Debt, V = E + D\n• r_E = Cost of Equity (Eigenkapitalkosten)\n• r_D = Cost of Debt (Fremdkapitalkosten)\n• T = Tax Rate (Steuersatz, Tax Shield durch Zinsabzug!)\n→ WACC ist der Mindest-Diskontsatz für Investitionsprojekte gleichen Risikos."},
-        {"front": "Wie bestimmt man die Cost of Equity mit CAPM?", "back": "CAPM: r_E = r_f + β × (r_m − r_f)\n• r_f = Risk-free Rate (risikoloser Zins, z.B. 10-jährige Bundesanleihe)\n• β = Beta (systematisches Risiko im Vergleich zum Markt)\n• r_m − r_f = Equity Risk Premium (Marktrisikoprämie, historisch ~5-6%)\n→ β > 1: zyklische Aktie (Tech, Auto). β < 1: defensiv (Versorger). β = 1: Markt-Durchschnitt."},
-        {"front": "Was besagt das Modigliani-Miller-Theorem (M&M)?", "back": "M&M Proposition I (1958, ohne Steuern): Die Kapitalstruktur ist IRRELEVANT für den Unternehmenswert. Der Wert hängt nur von den Assets/Cashflows ab.\nM&M II: Höhere Verschuldung erhöht r_E (Eigenkapitalkosten steigen wegen höherem Risiko), WACC bleibt konstant.\nM&M mit Steuern (1963): Fremdkapital wird wertvoll wegen Tax Shield (Zinsen steuerlich absetzbar)! Optimal: höchstmöglicher Debt-Anteil.\n→ Realität: Trade-Off zwischen Tax Shield und Insolvenzkosten (Bankruptcy Costs)."},
-        {"front": "Was ist die Pecking Order Theory (Hackordnungstheorie)?", "back": "Unternehmen bevorzugen Finanzierungsquellen in dieser Reihenfolge:\n1. Internal Funds (Innenfinanzierung: einbehaltene Gewinne) — keine Informationsasymmetrie\n2. Debt (Fremdkapital) — günstiger Steuereffekt, begrenztes Risiko\n3. Equity (externe Eigenkapitalaufnahme) — LETZTE Wahl, Signal: Aktie ist überbewertet?\n→ Erklärt, warum profitable Firmen wenig Debt haben (nutzen interne Mittel) und warum Aktienemissionen oft negativ aufgenommen werden."},
-        {"front": "Was ist der optimale Verschuldungsgrad nach der Trade-Off Theory?", "back": "Optimum da, wo gilt:\nGrenznutzen des Tax Shield = Grenzkosten der Financial Distress (Insolvenzkosten)\nInsolvenzkosten:\n• Direkt: Anwalts-/Beraterkosten\n• Indirekt: Kunden laufen weg, Lieferanten fordern Vorkasse, Mitarbeiter kündigen\n→ Branchen mit stabilen Cashflows (Versorger, Telekom) können mehr Debt tragen als zyklische Branchen (Auto, Bau)."}
+        {
+          "front": "Wie berechnet man den WACC (Weighted Average Cost of Capital)?",
+          "back": "WACC = (E/V × r_E) + (D/V × r_D × (1−T))\n• E = Market Value of Equity, D = Market Value of Debt, V = E + D\n• r_E = Cost of Equity (Eigenkapitalkosten)\n• r_D = Cost of Debt (Fremdkapitalkosten)\n• T = Tax Rate (Steuersatz, Tax Shield durch Zinsabzug!)\n→ WACC ist der Mindest-Diskontsatz für Investitionsprojekte gleichen Risikos."
+        },
+        {
+          "front": "Wie bestimmt man die Cost of Equity mit CAPM?",
+          "back": "CAPM: r_E = r_f + β × (r_m − r_f)\n• r_f = Risk-free Rate (risikoloser Zins, z.B. 10-jährige Bundesanleihe)\n• β = Beta (systematisches Risiko im Vergleich zum Markt)\n• r_m − r_f = Equity Risk Premium (Marktrisikoprämie, historisch ~5-6%)\n→ β > 1: zyklische Aktie (Tech, Auto). β < 1: defensiv (Versorger). β = 1: Markt-Durchschnitt."
+        },
+        {
+          "front": "Was besagt das Modigliani-Miller-Theorem (M&M)?",
+          "back": "M&M Proposition I (1958, ohne Steuern): Die Kapitalstruktur ist IRRELEVANT für den Unternehmenswert. Der Wert hängt nur von den Assets/Cashflows ab.\nM&M II: Höhere Verschuldung erhöht r_E (Eigenkapitalkosten steigen wegen höherem Risiko), WACC bleibt konstant.\nM&M mit Steuern (1963): Fremdkapital wird wertvoll wegen Tax Shield (Zinsen steuerlich absetzbar)! Optimal: höchstmöglicher Debt-Anteil.\n→ Realität: Trade-Off zwischen Tax Shield und Insolvenzkosten (Bankruptcy Costs)."
+        },
+        {
+          "front": "Was ist die Pecking Order Theory (Hackordnungstheorie)?",
+          "back": "Unternehmen bevorzugen Finanzierungsquellen in dieser Reihenfolge:\n1. Internal Funds (Innenfinanzierung: einbehaltene Gewinne) — keine Informationsasymmetrie\n2. Debt (Fremdkapital) — günstiger Steuereffekt, begrenztes Risiko\n3. Equity (externe Eigenkapitalaufnahme) — LETZTE Wahl, Signal: Aktie ist überbewertet?\n→ Erklärt, warum profitable Firmen wenig Debt haben (nutzen interne Mittel) und warum Aktienemissionen oft negativ aufgenommen werden."
+        },
+        {
+          "front": "Was ist der optimale Verschuldungsgrad nach der Trade-Off Theory?",
+          "back": "Optimum da, wo gilt:\nGrenznutzen des Tax Shield = Grenzkosten der Financial Distress (Insolvenzkosten)\nInsolvenzkosten:\n• Direkt: Anwalts-/Beraterkosten\n• Indirekt: Kunden laufen weg, Lieferanten fordern Vorkasse, Mitarbeiter kündigen\n→ Branchen mit stabilen Cashflows (Versorger, Telekom) können mehr Debt tragen als zyklische Branchen (Auto, Bau)."
+        }
       ],
       "quiz": [
-        {"question": "Ein Unternehmen hat β = 1,5, r_f = 3%, ERP = 5%. Cost of Equity nach CAPM = ?", "options": ["7,5%", "10,5%", "6,0%", "8,0%"], "correct": 1, "explanation": "3% + 1,5 × 5% = 3% + 7,5% = 10,5%. Ein β > 1 bedeutet höheres systematisches Risiko als der Markt."},
-        {"question": "Nach M&M mit Steuern ist die optimale Kapitalstruktur:", "options": ["50% Debt / 50% Equity", "Rein Equity-finanziert", "Höchstmöglicher Debt-Anteil (Tax Shield)", "Komplett irrelevant"], "correct": 2, "explanation": "M&M mit Steuern: Zinsabzug macht Debt wertvoll. Rein theoretisch: 100% Debt optimal. In der Praxis limitieren Insolvenzkosten."},
-        {"question": "Laut Pecking Order Theory wird zuerst genutzt:", "options": ["Aktienemission", "Bankdarlehen", "Innenfinanzierung / einbehaltene Gewinne", "Anleihe-Emission"], "correct": 2, "explanation": "Pecking Order: 1. Internal Funds, 2. Debt, 3. Equity. Informationsasymmetrie macht externe Finanzierung teurer."},
-        {"question": "WACC repräsentiert:", "options": ["Die durchschnittliche Inflationsrate", "Den Mindest-Diskontsatz für Projekte gleichen Risikos", "Den Steuersatz", "Die Dividendenrendite"], "correct": 1, "explanation": "WACC ist die gewichtete Mischung aller Kapitalkosten und dient als Hurdle Rate für Investitionsentscheidungen."}
+        {
+          "question": "Ein Unternehmen hat β = 1,5, r_f = 3%, ERP = 5%. Cost of Equity nach CAPM = ?",
+          "options": [
+            "7,5%",
+            "10,5%",
+            "6,0%",
+            "8,0%"
+          ],
+          "correct": 1,
+          "explanation": "3% + 1,5 × 5% = 3% + 7,5% = 10,5%. Ein β > 1 bedeutet höheres systematisches Risiko als der Markt."
+        },
+        {
+          "question": "Nach M&M mit Steuern ist die optimale Kapitalstruktur:",
+          "options": [
+            "50% Debt / 50% Equity",
+            "Rein Equity-finanziert",
+            "Höchstmöglicher Debt-Anteil (Tax Shield)",
+            "Komplett irrelevant"
+          ],
+          "correct": 2,
+          "explanation": "M&M mit Steuern: Zinsabzug macht Debt wertvoll. Rein theoretisch: 100% Debt optimal. In der Praxis limitieren Insolvenzkosten."
+        },
+        {
+          "question": "Laut Pecking Order Theory wird zuerst genutzt:",
+          "options": [
+            "Aktienemission",
+            "Bankdarlehen",
+            "Innenfinanzierung / einbehaltene Gewinne",
+            "Anleihe-Emission"
+          ],
+          "correct": 2,
+          "explanation": "Pecking Order: 1. Internal Funds, 2. Debt, 3. Equity. Informationsasymmetrie macht externe Finanzierung teurer."
+        },
+        {
+          "question": "WACC repräsentiert:",
+          "options": [
+            "Die durchschnittliche Inflationsrate",
+            "Den Mindest-Diskontsatz für Projekte gleichen Risikos",
+            "Den Steuersatz",
+            "Die Dividendenrendite"
+          ],
+          "correct": 1,
+          "explanation": "WACC ist die gewichtete Mischung aller Kapitalkosten und dient als Hurdle Rate für Investitionsentscheidungen."
+        }
       ]
     },
     {
       "id": "ch3",
       "title": "Unternehmensbewertung (Company Valuation)",
       "flashcards": [
-        {"front": "Erkläre die DCF-Methode (Discounted Cash Flow).", "back": "Unternehmenswert = Barwert aller künftigen Free Cashflows.\nSchritte:\n1. Forecast freier Cashflows (5-10 Jahre Detailplanung)\n2. Berechne Terminal Value (Endwert für Zeit danach)\n3. Diskontiere mit WACC auf heute\n4. Subtrahiere Net Debt = Enterprise Value − Net Debt = Equity Value\n→ Sensitivste Parameter: Umsatzwachstum, Margen, WACC, Terminal Value. Kleine Änderung = große Bewertungsdifferenz."},
-        {"front": "Wie berechnet man den Terminal Value?", "back": "1. Gordon Growth Model (Perpetuity): TV = FCF_(n+1) / (WACC − g)\n   • g = ewiges Wachstum (meist 1-3%, nie über BIP-Wachstum!)\n2. Exit Multiple: TV = EBITDA_(n) × Multiple (Branchen-Multiple)\n→ Terminal Value ist oft 60-80% des gesamten DCF-Werts — enormer Hebel!\n→ Plausibilitätscheck: implizites Exit-Multiple aus Gordon-Growth ableiten."},
-        {"front": "Was zeigen Comparable Company Analysis (Trading Multiples)?", "back": "Vergleich mit börsennotierten Peer-Unternehmen.\nTypische Multiples:\n• EV/EBITDA: Am häufigsten, kapitalstrukturneutral\n• P/E (KGV): Einfach, aber durch Verschuldung verzerrt\n• EV/Sales: Für Wachstumsfirmen ohne Gewinn\n• P/B (KBV): Für Banken/Versicherungen\n→ Immer fragen: WARUM ist Multiple höher/niedriger als Peers? Wachstum? Margen? Risiko? Oder nur Marktstimmung?"},
-        {"front": "Was ist der Unterschied zwischen Enterprise Value und Equity Value?", "back": "Enterprise Value (EV / Gesamtunternehmenswert): Wert des operativen Geschäfts für ALLE Kapitalgeber (Eigen- + Fremdkapital).\nEquity Value (Eigenkapitalwert): Wert NUR für Aktionäre.\nBrücke: Equity Value = EV − Net Debt − Minorities − Pension Obligations\n→ Wenn man EV berechnet aber Equity Value braucht (z.B. Aktienpreis), muss man ALLES dazwischenliegende subtrahieren. Häufiger Fehler: Net Debt vergessen."},
-        {"front": "Was ist die Precedent Transactions Analyse?", "back": "Bewertung anhand historischer M&A-Transaktionen in der gleichen Branche.\nZeigt: Was haben KÄUFER tatsächlich bezahlt? (inklusive Kontrollprämie!)\nControl Premium: 20-40% über Börsenkurs, weil Käufer das Sagen bekommt.\n→ Liefert meist höhere Werte als Trading Multiples (Control Premium + Synergien eingepreist). Immer das Transaktionsdatum beachten — Marktumfeld ändert sich."}
+        {
+          "front": "Erkläre die DCF-Methode (Discounted Cash Flow).",
+          "back": "Unternehmenswert = Barwert aller künftigen Free Cashflows.\nSchritte:\n1. Forecast freier Cashflows (5-10 Jahre Detailplanung)\n2. Berechne Terminal Value (Endwert für Zeit danach)\n3. Diskontiere mit WACC auf heute\n4. Subtrahiere Net Debt = Enterprise Value − Net Debt = Equity Value\n→ Sensitivste Parameter: Umsatzwachstum, Margen, WACC, Terminal Value. Kleine Änderung = große Bewertungsdifferenz."
+        },
+        {
+          "front": "Wie berechnet man den Terminal Value?",
+          "back": "1. Gordon Growth Model (Perpetuity): TV = FCF_(n+1) / (WACC − g)\n   • g = ewiges Wachstum (meist 1-3%, nie über BIP-Wachstum!)\n2. Exit Multiple: TV = EBITDA_(n) × Multiple (Branchen-Multiple)\n→ Terminal Value ist oft 60-80% des gesamten DCF-Werts — enormer Hebel!\n→ Plausibilitätscheck: implizites Exit-Multiple aus Gordon-Growth ableiten."
+        },
+        {
+          "front": "Was zeigen Comparable Company Analysis (Trading Multiples)?",
+          "back": "Vergleich mit börsennotierten Peer-Unternehmen.\nTypische Multiples:\n• EV/EBITDA: Am häufigsten, kapitalstrukturneutral\n• P/E (KGV): Einfach, aber durch Verschuldung verzerrt\n• EV/Sales: Für Wachstumsfirmen ohne Gewinn\n• P/B (KBV): Für Banken/Versicherungen\n→ Immer fragen: WARUM ist Multiple höher/niedriger als Peers? Wachstum? Margen? Risiko? Oder nur Marktstimmung?"
+        },
+        {
+          "front": "Was ist der Unterschied zwischen Enterprise Value und Equity Value?",
+          "back": "Enterprise Value (EV / Gesamtunternehmenswert): Wert des operativen Geschäfts für ALLE Kapitalgeber (Eigen- + Fremdkapital).\nEquity Value (Eigenkapitalwert): Wert NUR für Aktionäre.\nBrücke: Equity Value = EV − Net Debt − Minorities − Pension Obligations\n→ Wenn man EV berechnet aber Equity Value braucht (z.B. Aktienpreis), muss man ALLES dazwischenliegende subtrahieren. Häufiger Fehler: Net Debt vergessen."
+        },
+        {
+          "front": "Was ist die Precedent Transactions Analyse?",
+          "back": "Bewertung anhand historischer M&A-Transaktionen in der gleichen Branche.\nZeigt: Was haben KÄUFER tatsächlich bezahlt? (inklusive Kontrollprämie!)\nControl Premium: 20-40% über Börsenkurs, weil Käufer das Sagen bekommt.\n→ Liefert meist höhere Werte als Trading Multiples (Control Premium + Synergien eingepreist). Immer das Transaktionsdatum beachten — Marktumfeld ändert sich."
+        }
       ],
       "quiz": [
-        {"question": "Der Terminal Value macht typischerweise wie viel vom DCF-Gesamtwert aus?", "options": ["10-20%", "30-40%", "60-80%", "95-100%"], "correct": 2, "explanation": "60-80% des DCF-Werts kommen oft aus dem Terminal Value — extrem sensitiv. Kleine Änderung des ewigen Wachstums g ändert Bewertung massiv."},
-        {"question": "EV/EBITDA ist kapitalstrukturneutral, weil:", "options": ["Es ignoriert EBITDA", "EV bezieht sich auf Gesamtkapital (E+D), EBITDA ist vor Zinsen", "Es nur für schuldenfreie Firmen gilt", "Es das KGV ersetzt"], "correct": 1, "explanation": "EV = E + D − Cash (Gesamtunternehmenswert). EBITDA ist Operating Profit vor Zinsen → passt zum Gesamtkapital-Ansatz. Deshalb ideal für Peer-Vergleiche."},
-        {"question": "Equity Value = ?", "options": ["Enterprise Value", "EV − Net Debt", "EV + Net Debt", "EV × 2"], "correct": 1, "explanation": "Equity Value = EV − Net Debt (und andere Brückenposten). Wer das vergisst, überschätzt den Aktienwert systematisch."},
-        {"question": "Precedent Transaction Multiples sind meist höher als Trading Multiples wegen:", "options": ["Rechenfehlern", "Control Premium + erwarteten Synergien", "Niedrigeren Steuern", "Anderer Bilanzierung"], "correct": 1, "explanation": "Käufer zahlen Kontrollprämie (20-40%) und bewerten Synergien ein. Trading Multiples zeigen nur Minderheitsbeteiligungen."}
+        {
+          "question": "Der Terminal Value macht typischerweise wie viel vom DCF-Gesamtwert aus?",
+          "options": [
+            "10-20%",
+            "30-40%",
+            "60-80%",
+            "95-100%"
+          ],
+          "correct": 2,
+          "explanation": "60-80% des DCF-Werts kommen oft aus dem Terminal Value — extrem sensitiv. Kleine Änderung des ewigen Wachstums g ändert Bewertung massiv."
+        },
+        {
+          "question": "EV/EBITDA ist kapitalstrukturneutral, weil:",
+          "options": [
+            "Es ignoriert EBITDA",
+            "EV bezieht sich auf Gesamtkapital (E+D), EBITDA ist vor Zinsen",
+            "Es nur für schuldenfreie Firmen gilt",
+            "Es das KGV ersetzt"
+          ],
+          "correct": 1,
+          "explanation": "EV = E + D − Cash (Gesamtunternehmenswert). EBITDA ist Operating Profit vor Zinsen → passt zum Gesamtkapital-Ansatz. Deshalb ideal für Peer-Vergleiche."
+        },
+        {
+          "question": "Equity Value = ?",
+          "options": [
+            "Enterprise Value",
+            "EV − Net Debt",
+            "EV + Net Debt",
+            "EV × 2"
+          ],
+          "correct": 1,
+          "explanation": "Equity Value = EV − Net Debt (und andere Brückenposten). Wer das vergisst, überschätzt den Aktienwert systematisch."
+        },
+        {
+          "question": "Precedent Transaction Multiples sind meist höher als Trading Multiples wegen:",
+          "options": [
+            "Rechenfehlern",
+            "Control Premium + erwarteten Synergien",
+            "Niedrigeren Steuern",
+            "Anderer Bilanzierung"
+          ],
+          "correct": 1,
+          "explanation": "Käufer zahlen Kontrollprämie (20-40%) und bewerten Synergien ein. Trading Multiples zeigen nur Minderheitsbeteiligungen."
+        }
       ]
     },
     {
       "id": "ch4",
       "title": "Working Capital Management",
       "flashcards": [
-        {"front": "Was ist der Cash Conversion Cycle (CCC) und wie wird er berechnet?", "back": "CCC = DIO + DSO − DPO (in Tagen)\n• DIO = Inventory / (COGS/365) — wie lange bis Ware verkauft ist?\n• DSO = AR / (Revenue/365) — wie lange bis Kunden zahlen?\n• DPO = AP / (COGS/365) — wie lange bis WIR zahlen?\nZiel: CCC minimieren — Liquidität schneller freisetzen.\nNegativer CCC (wie Amazon): Kunden zahlen VOR Lieferantenfälligkeit → kostenlose Finanzierung durch Lieferanten."},
-        {"front": "Wie trifft man optimale Credit Policy-Entscheidungen?", "back": "Trade-Off:\nGroßzügiges Zahlungsziel → mehr Umsatz, aber höheres Kreditrisiko und längere Kapitalbindung.\nOptimierung:\n1. 5 C's of Credit: Character, Capacity, Capital, Collateral, Conditions\n2. Credit Scoring Modelle\n3. NPV-Analyse: NPV der Lockerung = (Δ Sales × Contribution Margin) − (Δ Bad Debt) − (Finanzierungskosten der zusätzlichen Forderungen)\n→ Wenn NPV > 0: Lockerung lohnt sich."},
-        {"front": "Was ist optimales Inventory Management?", "back": "Ziel: Minimale Lagerkosten bei maximaler Lieferbereitschaft.\nEOQ-Modell (Economic Order Quantity): Optimale Bestellmenge, die Bestell- und Lagerkosten minimiert.\nEOQ = √(2 × D × S / H)\n• D = Jahresbedarf, S = Bestellfixkosten, H = Lagerhaltungskosten pro Stück\nJust-in-Time (JIT): Bestellung genau wenn gebraucht (Toyota). Risiko: Supply-Chain-Disruption.\nSafety Stock: Puffer für Nachfrageschwankungen → Service Level vs Kapitalbindung."},
-        {"front": "Was sind die Kosten und Vorteile von Trade Credit (Lieferantenkredit)?", "back": "Trade Credit = Zahlung 'auf Rechnung', meist 30 Tage netto, oft mit Skonto (z.B. 2/10 net 30 = 2% Skonto bei Zahlung in 10 Tagen, sonst netto in 30).\nImpliziter Zinssatz bei Skontoverzicht = (Skonto% / (100%−Skonto%)) × (365 / (Netto-Zahlungsziel − Skontofrist))\nBeispiel 2/10 net 30: 2/98 × 365/20 = 37,2% effektiver Jahreszins!\n→ Skontoverzicht ist extrem teuer. Immer Skonto nutzen, notfalls per Kreditlinie finanzieren."},
-        {"front": "Welche Short-term Financing Optionen hat ein Unternehmen?", "back": "1. Bank Overdraft (Kontokorrent): Flexibel, teuer (8-15%). Gutes Backup.\n2. Commercial Paper: Kurzfristige unbesicherte Schuldverschreibung großer Firmen (1-270 Tage). Günstiger als Kredit, nur für Top-Bonität.\n3. Factoring: AR verkaufen (ohne Recourse = True Sale). Schnell Liquidität, aber Gebühren.\n4. Supply Chain Finance: Bank zahlt Lieferanten sofort, Unternehmen zahlt Bank später. Optimiert DPO ohne Lieferant zu belasten.\n5. Inventory Financing: Lagerbestand als Sicherheit."}
+        {
+          "front": "Was ist der Cash Conversion Cycle (CCC) und wie wird er berechnet?",
+          "back": "CCC = DIO + DSO − DPO (in Tagen)\n• DIO = Inventory / (COGS/365) — wie lange bis Ware verkauft ist?\n• DSO = AR / (Revenue/365) — wie lange bis Kunden zahlen?\n• DPO = AP / (COGS/365) — wie lange bis WIR zahlen?\nZiel: CCC minimieren — Liquidität schneller freisetzen.\nNegativer CCC (wie Amazon): Kunden zahlen VOR Lieferantenfälligkeit → kostenlose Finanzierung durch Lieferanten."
+        },
+        {
+          "front": "Wie trifft man optimale Credit Policy-Entscheidungen?",
+          "back": "Trade-Off:\nGroßzügiges Zahlungsziel → mehr Umsatz, aber höheres Kreditrisiko und längere Kapitalbindung.\nOptimierung:\n1. 5 C's of Credit: Character, Capacity, Capital, Collateral, Conditions\n2. Credit Scoring Modelle\n3. NPV-Analyse: NPV der Lockerung = (Δ Sales × Contribution Margin) − (Δ Bad Debt) − (Finanzierungskosten der zusätzlichen Forderungen)\n→ Wenn NPV > 0: Lockerung lohnt sich."
+        },
+        {
+          "front": "Was ist optimales Inventory Management?",
+          "back": "Ziel: Minimale Lagerkosten bei maximaler Lieferbereitschaft.\nEOQ-Modell (Economic Order Quantity): Optimale Bestellmenge, die Bestell- und Lagerkosten minimiert.\nEOQ = √(2 × D × S / H)\n• D = Jahresbedarf, S = Bestellfixkosten, H = Lagerhaltungskosten pro Stück\nJust-in-Time (JIT): Bestellung genau wenn gebraucht (Toyota). Risiko: Supply-Chain-Disruption.\nSafety Stock: Puffer für Nachfrageschwankungen → Service Level vs Kapitalbindung."
+        },
+        {
+          "front": "Was sind die Kosten und Vorteile von Trade Credit (Lieferantenkredit)?",
+          "back": "Trade Credit = Zahlung 'auf Rechnung', meist 30 Tage netto, oft mit Skonto (z.B. 2/10 net 30 = 2% Skonto bei Zahlung in 10 Tagen, sonst netto in 30).\nImpliziter Zinssatz bei Skontoverzicht = (Skonto% / (100%−Skonto%)) × (365 / (Netto-Zahlungsziel − Skontofrist))\nBeispiel 2/10 net 30: 2/98 × 365/20 = 37,2% effektiver Jahreszins!\n→ Skontoverzicht ist extrem teuer. Immer Skonto nutzen, notfalls per Kreditlinie finanzieren."
+        },
+        {
+          "front": "Welche Short-term Financing Optionen hat ein Unternehmen?",
+          "back": "1. Bank Overdraft (Kontokorrent): Flexibel, teuer (8-15%). Gutes Backup.\n2. Commercial Paper: Kurzfristige unbesicherte Schuldverschreibung großer Firmen (1-270 Tage). Günstiger als Kredit, nur für Top-Bonität.\n3. Factoring: AR verkaufen (ohne Recourse = True Sale). Schnell Liquidität, aber Gebühren.\n4. Supply Chain Finance: Bank zahlt Lieferanten sofort, Unternehmen zahlt Bank später. Optimiert DPO ohne Lieferant zu belasten.\n5. Inventory Financing: Lagerbestand als Sicherheit."
+        }
       ],
       "quiz": [
-        {"question": "Ein negativer Cash Conversion Cycle bedeutet:", "options": ["Das Unternehmen ist illiquide", "Kunden zahlen, bevor Lieferanten bezahlt werden müssen — kostenlose Finanzierung", "Das Unternehmen hat zu viel Inventar", "CCC kann nie negativ sein"], "correct": 1, "explanation": "Negativer CCC = DSO < DPO: Kundeneingänge kommen vor Lieferantenausgängen. Effekt: Lieferanten finanzieren das Working Capital (Amazon-Effekt)."},
-        {"question": "2/10 net 30: Wie hoch ist der effektive Jahreszins bei Skontoverzicht? (ca.)", "options": ["~5%", "~18%", "~37%", "~50%"], "correct": 2, "explanation": "2/98 × 365/20 ≈ 37,2%. Wer Skonto nicht nutzt, zahlt einen impliziten Kredit mit Wucherzinsen. Immer Skonto mitnehmen."},
-        {"question": "Welche Finanzierungsform ist FÜR Top-Bonitäten am günstigsten?", "options": ["Bank-Kontokorrent", "Commercial Paper", "Factoring", "Lieferantenkredit ohne Skonto"], "correct": 1, "explanation": "Commercial Paper (CP) ist die günstigste kurzfristige Finanzierung — große Konzerne mit AAA-Rating zahlen oft nur Libor/SOFR + kleiner Spread."},
-        {"question": "Was ist KEIN Ziel des Working Capital Management?", "options": ["Minimierung des Cash Conversion Cycle", "Optimale Abstimmung von DIO, DSO, DPO", "Maximierung des Anlagevermögens", "Sicherung kurzfristiger Liquidität"], "correct": 2, "explanation": "Working Capital Management betrifft das Umlaufvermögen und kurzfristige Verbindlichkeiten — nicht das Anlagevermögen (das ist Capital Budgeting)."}
+        {
+          "question": "Ein negativer Cash Conversion Cycle bedeutet:",
+          "options": [
+            "Das Unternehmen ist illiquide",
+            "Kunden zahlen, bevor Lieferanten bezahlt werden müssen — kostenlose Finanzierung",
+            "Das Unternehmen hat zu viel Inventar",
+            "CCC kann nie negativ sein"
+          ],
+          "correct": 1,
+          "explanation": "Negativer CCC = DSO < DPO: Kundeneingänge kommen vor Lieferantenausgängen. Effekt: Lieferanten finanzieren das Working Capital (Amazon-Effekt)."
+        },
+        {
+          "question": "2/10 net 30: Wie hoch ist der effektive Jahreszins bei Skontoverzicht? (ca.)",
+          "options": [
+            "~5%",
+            "~18%",
+            "~37%",
+            "~50%"
+          ],
+          "correct": 2,
+          "explanation": "2/98 × 365/20 ≈ 37,2%. Wer Skonto nicht nutzt, zahlt einen impliziten Kredit mit Wucherzinsen. Immer Skonto mitnehmen."
+        },
+        {
+          "question": "Welche Finanzierungsform ist FÜR Top-Bonitäten am günstigsten?",
+          "options": [
+            "Bank-Kontokorrent",
+            "Commercial Paper",
+            "Factoring",
+            "Lieferantenkredit ohne Skonto"
+          ],
+          "correct": 1,
+          "explanation": "Commercial Paper (CP) ist die günstigste kurzfristige Finanzierung — große Konzerne mit AAA-Rating zahlen oft nur Libor/SOFR + kleiner Spread."
+        },
+        {
+          "question": "Was ist KEIN Ziel des Working Capital Management?",
+          "options": [
+            "Minimierung des Cash Conversion Cycle",
+            "Optimale Abstimmung von DIO, DSO, DPO",
+            "Maximierung des Anlagevermögens",
+            "Sicherung kurzfristiger Liquidität"
+          ],
+          "correct": 2,
+          "explanation": "Working Capital Management betrifft das Umlaufvermögen und kurzfristige Verbindlichkeiten — nicht das Anlagevermögen (das ist Capital Budgeting)."
+        }
       ]
     }
   ]

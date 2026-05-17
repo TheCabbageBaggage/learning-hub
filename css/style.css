@@ -575,4 +575,62 @@ body {
   .flashcard-front, .flashcard-back { padding: 16px; font-size: 0.9rem; }
   .breadcrumbs { font-size: 0.8rem; }
   .dashboard-header h1 { font-size: 1.4rem; }
+  .chapter-intro { padding: 14px; }
+}
+
+/* ── Chapter Intro ── */
+.chapter-intro {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #e8f0f4;
+  border-radius: var(--radius-lg);
+  padding: 22px 26px;
+  margin-bottom: 24px;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+.chapter-intro strong,
+.chapter-intro b { color: #fff; }
+.chapter-intro h2,
+.chapter-intro h3 {
+  color: #fff;
+  font-size: 1.1rem;
+  margin: 16px 0 8px;
+}
+.chapter-intro ul,
+.chapter-intro ol { padding-left: 20px; margin: 6px 0 12px; }
+.chapter-intro li { margin-bottom: 4px; }
+.intro-figure {
+  margin: 16px 0 0;
+  text-align: center;
+}
+.intro-figure img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  background: rgba(255,255,255,0.08);
+}
+.intro-figure figcaption {
+  font-size: 0.78rem;
+  opacity: 0.75;
+  margin-top: 6px;
+}
+
+/* ── Touch hint ── */
+.flashcard { cursor: pointer; }
+
+/* ── Flip Button (mobile primary) ── */
+.btn-flip {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: none;
+}
+@media (max-width: 600px) {
+  .btn-flip { display: inline-block; }
+  .flashcard-hint { display: none; }
 }

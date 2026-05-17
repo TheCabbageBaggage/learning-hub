@@ -217,6 +217,7 @@ const App = (() => {
 
     const flashcardCount = chapter.flashcards?.length || 0;
     const quizCount = chapter.quiz?.length || 0;
+    const hasIntro = chapter.intro && chapter.intro.length > 0;
 
     container.innerHTML = html`
       ${breadcrumb(
@@ -226,6 +227,17 @@ const App = (() => {
       <button class="btn-back" id="nav-back-btn">← Back</button>
       <h1 style="font-size:1.4rem;font-weight:700;margin-bottom:4px">${chapter.title}</h1>
       <p style="color:var(--text-secondary);margin-bottom:20px">${book.title}</p>
+
+      ${hasIntro ? html`
+        <div class="chapter-intro" id="chapter-intro">
+          <div class="intro-text">${chapter.intro}</div>
+          ${chapter.images ? chapter.images.map(img => html`
+            <figure class="intro-figure">
+              <img src="${img.src}" alt="${img.alt || ''}" loading="lazy" />
+              ${img.caption ? `<figcaption>${img.caption}</figcaption>` : ''}
+            </figure>`).join('') : ''}
+        </div>
+      ` : ''}
 
       <div class="view-tabs">
         <button class="view-tab active" data-tab="flashcards" id="tab-btn-flashcards"
@@ -264,7 +276,7 @@ const App = (() => {
       <div class="flashcard-container">
         <div class="flashcard-counter">Card <span id="fc-count">${fcState.current + 1}</span> of ${fcState.cards.length}</div>
 
-        <div class="flashcard" id="flashcard">
+        <div class="flashcard" id="flashcard" onclick="App.flipCard()">
           <div class="flashcard-inner" id="fc-inner">
             <div class="flashcard-front">
               <div style="font-size:0.75rem;opacity:0.6;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:12px">Question</div>
@@ -277,8 +289,8 @@ const App = (() => {
           </div>
         </div>
 
-        <div class="flashcard-hint">Press <kbd>Space</kbd> to flip · <kbd>→</kbd> / <kbd>←</kbd> to navigate</div>
         <div class="flashcard-actions" id="fc-actions">
+          <button class="btn btn-flip" id="flip-btn" onclick="App.flipCard()">🔄 Flip</button>
           <button class="btn btn-ghost btn-sm" onclick="App.markGotIt(false)">↺ Review again</button>
           <button class="btn btn-success btn-sm" onclick="App.markGotIt(true)">✓ Got it</button>
         </div>

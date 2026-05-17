@@ -10,102 +10,432 @@
       "id": "ch1",
       "title": "Einführung in Finance (Introduction to Finance)",
       "flashcards": [
-        {"front": "Was ist Finance und welche drei Kernbereiche umfasst sie?", "back": "Finance = Management von Geld & Kapital über Zeit. Kernbereiche:\n1. Corporate Finance (Unternehmensfinanzierung) — Investitionen, Kapitalstruktur, Working Capital\n2. Investments — Bewertung von Aktien, Anleihen, Portfoliotheorie\n3. Financial Markets & Institutions — Banken, Börsen, Regulierung"},
-        {"front": "Nenne die vier wichtigsten Financial Instruments und ihre Funktion.", "back": "1. Stocks (Aktien) — Eigenkapital, Mitspracherecht, Dividenden\n2. Bonds (Anleihen) — Fremdkapital, fester Zins, Rückzahlung\n3. Derivatives (Derivate) — Futures, Optionen, Swaps; Wert abhängig vom Basiswert\n4. Cash Equivalents — Tagesgeld, Geldmarktfonds, kurzfristige Liquidität"},
-        {"front": "Welche Rolle spielt Finance in der Organisation?", "back": "Finance ist NICHT nur Buchhaltung. Funktionen:\n• Kapitalbeschaffung (Fundraising)\n• Investitionsentscheidungen (Capital Budgeting)\n• Risikomanagement (Risk Management)\n• Finanzplanung & Forecasting\n• Working Capital Management\nDer CFO verantwortet alle diese Bereiche strategisch."},
-        {"front": "Was versteht man unter Time Value of Money (TVM / Zeitwert des Geldes)?", "back": "1 € heute ist mehr wert als 1 € morgen. Gründe:\n1. Inflation — Geld verliert Kaufkraft\n2. Opportunitätskosten — Zinsertrag möglich\n3. Risiko — Unsicherheit zukünftiger Zahlungen\n→ Fundamentalkonzept der gesamten Finanztheorie (Present Value, Future Value, Discounting)."},
-        {"front": "Was ist der Unterschied zwischen Market und Participants?", "back": "Primary Market (Primärmarkt): Unternehmen verkauft neue Wertpapiere direkt an Investoren (IPO, Kapitalerhöhung). Geld fließt ZUM Unternehmen.\nSecondary Market (Sekundärmarkt): Investoren handeln untereinander (Börse). Geld fließt zwischen Investoren, Unternehmen bekommt nichts.\nKey Players: Investment Banks, Mutual Funds, Hedge Funds, Pension Funds, Retail Investors."}
+        {
+          "front": "Was ist Finance und welche drei Kernbereiche umfasst sie?",
+          "back": "Finance = Management von Geld & Kapital über Zeit. Kernbereiche:\n1. Corporate Finance (Unternehmensfinanzierung) — Investitionen, Kapitalstruktur, Working Capital\n2. Investments — Bewertung von Aktien, Anleihen, Portfoliotheorie\n3. Financial Markets & Institutions — Banken, Börsen, Regulierung"
+        },
+        {
+          "front": "Nenne die vier wichtigsten Financial Instruments und ihre Funktion.",
+          "back": "1. Stocks (Aktien) — Eigenkapital, Mitspracherecht, Dividenden\n2. Bonds (Anleihen) — Fremdkapital, fester Zins, Rückzahlung\n3. Derivatives (Derivate) — Futures, Optionen, Swaps; Wert abhängig vom Basiswert\n4. Cash Equivalents — Tagesgeld, Geldmarktfonds, kurzfristige Liquidität"
+        },
+        {
+          "front": "Welche Rolle spielt Finance in der Organisation?",
+          "back": "Finance ist NICHT nur Buchhaltung. Funktionen:\n• Kapitalbeschaffung (Fundraising)\n• Investitionsentscheidungen (Capital Budgeting)\n• Risikomanagement (Risk Management)\n• Finanzplanung & Forecasting\n• Working Capital Management\nDer CFO verantwortet alle diese Bereiche strategisch."
+        },
+        {
+          "front": "Was versteht man unter Time Value of Money (TVM / Zeitwert des Geldes)?",
+          "back": "1 € heute ist mehr wert als 1 € morgen. Gründe:\n1. Inflation — Geld verliert Kaufkraft\n2. Opportunitätskosten — Zinsertrag möglich\n3. Risiko — Unsicherheit zukünftiger Zahlungen\n→ Fundamentalkonzept der gesamten Finanztheorie (Present Value, Future Value, Discounting)."
+        },
+        {
+          "front": "Was ist der Unterschied zwischen Market und Participants?",
+          "back": "Primary Market (Primärmarkt): Unternehmen verkauft neue Wertpapiere direkt an Investoren (IPO, Kapitalerhöhung). Geld fließt ZUM Unternehmen.\nSecondary Market (Sekundärmarkt): Investoren handeln untereinander (Börse). Geld fließt zwischen Investoren, Unternehmen bekommt nichts.\nKey Players: Investment Banks, Mutual Funds, Hedge Funds, Pension Funds, Retail Investors."
+        }
       ],
       "quiz": [
-        {"question": "Welcher Bereich gehört NICHT zu den drei Kernbereichen von Finance?", "options": ["Corporate Finance", "Marketing Finance", "Investments", "Financial Markets & Institutions"], "correct": 1, "explanation": "Marketing Finance ist kein Standard-Kernbereich. Die drei Hauptbereiche sind Corporate Finance, Investments und Financial Markets & Institutions."},
-        {"question": "Warum ist 1 € heute mehr wert als 1 € morgen? (Drei Gründe)", "options": ["Nur Inflation", "Inflation, Opportunitätskosten und Risiko", "Nur Opportunitätskosten", "Nur Risiko"], "correct": 1, "explanation": "Drei Faktoren: Inflation (Kaufkraftverlust), Opportunitätskosten (entgangener Zins), Risiko (Unsicherheit)."},
-        {"question": "Was charakterisiert den Primary Market?", "options": ["Aktien werden zwischen Investoren gehandelt", "Unternehmen verkauft neue Wertpapiere, Geld fließt zum Unternehmen", "Nur Anleihen werden gehandelt", "Reine Derivatgeschäfte"], "correct": 1, "explanation": "Im Primary Market emittiert das Unternehmen neue Wertpapiere und erhält das frische Kapital. Beim Secondary Market (Börse) handeln Investoren untereinander."},
-        {"question": "Welches ist KEIN Financial Instrument?", "options": ["Common Stock (Stammaktie)", "Corporate Bond", "Operating Lease", "Call Option"], "correct": 2, "explanation": "Ein Operating Lease ist ein Nutzungsvertrag (Operating/Finance Lease), kein Finanzinstrument. Stocks, Bonds und Options sind klassische Financial Instruments."}
+        {
+          "question": "Welcher Bereich gehört NICHT zu den drei Kernbereichen von Finance?",
+          "options": [
+            "Corporate Finance",
+            "Marketing Finance",
+            "Investments",
+            "Financial Markets & Institutions"
+          ],
+          "correct": 1,
+          "explanation": "Marketing Finance ist kein Standard-Kernbereich. Die drei Hauptbereiche sind Corporate Finance, Investments und Financial Markets & Institutions."
+        },
+        {
+          "question": "Warum ist 1 € heute mehr wert als 1 € morgen? (Drei Gründe)",
+          "options": [
+            "Nur Inflation",
+            "Inflation, Opportunitätskosten und Risiko",
+            "Nur Opportunitätskosten",
+            "Nur Risiko"
+          ],
+          "correct": 1,
+          "explanation": "Drei Faktoren: Inflation (Kaufkraftverlust), Opportunitätskosten (entgangener Zins), Risiko (Unsicherheit)."
+        },
+        {
+          "question": "Was charakterisiert den Primary Market?",
+          "options": [
+            "Aktien werden zwischen Investoren gehandelt",
+            "Unternehmen verkauft neue Wertpapiere, Geld fließt zum Unternehmen",
+            "Nur Anleihen werden gehandelt",
+            "Reine Derivatgeschäfte"
+          ],
+          "correct": 1,
+          "explanation": "Im Primary Market emittiert das Unternehmen neue Wertpapiere und erhält das frische Kapital. Beim Secondary Market (Börse) handeln Investoren untereinander."
+        },
+        {
+          "question": "Welches ist KEIN Financial Instrument?",
+          "options": [
+            "Common Stock (Stammaktie)",
+            "Corporate Bond",
+            "Operating Lease",
+            "Call Option"
+          ],
+          "correct": 2,
+          "explanation": "Ein Operating Lease ist ein Nutzungsvertrag (Operating/Finance Lease), kein Finanzinstrument. Stocks, Bonds und Options sind klassische Financial Instruments."
+        }
       ]
     },
     {
       "id": "ch2",
       "title": "Corporate Governance & Strukturen",
       "flashcards": [
-        {"front": "Nenne die drei Business Structures und ihre Haftungsmerkmale.", "back": "1. Sole Proprietorship (Einzelunternehmen): Vollhaftung (unbeschränkt), einfach zu gründen\n2. Partnership (Personengesellschaft): Geteilte Haftung, gemeinsame Führung\n3. Corporation (Kapitalgesellschaft, z.B. AG/GmbH): Beschränkte Haftung (Trennungsprinzip), eigene Rechtspersönlichkeit, Zugang zu Kapitalmärkten"},
-        {"front": "Was ist das Agency Problem (Principal-Agent-Konflikt)?" , "back": "Trennung von Eigentum (Shareholders = Principals) und Kontrolle (Management = Agents).\nProblem: Manager verfolgen eigene Interessen (Bonus, Größe, Status) statt Shareholder-Value zu maximieren.\nLösungen: Aufsichtsrat (Board), aktienbasierte Vergütung, Transparenzpflichten, Marktkontrolle (Übernahmen)."},
-        {"front": "Welche drei Rollen hat der Board of Directors (Aufsichtsrat/Verwaltungsrat)?", "back": "1. Monitoring (Überwachung): CEO-Performance prüfen, Audit Committee\n2. Advisory (Beratung): Strategieentwicklung, M&A-Entscheidungen\n3. Governance (Regelsetzung): Vergütungssysteme, Compliance, Risikokultur\nOne-Tier-System (USA/UK) vs Two-Tier (DE: Vorstand + Aufsichtsrat)."},
-        {"front": "Was bedeutet ESG im Kontext von Corporate Governance?", "back": "ESG = Environmental, Social, Governance.\n• Environmental: Klimarisiken, CO2, Ressourcenverbrauch\n• Social: Arbeitsbedingungen, Diversity, Menschenrechte\n• Governance: Transparenz, Anti-Korruption, Shareholder Rights\n→ Immer relevanter für Investoren & Regulierung (EU-Taxonomie, CSRD/ESRS)."},
-        {"front": "Was ist der Unterschied zwischen Shareholder und Stakeholder-Ansatz?" , "back": "Shareholder Value: Unternehmen dient NUR den Aktionären (Maximierung des Aktienkurses). Milton Friedman.\nStakeholder Value: Unternehmen dient ALLEN Anspruchsgruppen — Aktionäre, Mitarbeiter, Kunden, Gesellschaft, Umwelt.\n→ Moderner Governance-Standard, gesetzlich verankert in EU (CSR-Richtlinie, Lieferkettengesetz)."}
+        {
+          "front": "Nenne die drei Business Structures und ihre Haftungsmerkmale.",
+          "back": "1. Sole Proprietorship (Einzelunternehmen): Vollhaftung (unbeschränkt), einfach zu gründen\n2. Partnership (Personengesellschaft): Geteilte Haftung, gemeinsame Führung\n3. Corporation (Kapitalgesellschaft, z.B. AG/GmbH): Beschränkte Haftung (Trennungsprinzip), eigene Rechtspersönlichkeit, Zugang zu Kapitalmärkten"
+        },
+        {
+          "front": "Was ist das Agency Problem (Principal-Agent-Konflikt)?",
+          "back": "Trennung von Eigentum (Shareholders = Principals) und Kontrolle (Management = Agents).\nProblem: Manager verfolgen eigene Interessen (Bonus, Größe, Status) statt Shareholder-Value zu maximieren.\nLösungen: Aufsichtsrat (Board), aktienbasierte Vergütung, Transparenzpflichten, Marktkontrolle (Übernahmen)."
+        },
+        {
+          "front": "Welche drei Rollen hat der Board of Directors (Aufsichtsrat/Verwaltungsrat)?",
+          "back": "1. Monitoring (Überwachung): CEO-Performance prüfen, Audit Committee\n2. Advisory (Beratung): Strategieentwicklung, M&A-Entscheidungen\n3. Governance (Regelsetzung): Vergütungssysteme, Compliance, Risikokultur\nOne-Tier-System (USA/UK) vs Two-Tier (DE: Vorstand + Aufsichtsrat)."
+        },
+        {
+          "front": "Was bedeutet ESG im Kontext von Corporate Governance?",
+          "back": "ESG = Environmental, Social, Governance.\n• Environmental: Klimarisiken, CO2, Ressourcenverbrauch\n• Social: Arbeitsbedingungen, Diversity, Menschenrechte\n• Governance: Transparenz, Anti-Korruption, Shareholder Rights\n→ Immer relevanter für Investoren & Regulierung (EU-Taxonomie, CSRD/ESRS)."
+        },
+        {
+          "front": "Was ist der Unterschied zwischen Shareholder und Stakeholder-Ansatz?",
+          "back": "Shareholder Value: Unternehmen dient NUR den Aktionären (Maximierung des Aktienkurses). Milton Friedman.\nStakeholder Value: Unternehmen dient ALLEN Anspruchsgruppen — Aktionäre, Mitarbeiter, Kunden, Gesellschaft, Umwelt.\n→ Moderner Governance-Standard, gesetzlich verankert in EU (CSR-Richtlinie, Lieferkettengesetz)."
+        }
       ],
       "quiz": [
-        {"question": "Welche Rechtsform hat beschränkte Haftung (Limited Liability)?", "options": ["Einzelunternehmen", "Partnerschaft", "Corporation (Kapitalgesellschaft)", "Alle haben Vollhaftung"], "correct": 2, "explanation": "Nur die Corporation/Kapitalgesellschaft (AG, GmbH, LLC) hat beschränkte Haftung. Das Privatvermögen der Eigentümer ist geschützt."},
-        {"question": "Was ist die Kernursache des Agency Problems?", "options": ["Zu viele Mitarbeiter", "Trennung von Eigentum und Kontrolle", "Fehlende Regulierung", "Niedrige Steuern"], "correct": 1, "explanation": "Das Agency Problem entsteht durch Trennung von Principals (Eigentümer/Shareholders) und Agents (Manager). Manager können eigene Interessen verfolgen."},
-        {"question": "Welches ist KEINE Board-Aufgabe?", "options": ["CEO-Überwachung", "Strategie-Beratung", "Operative Tagesgeschäft-Führung", "Vergütungskontrolle"], "correct": 2, "explanation": "Das operative Tagesgeschäft ist CEO/Management-Aufgabe. Der Board überwacht (Monitoring), berät (Advisory) und setzt Governance-Regeln."},
-        {"question": "Wofür steht die Abkürzung ESG?", "options": ["Economic Strategy Group", "Environmental, Social, Governance", "Enterprise Security Guidelines", "Equity Share Growth"], "correct": 1, "explanation": "ESG = Environmental (Umwelt), Social (Soziales), Governance (Unternehmensführung). Zentrale Nachhaltigkeitskriterien für Investoren und Regulierung."}
+        {
+          "question": "Welche Rechtsform hat beschränkte Haftung (Limited Liability)?",
+          "options": [
+            "Einzelunternehmen",
+            "Partnerschaft",
+            "Corporation (Kapitalgesellschaft)",
+            "Alle haben Vollhaftung"
+          ],
+          "correct": 2,
+          "explanation": "Nur die Corporation/Kapitalgesellschaft (AG, GmbH, LLC) hat beschränkte Haftung. Das Privatvermögen der Eigentümer ist geschützt."
+        },
+        {
+          "question": "Was ist die Kernursache des Agency Problems?",
+          "options": [
+            "Zu viele Mitarbeiter",
+            "Trennung von Eigentum und Kontrolle",
+            "Fehlende Regulierung",
+            "Niedrige Steuern"
+          ],
+          "correct": 1,
+          "explanation": "Das Agency Problem entsteht durch Trennung von Principals (Eigentümer/Shareholders) und Agents (Manager). Manager können eigene Interessen verfolgen."
+        },
+        {
+          "question": "Welches ist KEINE Board-Aufgabe?",
+          "options": [
+            "CEO-Überwachung",
+            "Strategie-Beratung",
+            "Operative Tagesgeschäft-Führung",
+            "Vergütungskontrolle"
+          ],
+          "correct": 2,
+          "explanation": "Das operative Tagesgeschäft ist CEO/Management-Aufgabe. Der Board überwacht (Monitoring), berät (Advisory) und setzt Governance-Regeln."
+        },
+        {
+          "question": "Wofür steht die Abkürzung ESG?",
+          "options": [
+            "Economic Strategy Group",
+            "Environmental, Social, Governance",
+            "Enterprise Security Guidelines",
+            "Equity Share Growth"
+          ],
+          "correct": 1,
+          "explanation": "ESG = Environmental (Umwelt), Social (Soziales), Governance (Unternehmensführung). Zentrale Nachhaltigkeitskriterien für Investoren und Regulierung."
+        }
       ]
     },
     {
       "id": "ch3",
       "title": "Ökonomische Grundlagen (Economic Foundations)",
       "flashcards": [
-        {"front": "Was sind die Kernkonzepte der Mikroökonomie für Finance?", "back": "• Supply & Demand (Angebot & Nachfrage) → Preisbildung\n• Elasticity (Elastizität) → Reagiert Nachfrage auf Preisänderungen?\n• Marginal Analysis → Grenzkosten / Grenznutzen\n• Market Structures → Wettbewerb, Oligopol, Monopol\n→ Diese Konzepte bestimmen Pricing Power, Margen und Wettbewerbsvorteile eines Unternehmens."},
-        {"front": "Wie beeinflusst Makroökonomie Finanzentscheidungen?", "back": "GDP (BIP): Wirtschaftswachstum → Umsatzprognosen\nInflation (CPI/PPI): Kaufkraftverlust → Zinspolitik der Zentralbank\nUnemployment (Arbeitslosigkeit): Konsumnachfrage → Kreditrisiken\nZentralbankpolitik (EZB/Fed): Leitzins → Kreditkosten, Assetpreise\n→ Makro-Daten sind Input für CFO-Planung & Szenarioanalyse."},
-        {"front": "Erkläre den Business Cycle und seine Phasen.", "back": "1. Expansion (Aufschwung): GDP ↑, Employment ↑, Consumer Confidence ↑\n2. Peak (Hochphase): Maximalauslastung, Inflationsdruck\n3. Contraction (Abschwung/Rezession): GDP ↓, Unemployment ↑\n4. Trough (Tiefpunkt): Minimum erreicht, Erholung beginnt\n→ CFO muss antizyklisch planen: Cash-Reserven im Boom aufbauen, in der Rezession investieren."},
-        {"front": "Was ist die Yield Curve (Zinskurve) und was signalisiert sie?", "back": "Grafik: Zinssatz auf Y-Achse, Laufzeit auf X-Achse.\nNormal: Längere Laufzeit → höherer Zins (aufwärts geneigt).\nInverted (invers): Kurze Laufzeiten höher verzinst → Rezessionssignal!\nFlat: Alle Laufzeiten ähnlich → Unsicherheit.\n→ Inversion der US Treasury Curve (2Y > 10Y) war VORBOTE der letzten 6 Rezessionen."},
-        {"front": "Was beeinflusst Wechselkurse (FX Rates) und warum sind sie relevant?", "back": "Einflussfaktoren:\n• Zinsdifferenz (Carry Trade)\n• Inflation (Kaufkraftparität)\n• Handelsbilanz\n• Politische Stabilität\nRelevanz für CFO:\n• Translation Risk (Umrechnungsrisiko in der Konzernbilanz)\n• Transaction Risk (Cashflow aus Fremdwährungsgeschäften)\n• Hedging mit Forwards, Options, Swaps."}
+        {
+          "front": "Was sind die Kernkonzepte der Mikroökonomie für Finance?",
+          "back": "• Supply & Demand (Angebot & Nachfrage) → Preisbildung\n• Elasticity (Elastizität) → Reagiert Nachfrage auf Preisänderungen?\n• Marginal Analysis → Grenzkosten / Grenznutzen\n• Market Structures → Wettbewerb, Oligopol, Monopol\n→ Diese Konzepte bestimmen Pricing Power, Margen und Wettbewerbsvorteile eines Unternehmens."
+        },
+        {
+          "front": "Wie beeinflusst Makroökonomie Finanzentscheidungen?",
+          "back": "GDP (BIP): Wirtschaftswachstum → Umsatzprognosen\nInflation (CPI/PPI): Kaufkraftverlust → Zinspolitik der Zentralbank\nUnemployment (Arbeitslosigkeit): Konsumnachfrage → Kreditrisiken\nZentralbankpolitik (EZB/Fed): Leitzins → Kreditkosten, Assetpreise\n→ Makro-Daten sind Input für CFO-Planung & Szenarioanalyse."
+        },
+        {
+          "front": "Erkläre den Business Cycle und seine Phasen.",
+          "back": "1. Expansion (Aufschwung): GDP ↑, Employment ↑, Consumer Confidence ↑\n2. Peak (Hochphase): Maximalauslastung, Inflationsdruck\n3. Contraction (Abschwung/Rezession): GDP ↓, Unemployment ↑\n4. Trough (Tiefpunkt): Minimum erreicht, Erholung beginnt\n→ CFO muss antizyklisch planen: Cash-Reserven im Boom aufbauen, in der Rezession investieren."
+        },
+        {
+          "front": "Was ist die Yield Curve (Zinskurve) und was signalisiert sie?",
+          "back": "Grafik: Zinssatz auf Y-Achse, Laufzeit auf X-Achse.\nNormal: Längere Laufzeit → höherer Zins (aufwärts geneigt).\nInverted (invers): Kurze Laufzeiten höher verzinst → Rezessionssignal!\nFlat: Alle Laufzeiten ähnlich → Unsicherheit.\n→ Inversion der US Treasury Curve (2Y > 10Y) war VORBOTE der letzten 6 Rezessionen."
+        },
+        {
+          "front": "Was beeinflusst Wechselkurse (FX Rates) und warum sind sie relevant?",
+          "back": "Einflussfaktoren:\n• Zinsdifferenz (Carry Trade)\n• Inflation (Kaufkraftparität)\n• Handelsbilanz\n• Politische Stabilität\nRelevanz für CFO:\n• Translation Risk (Umrechnungsrisiko in der Konzernbilanz)\n• Transaction Risk (Cashflow aus Fremdwährungsgeschäften)\n• Hedging mit Forwards, Options, Swaps."
+        }
       ],
       "quiz": [
-        {"question": "In welcher Business-Cycle-Phase sollte ein CFO Cash-Reserven aufbauen?", "options": ["Rezession", "Expansion/Boom", "Tiefpunkt", "Nur in der Erholung"], "correct": 1, "explanation": "Im Boom (Expansion) sind Cashflows und Bewertungen hoch — ideale Zeit, Reserven aufzubauen. In der Rezession sind Assets billig und Cash wertvoll zum Investieren."},
-        {"question": "Was signalisiert eine invertierte Zinskurve (Inverted Yield Curve)?", "options": ["Starkes Wirtschaftswachstum", "Bevorstehende Rezession", "Steigende Inflation", "Null-Wachstum"], "correct": 1, "explanation": "Invertierte Zinskurve (kurzfristige Zinsen > langfristige Zinsen) ist der zuverlässigste Rezessions-Indikator. Der Markt erwartet sinkende Zinsen wegen wirtschaftlicher Abschwächung."},
-        {"question": "Welcher Faktor beeinflusst den Wechselkurs NICHT direkt?", "options": ["Zinsdifferenz zwischen Ländern", "Inflation im Land", "CEO-Gehalt", "Handelsbilanz"], "correct": 2, "explanation": "CEO-Gehalt beeinflusst Wechselkurse nicht. Zinsdifferenz (Carry Trade), Inflation (Kaufkraftparität) und Handelsbilanz sind dagegen zentrale FX-Faktoren."},
-        {"question": "Was ist NICHT Teil der Makroökonomie?", "options": ["GDP / BIP", "Elastizität der Nachfrage", "Inflation", "Arbeitslosenquote"], "correct": 1, "explanation": "Elastizität gehört zur Mikroökonomie (einzelne Märkte). GDP, Inflation und Arbeitslosigkeit sind makroökonomische Aggregate."}
+        {
+          "question": "In welcher Business-Cycle-Phase sollte ein CFO Cash-Reserven aufbauen?",
+          "options": [
+            "Rezession",
+            "Expansion/Boom",
+            "Tiefpunkt",
+            "Nur in der Erholung"
+          ],
+          "correct": 1,
+          "explanation": "Im Boom (Expansion) sind Cashflows und Bewertungen hoch — ideale Zeit, Reserven aufzubauen. In der Rezession sind Assets billig und Cash wertvoll zum Investieren."
+        },
+        {
+          "question": "Was signalisiert eine invertierte Zinskurve (Inverted Yield Curve)?",
+          "options": [
+            "Starkes Wirtschaftswachstum",
+            "Bevorstehende Rezession",
+            "Steigende Inflation",
+            "Null-Wachstum"
+          ],
+          "correct": 1,
+          "explanation": "Invertierte Zinskurve (kurzfristige Zinsen > langfristige Zinsen) ist der zuverlässigste Rezessions-Indikator. Der Markt erwartet sinkende Zinsen wegen wirtschaftlicher Abschwächung."
+        },
+        {
+          "question": "Welcher Faktor beeinflusst den Wechselkurs NICHT direkt?",
+          "options": [
+            "Zinsdifferenz zwischen Ländern",
+            "Inflation im Land",
+            "CEO-Gehalt",
+            "Handelsbilanz"
+          ],
+          "correct": 2,
+          "explanation": "CEO-Gehalt beeinflusst Wechselkurse nicht. Zinsdifferenz (Carry Trade), Inflation (Kaufkraftparität) und Handelsbilanz sind dagegen zentrale FX-Faktoren."
+        },
+        {
+          "question": "Was ist NICHT Teil der Makroökonomie?",
+          "options": [
+            "GDP / BIP",
+            "Elastizität der Nachfrage",
+            "Inflation",
+            "Arbeitslosenquote"
+          ],
+          "correct": 1,
+          "explanation": "Elastizität gehört zur Mikroökonomie (einzelne Märkte). GDP, Inflation und Arbeitslosigkeit sind makroökonomische Aggregate."
+        }
       ]
     },
     {
       "id": "ch4",
       "title": "Der Accrual-Accounting-Prozess",
       "flashcards": [
-        {"front": "Was ist die Accounting Equation (Bilanzgleichung)?", "back": "Assets = Liabilities + Equity\n(Vermögen = Schulden + Eigenkapital)\nJede Transaktion beeinflusst mindestens zwei Konten (Double-Entry/Doppelte Buchführung).\nDebit (Soll) = Credit (Haben), Summe muss immer ausgeglichen sein."},
-        {"front": "Was ist der Unterschied zwischen Accrual und Cash-Basis Accounting?", "back": "Accrual (Periodenabgrenzung/IFRS): Erträge und Aufwendungen werden erfasst, wenn sie wirtschaftlich entstehen — unabhängig vom Zahlungszeitpunkt. Vorgeschrieben für Kapitalgesellschaften nach IFRS/HGB.\nCash-Basis (EÜR): Nur wenn Geld fließt. Einfacher, aber kein korrektes Bild der wirtschaftlichen Lage."},
-        {"front": "Was sind Adjusting Entries (Abschlussbuchungen) und wozu dienen sie?", "back": "Periodengerechte Korrekturbuchungen am Periodenende:\n1. Accruals (antizipative Posten): Aufwand/Ertrag bereits entstanden, noch kein Cash-Flow (z.B. Zinsabgrenzung)\n2. Deferrals (transitorische Posten): Cash-Flow schon da, Ertrag/Aufwand noch nicht (z.B. vorausbezahlte Miete)\n3. Depreciation (Abschreibungen)\n4. Bad Debt (Wertberichtigungen)"},
-        {"front": "Wie läuft der Accounting Cycle ab?", "back": "1. Analyse der Geschäftsvorfälle\n2. Journal Entry (Buchungssatz)\n3. Posting to Ledger (Hauptbuch)\n4. Unadjusted Trial Balance (Rohbilanz)\n5. Adjusting Entries (Abschlussbuchungen)\n6. Adjusted Trial Balance\n7. Financial Statements (GuV, Bilanz, Cashflow)\n8. Closing Entries (Abschluss der Erfolgskonten)"},
-        {"front": "Was bedeutet Going Concern (Unternehmensfortführung)?", "back": "Grundannahme nach IFRS/HGB: Das Unternehmen wird auf absehbare Zeit (12+ Monate) fortgeführt, nicht liquidiert.\nWichtig für Bewertung: Assets werden zu Fortführungswerten (nicht Liquidationswerten) angesetzt.\nBei Zweifel: Going-Concern-Prüfung durch Abschlussprüfer. Negativ = Disclaimer im Bestätigungsvermerk."}
+        {
+          "front": "Was ist die Accounting Equation (Bilanzgleichung)?",
+          "back": "Assets = Liabilities + Equity\n(Vermögen = Schulden + Eigenkapital)\nJede Transaktion beeinflusst mindestens zwei Konten (Double-Entry/Doppelte Buchführung).\nDebit (Soll) = Credit (Haben), Summe muss immer ausgeglichen sein."
+        },
+        {
+          "front": "Was ist der Unterschied zwischen Accrual und Cash-Basis Accounting?",
+          "back": "Accrual (Periodenabgrenzung/IFRS): Erträge und Aufwendungen werden erfasst, wenn sie wirtschaftlich entstehen — unabhängig vom Zahlungszeitpunkt. Vorgeschrieben für Kapitalgesellschaften nach IFRS/HGB.\nCash-Basis (EÜR): Nur wenn Geld fließt. Einfacher, aber kein korrektes Bild der wirtschaftlichen Lage."
+        },
+        {
+          "front": "Was sind Adjusting Entries (Abschlussbuchungen) und wozu dienen sie?",
+          "back": "Periodengerechte Korrekturbuchungen am Periodenende:\n1. Accruals (antizipative Posten): Aufwand/Ertrag bereits entstanden, noch kein Cash-Flow (z.B. Zinsabgrenzung)\n2. Deferrals (transitorische Posten): Cash-Flow schon da, Ertrag/Aufwand noch nicht (z.B. vorausbezahlte Miete)\n3. Depreciation (Abschreibungen)\n4. Bad Debt (Wertberichtigungen)"
+        },
+        {
+          "front": "Wie läuft der Accounting Cycle ab?",
+          "back": "1. Analyse der Geschäftsvorfälle\n2. Journal Entry (Buchungssatz)\n3. Posting to Ledger (Hauptbuch)\n4. Unadjusted Trial Balance (Rohbilanz)\n5. Adjusting Entries (Abschlussbuchungen)\n6. Adjusted Trial Balance\n7. Financial Statements (GuV, Bilanz, Cashflow)\n8. Closing Entries (Abschluss der Erfolgskonten)"
+        },
+        {
+          "front": "Was bedeutet Going Concern (Unternehmensfortführung)?",
+          "back": "Grundannahme nach IFRS/HGB: Das Unternehmen wird auf absehbare Zeit (12+ Monate) fortgeführt, nicht liquidiert.\nWichtig für Bewertung: Assets werden zu Fortführungswerten (nicht Liquidationswerten) angesetzt.\nBei Zweifel: Going-Concern-Prüfung durch Abschlussprüfer. Negativ = Disclaimer im Bestätigungsvermerk."
+        }
       ],
       "quiz": [
-        {"question": "Ein Unternehmen zahlt am 1.12. die Miete für 6 Monate im Voraus (12.000 €). Wie viel Aufwand steht in der GuV zum 31.12.?", "options": ["12.000 €", "6.000 €", "2.000 €", "0 €"], "correct": 2, "explanation": "Nur 1 Monat (Dezember) ist aufgelaufen = 2.000 € Aufwand. Die restlichen 10.000 € sind Prepaid Expenses (Aktiver Rechnungsabgrenzungsposten) in der Bilanz."},
-        {"question": "Welche Anpassungsbuchung gehört zu Deferrals (transitorische Posten)?", "options": ["Zinserträge, die noch nicht gezahlt wurden", "Löhne, die noch nicht ausgezahlt wurden", "Vorausbezahlte Versicherung", "Steuerrückstellung"], "correct": 2, "explanation": "Deferral: Cash-Flow war zuerst, Ertrag/Aufwand später. Vorausbezahlte Versicherung ist das klassische Beispiel. Accruals sind umgekehrt (Zins, Lohn)."},
-        {"question": "Welcher Grundsatz ist KEINE IFRS-Grundannahme?", "options": ["Going Concern", "Accrual Basis", "Maximierung des Shareholder Value", "Wesentlichkeit / Materiality"], "correct": 2, "explanation": "Shareholder Value ist ein Ziel der Corporate Governance, keine IFRS-Rechnungslegungsannahme. Going Concern und Accrual Basis sind Fundamente des IFRS-Frameworks."},
-        {"question": "Der Accounting Cycle endet mit:", "options": ["Journal Entries", "Trial Balance", "Adjusting Entries", "Closing Entries & Financial Statements"], "correct": 3, "explanation": "Der Zyklus endet mit den Abschlussbuchungen (Closing Entries) und der Erstellung der Financial Statements. Danach beginnt der nächste Zyklus."}
+        {
+          "question": "Ein Unternehmen zahlt am 1.12. die Miete für 6 Monate im Voraus (12.000 €). Wie viel Aufwand steht in der GuV zum 31.12.?",
+          "options": [
+            "12.000 €",
+            "6.000 €",
+            "2.000 €",
+            "0 €"
+          ],
+          "correct": 2,
+          "explanation": "Nur 1 Monat (Dezember) ist aufgelaufen = 2.000 € Aufwand. Die restlichen 10.000 € sind Prepaid Expenses (Aktiver Rechnungsabgrenzungsposten) in der Bilanz."
+        },
+        {
+          "question": "Welche Anpassungsbuchung gehört zu Deferrals (transitorische Posten)?",
+          "options": [
+            "Zinserträge, die noch nicht gezahlt wurden",
+            "Löhne, die noch nicht ausgezahlt wurden",
+            "Vorausbezahlte Versicherung",
+            "Steuerrückstellung"
+          ],
+          "correct": 2,
+          "explanation": "Deferral: Cash-Flow war zuerst, Ertrag/Aufwand später. Vorausbezahlte Versicherung ist das klassische Beispiel. Accruals sind umgekehrt (Zins, Lohn)."
+        },
+        {
+          "question": "Welcher Grundsatz ist KEINE IFRS-Grundannahme?",
+          "options": [
+            "Going Concern",
+            "Accrual Basis",
+            "Maximierung des Shareholder Value",
+            "Wesentlichkeit / Materiality"
+          ],
+          "correct": 2,
+          "explanation": "Shareholder Value ist ein Ziel der Corporate Governance, keine IFRS-Rechnungslegungsannahme. Going Concern und Accrual Basis sind Fundamente des IFRS-Frameworks."
+        },
+        {
+          "question": "Der Accounting Cycle endet mit:",
+          "options": [
+            "Journal Entries",
+            "Trial Balance",
+            "Adjusting Entries",
+            "Closing Entries & Financial Statements"
+          ],
+          "correct": 3,
+          "explanation": "Der Zyklus endet mit den Abschlussbuchungen (Closing Entries) und der Erstellung der Financial Statements. Danach beginnt der nächste Zyklus."
+        }
       ]
     },
     {
       "id": "ch5",
       "title": "Financial Statements lesen",
       "flashcards": [
-        {"front": "Nenne die 5 zentralen Abschlussbestandteile nach IFRS.", "back": "1. Statement of Financial Position (Bilanz / Balance Sheet)\n2. Income Statement (GuV / P&L)\n3. Statement of Cash Flows (Kapitalflussrechnung)\n4. Statement of Changes in Equity (Eigenkapitalspiegel)\n5. Notes (Anhang) — Erläuterungen, Bilanzierungsmethoden\n→ In DE zusätzlich: Lagebericht (Management Report)."},
-        {"front": "Wie ist die Income Statement aufgebaut (GuV-Struktur)?", "back": "Revenue / Umsatzerlöse\n− COGS / Materialaufwand\n= Gross Margin / Rohertrag\n− Operating Expenses (SG&A, R&D)\n= Operating Income / EBIT\n− Interest Expense\n+ Interest Income\n= EBT\n− Income Tax\n= Net Income / Jahresüberschuss\n→ EBIT misst operative Profitabilität, Net Income den Endgewinn nach allen Kosten."},
-        {"front": "Wie ist die Balance Sheet aufgebaut (Bilanz)?", "back": "AKTIVA (Assets):\n• Current Assets (UV): Cash, AR, Inventory (Reihenfolge: Liquidierbarkeit)\n• Non-Current Assets (AV): PP&E, Intangibles, Goodwill\nPASSIVA (Liabilities + Equity):\n• Current Liabilities: AP, Short-term Debt\n• Non-Current Liabilities: Long-term Debt, Pensions\n• Equity: Share Capital, Retained Earnings"},
-        {"front": "Erkläre die drei Teile der Kapitalflussrechnung (Cash Flow Statement).", "back": "1. Operating Cash Flow: Kern-Cashflow aus dem Tagesgeschäft. Direkte vs indirekte Methode.\n2. Investing Cash Flow: Kauf/Verkauf von Anlagevermögen (CapEx, M&A, Wertpapiere).\n3. Financing Cash Flow: Kapitaltransaktionen (Kreditaufnahme/-rückzahlung, Aktienemission, Dividenden).\nSumme = Veränderung des Cash-Bestands zur Vorperiode."},
-        {"front": "Was sind Common-Size Statements und wozu dienen sie?", "back": "Common-Size = Prozentdarstellung:\n• GuV: Alle Posten als % vom Revenue (= 100%)\n• Bilanz: Alle Posten als % von Total Assets (= 100%)\nNutzen:\n→ Vergleichbarkeit zwischen Unternehmen verschiedener Größe\n→ Erkennen von Strukturverschiebungen über Zeit\n→ Benchmarking gegen Branchenstandards"}
+        {
+          "front": "Nenne die 5 zentralen Abschlussbestandteile nach IFRS.",
+          "back": "1. Statement of Financial Position (Bilanz / Balance Sheet)\n2. Income Statement (GuV / P&L)\n3. Statement of Cash Flows (Kapitalflussrechnung)\n4. Statement of Changes in Equity (Eigenkapitalspiegel)\n5. Notes (Anhang) — Erläuterungen, Bilanzierungsmethoden\n→ In DE zusätzlich: Lagebericht (Management Report)."
+        },
+        {
+          "front": "Wie ist die Income Statement aufgebaut (GuV-Struktur)?",
+          "back": "Revenue / Umsatzerlöse\n− COGS / Materialaufwand\n= Gross Margin / Rohertrag\n− Operating Expenses (SG&A, R&D)\n= Operating Income / EBIT\n− Interest Expense\n+ Interest Income\n= EBT\n− Income Tax\n= Net Income / Jahresüberschuss\n→ EBIT misst operative Profitabilität, Net Income den Endgewinn nach allen Kosten."
+        },
+        {
+          "front": "Wie ist die Balance Sheet aufgebaut (Bilanz)?",
+          "back": "AKTIVA (Assets):\n• Current Assets (UV): Cash, AR, Inventory (Reihenfolge: Liquidierbarkeit)\n• Non-Current Assets (AV): PP&E, Intangibles, Goodwill\nPASSIVA (Liabilities + Equity):\n• Current Liabilities: AP, Short-term Debt\n• Non-Current Liabilities: Long-term Debt, Pensions\n• Equity: Share Capital, Retained Earnings"
+        },
+        {
+          "front": "Erkläre die drei Teile der Kapitalflussrechnung (Cash Flow Statement).",
+          "back": "1. Operating Cash Flow: Kern-Cashflow aus dem Tagesgeschäft. Direkte vs indirekte Methode.\n2. Investing Cash Flow: Kauf/Verkauf von Anlagevermögen (CapEx, M&A, Wertpapiere).\n3. Financing Cash Flow: Kapitaltransaktionen (Kreditaufnahme/-rückzahlung, Aktienemission, Dividenden).\nSumme = Veränderung des Cash-Bestands zur Vorperiode."
+        },
+        {
+          "front": "Was sind Common-Size Statements und wozu dienen sie?",
+          "back": "Common-Size = Prozentdarstellung:\n• GuV: Alle Posten als % vom Revenue (= 100%)\n• Bilanz: Alle Posten als % von Total Assets (= 100%)\nNutzen:\n→ Vergleichbarkeit zwischen Unternehmen verschiedener Größe\n→ Erkennen von Strukturverschiebungen über Zeit\n→ Benchmarking gegen Branchenstandards"
+        }
       ],
       "quiz": [
-        {"question": "Welcher Posten erscheint NICHT als separater Bestandteil der IFRS-Abschlüsse?", "options": ["Balance Sheet", "Income Statement", "Budget Forecast", "Cash Flow Statement"], "correct": 2, "explanation": "Budget/Forecast ist ein internes Planungsinstrument, kein IFRS-Abschlussbestandteil. Bilanz, GuV und Cashflow sind Pflichtbestandteile."},
-        {"question": "Wo wird der Kauf einer neuen Produktionsmaschine (2 Mio €) im Cash Flow Statement gezeigt?", "options": ["Operating Cash Flow", "Investing Cash Flow", "Financing Cash Flow", "Gar nicht — nur Bilanz"], "correct": 1, "explanation": "Kauf von PP&E (Sachanlagen) ist Investitionstätigkeit (Investing Cash Flow), nicht operativ. Der Operating Cash Flow zeigt nur das Tagesgeschäft."},
-        {"question": "Common-Size Analysis dient vor allem:", "options": ["Der Steuerberechnung", "Dem Größenvergleich zwischen Unternehmen", "Der Inventurbewertung", "Der Dividendenberechnung"], "correct": 1, "explanation": "Common-Size (% vom Umsatz oder Bilanzsumme) macht Unternehmen unterschiedlicher Größe vergleichbar und zeigt strukturelle Veränderungen über Zeit."},
-        {"question": "Was ist im Operating Cash Flow enthalten? (Indirekte Methode)", "options": ["Kreditaufnahme", "Aktienrückkauf", "Net Income + nicht-zahlungswirksame Anpassungen", "Dividendenzahlung"], "correct": 2, "explanation": "Operating Cash Flow (indirekt) startet mit Net Income und addiert nicht-cashwirksame Posten (Abschreibungen, Working-Capital-Veränderungen) zurück."}
+        {
+          "question": "Welcher Posten erscheint NICHT als separater Bestandteil der IFRS-Abschlüsse?",
+          "options": [
+            "Balance Sheet",
+            "Income Statement",
+            "Budget Forecast",
+            "Cash Flow Statement"
+          ],
+          "correct": 2,
+          "explanation": "Budget/Forecast ist ein internes Planungsinstrument, kein IFRS-Abschlussbestandteil. Bilanz, GuV und Cashflow sind Pflichtbestandteile."
+        },
+        {
+          "question": "Wo wird der Kauf einer neuen Produktionsmaschine (2 Mio €) im Cash Flow Statement gezeigt?",
+          "options": [
+            "Operating Cash Flow",
+            "Investing Cash Flow",
+            "Financing Cash Flow",
+            "Gar nicht — nur Bilanz"
+          ],
+          "correct": 1,
+          "explanation": "Kauf von PP&E (Sachanlagen) ist Investitionstätigkeit (Investing Cash Flow), nicht operativ. Der Operating Cash Flow zeigt nur das Tagesgeschäft."
+        },
+        {
+          "question": "Common-Size Analysis dient vor allem:",
+          "options": [
+            "Der Steuerberechnung",
+            "Dem Größenvergleich zwischen Unternehmen",
+            "Der Inventurbewertung",
+            "Der Dividendenberechnung"
+          ],
+          "correct": 1,
+          "explanation": "Common-Size (% vom Umsatz oder Bilanzsumme) macht Unternehmen unterschiedlicher Größe vergleichbar und zeigt strukturelle Veränderungen über Zeit."
+        },
+        {
+          "question": "Was ist im Operating Cash Flow enthalten? (Indirekte Methode)",
+          "options": [
+            "Kreditaufnahme",
+            "Aktienrückkauf",
+            "Net Income + nicht-zahlungswirksame Anpassungen",
+            "Dividendenzahlung"
+          ],
+          "correct": 2,
+          "explanation": "Operating Cash Flow (indirekt) startet mit Net Income und addiert nicht-cashwirksame Posten (Abschreibungen, Working-Capital-Veränderungen) zurück."
+        }
       ]
     },
     {
       "id": "ch6",
       "title": "Finanzkennzahlen (Measures of Financial Health)",
       "flashcards": [
-        {"front": "Nenne die vier Hauptkategorien von Financial Ratios.", "back": "1. Liquidity Ratios: Kann das Unternehmen kurzfristig zahlen? (Current, Quick Ratio)\n2. Profitability Ratios: Wie profitabel arbeitet das Unternehmen? (ROA, ROE, Margen)\n3. Leverage/Solvency Ratios: Wie hoch ist die Verschuldung? (Debt-to-Equity, Interest Coverage)\n4. Efficiency Ratios: Wie effizient werden Assets genutzt? (Inventory Turnover, Receivables Turnover)"},
-        {"front": "Was ist die DuPont-Analyse und wie zerlegt sie ROE?", "back": "ROE (Eigenkapitalrendite) = Net Income / Equity\nDuPont-Zerlegung:\nROE = (Net Income / Sales) × (Sales / Total Assets) × (Total Assets / Equity)\n= Net Margin × Asset Turnover × Equity Multiplier\n→ Zeigt WO die Rendite entsteht: Marge, Effizienz oder Leverage?\nEin schwacher ROE kann verschiedene Ursachen haben."},
-        {"front": "Berechne und interpretiere: Current Ratio vs Quick Ratio (Acid Test).", "back": "Current Ratio = Current Assets / Current Liabilities (≥ 1,0 gesund)\nQuick Ratio = (Cash + AR + Marketable Securities) / Current Liabilities (strenger, ≥ 1,0 sehr gut)\nUnterschied: Quick Ratio schließt Inventory (Vorräte) aus, weil diese schwer schnell zu liquidieren sind.\n→ Unterschied groß = viel Kapital in Vorräten gebunden!"},
-        {"front": "Was misst der Interest Coverage Ratio und was ist ein kritischer Wert?", "back": "Interest Coverage = EBIT / Interest Expense\nZeigt: Wie oft kann das Unternehmen seine Zinsen aus dem operativen Gewinn decken?\n> 3,0 = komfortabel\n1,5–3,0 = tragbar\n< 1,5 = kritisch (Banken werden nervös)\n< 1,0 = operativer Gewinn reicht nicht mal für Zinsen → existenzbedrohend."},
-        {"front": "Was zeigt der Cash Conversion Cycle (CCC / Kapitalbindungsdauer)?", "back": "CCC = DIO + DSO − DPO\n• DIO (Days Inventory Outstanding): Wie lange liegt Ware im Lager?\n• DSO (Days Sales Outstanding): Wie lange warten wir auf Kundenzahlung?\n• DPO (Days Payables Outstanding): Wie lange zahlen wir unsere Lieferanten?\n→ Negativer CCC = Kunden zahlen vor Lieferantenrechnungsfälligkeit → Unternehmen arbeitet mit fremdem Geld! (z.B. Amazon, Aldi)"}
+        {
+          "front": "Nenne die vier Hauptkategorien von Financial Ratios.",
+          "back": "1. Liquidity Ratios: Kann das Unternehmen kurzfristig zahlen? (Current, Quick Ratio)\n2. Profitability Ratios: Wie profitabel arbeitet das Unternehmen? (ROA, ROE, Margen)\n3. Leverage/Solvency Ratios: Wie hoch ist die Verschuldung? (Debt-to-Equity, Interest Coverage)\n4. Efficiency Ratios: Wie effizient werden Assets genutzt? (Inventory Turnover, Receivables Turnover)"
+        },
+        {
+          "front": "Was ist die DuPont-Analyse und wie zerlegt sie ROE?",
+          "back": "ROE (Eigenkapitalrendite) = Net Income / Equity\nDuPont-Zerlegung:\nROE = (Net Income / Sales) × (Sales / Total Assets) × (Total Assets / Equity)\n= Net Margin × Asset Turnover × Equity Multiplier\n→ Zeigt WO die Rendite entsteht: Marge, Effizienz oder Leverage?\nEin schwacher ROE kann verschiedene Ursachen haben."
+        },
+        {
+          "front": "Berechne und interpretiere: Current Ratio vs Quick Ratio (Acid Test).",
+          "back": "Current Ratio = Current Assets / Current Liabilities (≥ 1,0 gesund)\nQuick Ratio = (Cash + AR + Marketable Securities) / Current Liabilities (strenger, ≥ 1,0 sehr gut)\nUnterschied: Quick Ratio schließt Inventory (Vorräte) aus, weil diese schwer schnell zu liquidieren sind.\n→ Unterschied groß = viel Kapital in Vorräten gebunden!"
+        },
+        {
+          "front": "Was misst der Interest Coverage Ratio und was ist ein kritischer Wert?",
+          "back": "Interest Coverage = EBIT / Interest Expense\nZeigt: Wie oft kann das Unternehmen seine Zinsen aus dem operativen Gewinn decken?\n> 3,0 = komfortabel\n1,5–3,0 = tragbar\n< 1,5 = kritisch (Banken werden nervös)\n< 1,0 = operativer Gewinn reicht nicht mal für Zinsen → existenzbedrohend."
+        },
+        {
+          "front": "Was zeigt der Cash Conversion Cycle (CCC / Kapitalbindungsdauer)?",
+          "back": "CCC = DIO + DSO − DPO\n• DIO (Days Inventory Outstanding): Wie lange liegt Ware im Lager?\n• DSO (Days Sales Outstanding): Wie lange warten wir auf Kundenzahlung?\n• DPO (Days Payables Outstanding): Wie lange zahlen wir unsere Lieferanten?\n→ Negativer CCC = Kunden zahlen vor Lieferantenrechnungsfälligkeit → Unternehmen arbeitet mit fremdem Geld! (z.B. Amazon, Aldi)"
+        }
       ],
       "quiz": [
-        {"question": "Ein Unternehmen hat CA = 800, CL = 500, Inventory = 300. Quick Ratio = ?", "options": ["1,6", "1,0", "0,6", "2,4"], "correct": 1, "explanation": "Quick Ratio = (800 − 300) / 500 = 500/500 = 1,0. Genau an der kritischen Grenze: Jeder € Liquidität muss einen € kurzfristige Schuld decken."},
-        {"question": "Welche Komponente gehört NICHT zur DuPont-Zerlegung?", "options": ["Net Profit Margin", "Asset Turnover", "Price-Earnings Ratio", "Equity Multiplier"], "correct": 2, "explanation": "DuPont: ROE = Net Margin × Asset Turnover × Equity Multiplier. Das KGV (P/E Ratio) ist eine Marktbewertungskennzahl, keine DuPont-Komponente."},
-        {"question": "Ein Interest Coverage Ratio von 0,8 bedeutet:", "options": ["Sehr gute Bonität", "Operativer Gewinn deckt Zinsen nicht — existenzbedrohend", "Normale Verschuldung", "Perfekte Kapitalstruktur"], "correct": 1, "explanation": "< 1,0 = EBIT reicht nicht einmal für den Zinsdienst. Das Unternehmen muss Substanz verkaufen oder neues Kapital aufnehmen, nur um Zinsen zu zahlen."},
-        {"question": "Welche Situation führt zu einem NEGATIVEN Cash Conversion Cycle?", "options": ["Lange Lagerdauer (DIO hoch)", "Kunden zahlen schneller als wir Lieferanten bezahlen (DSO < DPO)", "Viele Investitionen", "Hohe Dividenden"], "correct": 1, "explanation": "Negativer CCC = Kunden-Cash kommt vor Lieferanten-Abfluss. Das Unternehmen finanziert sich über Lieferantenkredite — ein Wettbewerbsvorteil (Amazon-Modell)."}
+        {
+          "question": "Ein Unternehmen hat CA = 800, CL = 500, Inventory = 300. Quick Ratio = ?",
+          "options": [
+            "1,6",
+            "1,0",
+            "0,6",
+            "2,4"
+          ],
+          "correct": 1,
+          "explanation": "Quick Ratio = (800 − 300) / 500 = 500/500 = 1,0. Genau an der kritischen Grenze: Jeder € Liquidität muss einen € kurzfristige Schuld decken."
+        },
+        {
+          "question": "Welche Komponente gehört NICHT zur DuPont-Zerlegung?",
+          "options": [
+            "Net Profit Margin",
+            "Asset Turnover",
+            "Price-Earnings Ratio",
+            "Equity Multiplier"
+          ],
+          "correct": 2,
+          "explanation": "DuPont: ROE = Net Margin × Asset Turnover × Equity Multiplier. Das KGV (P/E Ratio) ist eine Marktbewertungskennzahl, keine DuPont-Komponente."
+        },
+        {
+          "question": "Ein Interest Coverage Ratio von 0,8 bedeutet:",
+          "options": [
+            "Sehr gute Bonität",
+            "Operativer Gewinn deckt Zinsen nicht — existenzbedrohend",
+            "Normale Verschuldung",
+            "Perfekte Kapitalstruktur"
+          ],
+          "correct": 1,
+          "explanation": "< 1,0 = EBIT reicht nicht einmal für den Zinsdienst. Das Unternehmen muss Substanz verkaufen oder neues Kapital aufnehmen, nur um Zinsen zu zahlen."
+        },
+        {
+          "question": "Welche Situation führt zu einem NEGATIVEN Cash Conversion Cycle?",
+          "options": [
+            "Lange Lagerdauer (DIO hoch)",
+            "Kunden zahlen schneller als wir Lieferanten bezahlen (DSO < DPO)",
+            "Viele Investitionen",
+            "Hohe Dividenden"
+          ],
+          "correct": 1,
+          "explanation": "Negativer CCC = Kunden-Cash kommt vor Lieferanten-Abfluss. Das Unternehmen finanziert sich über Lieferantenkredite — ein Wettbewerbsvorteil (Amazon-Modell)."
+        }
       ]
     }
   ]

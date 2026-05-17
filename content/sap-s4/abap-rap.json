@@ -10,85 +10,360 @@
       "id": "ch1",
       "title": "ABAP Grundlagen modern (Modern ABAP Fundamentals)",
       "flashcards": [
-        {"front": "Was ist modernes ABAP und wie unterscheidet es sich von klassischem ABAP?", "back": "Klassisch (ABAP < 7.40): Verbose Deklaration, kein Inline, eigenständige Modularisierung.\nModern (≥ 7.40, ABAP Cloud):\n• Inline Deklaration: DATA(name) = 'Linus' statt dreizeiliger Deklaration\n• VALUE/FOR/COND-Ausdrücke: Konstruktion interner Tabellen in einem Statement\n• String Templates: |Hello { name }| statt CONCATENATE\n• ABAP Development Tools (ADT/Eclipse) statt SAP GUI\n• ABAP Cloud: Nur freigegebene SAP-APIs nutzen (Cloud-Ready)."},
-        {"front": "Was sind Internal Tables und ihre drei Typen?", "back": "Internal Tables = In-Memory-Tabellen (keine DB-Tabelle!).\n1. STANDARD: Unsortiert, Zugriff per Index linear (vollständiger Scan bei KEY-Zugriff). Am häufigsten.\n2. SORTED: Immer sortiert nach Key, PRIMARY KEY zwingend. Zugriff per Binary Search (O(log n)).\n3. HASHED: Hash-basierter Zugriff via UNIQUE KEY, O(1). Kein Index-Zugriff möglich.\n→ Faustregel: Sortierte Daten + kein Duplikat-Key = HASHED. Sortierte Daten + Duplikate = SORTED. Reihenfolge egal = STANDARD."},
-        {"front": "Was leisten VALUE-, FOR- und COND-Ausdrücke?", "back": "VALUE #( ): Konstruktor für Strukturen/Tabellen inline.\nBeispiel: DATA(itab) = VALUE string_table( ( `A` ) ( `B` ) ).\n\nFOR ... IN: Iteriert über Tabelle und transformiert.\nBeispiel: DATA(mapped) = VALUE ttab( FOR line IN itab ( line-name ) ).\n\nCOND #( WHEN ... THEN ... ELSE ... ): Inline-Bedingung (Ersatz für IF im Wertkontext).\n→ Diese Ausdrücke reduzieren Hilfsvariablen massiv und machen Code lesbarer als klassisches LOOP + APPEND."},
-        {"front": "Was sind die ABAP Development Tools (ADT) und warum Eclipse?", "back": "ADT = ABAP-Plugin für Eclipse (nicht mehr SAP GUI / SE80!).\nVorteile:\n• Moderner Editor mit Syntax-Highlighting, Auto-Complete\n• Refactoring-Unterstützung\n• Integrierter Debugger\n• ABAP Unit Test Runner\n• Git-Integration\n• Schnelleres Navigieren in großen Codebases\n→ SAP GUI SE80 wird nicht mehr weiterentwickelt. Alle neuen Tools (CDC, RAP, CDS) setzen ADT voraus."},
-        {"front": "Was bedeutet ABAP Cloud und was ist NICHT erlaubt?", "back": "ABAP Cloud = Teilmenge von ABAP für Cloud-Entwicklung (S/4HANA Public Cloud, BTP ABAP Environment).\nErlaubt: CDS Views, RAP Business Objects, freigegebene SAP APIs, ABAP SQL.\nVerboten:\n• Direkte DB-Zugriffe (SELECT * FROM db_table — nur über CDS/RAP)\n• SAP-GUI-Technologien (Dynpro, ALV)\n• Funktionsbausteine CALL FUNCTION (stattdessen APIs)\n• Systemänderungen (SY-SUBRC auf 0 setzen)\n→ Ziel: Upgrade-Stabilität durch Clean Core."}
+        {
+          "front": "Was ist modernes ABAP und wie unterscheidet es sich von klassischem ABAP?",
+          "back": "Klassisch (ABAP < 7.40): Verbose Deklaration, kein Inline, eigenständige Modularisierung.\nModern (≥ 7.40, ABAP Cloud):\n• Inline Deklaration: DATA(name) = 'Linus' statt dreizeiliger Deklaration\n• VALUE/FOR/COND-Ausdrücke: Konstruktion interner Tabellen in einem Statement\n• String Templates: |Hello { name }| statt CONCATENATE\n• ABAP Development Tools (ADT/Eclipse) statt SAP GUI\n• ABAP Cloud: Nur freigegebene SAP-APIs nutzen (Cloud-Ready)."
+        },
+        {
+          "front": "Was sind Internal Tables und ihre drei Typen?",
+          "back": "Internal Tables = In-Memory-Tabellen (keine DB-Tabelle!).\n1. STANDARD: Unsortiert, Zugriff per Index linear (vollständiger Scan bei KEY-Zugriff). Am häufigsten.\n2. SORTED: Immer sortiert nach Key, PRIMARY KEY zwingend. Zugriff per Binary Search (O(log n)).\n3. HASHED: Hash-basierter Zugriff via UNIQUE KEY, O(1). Kein Index-Zugriff möglich.\n→ Faustregel: Sortierte Daten + kein Duplikat-Key = HASHED. Sortierte Daten + Duplikate = SORTED. Reihenfolge egal = STANDARD."
+        },
+        {
+          "front": "Was leisten VALUE-, FOR- und COND-Ausdrücke?",
+          "back": "VALUE #( ): Konstruktor für Strukturen/Tabellen inline.\nBeispiel: DATA(itab) = VALUE string_table( ( `A` ) ( `B` ) ).\n\nFOR ... IN: Iteriert über Tabelle und transformiert.\nBeispiel: DATA(mapped) = VALUE ttab( FOR line IN itab ( line-name ) ).\n\nCOND #( WHEN ... THEN ... ELSE ... ): Inline-Bedingung (Ersatz für IF im Wertkontext).\n→ Diese Ausdrücke reduzieren Hilfsvariablen massiv und machen Code lesbarer als klassisches LOOP + APPEND."
+        },
+        {
+          "front": "Was sind die ABAP Development Tools (ADT) und warum Eclipse?",
+          "back": "ADT = ABAP-Plugin für Eclipse (nicht mehr SAP GUI / SE80!).\nVorteile:\n• Moderner Editor mit Syntax-Highlighting, Auto-Complete\n• Refactoring-Unterstützung\n• Integrierter Debugger\n• ABAP Unit Test Runner\n• Git-Integration\n• Schnelleres Navigieren in großen Codebases\n→ SAP GUI SE80 wird nicht mehr weiterentwickelt. Alle neuen Tools (CDC, RAP, CDS) setzen ADT voraus."
+        },
+        {
+          "front": "Was bedeutet ABAP Cloud und was ist NICHT erlaubt?",
+          "back": "ABAP Cloud = Teilmenge von ABAP für Cloud-Entwicklung (S/4HANA Public Cloud, BTP ABAP Environment).\nErlaubt: CDS Views, RAP Business Objects, freigegebene SAP APIs, ABAP SQL.\nVerboten:\n• Direkte DB-Zugriffe (SELECT * FROM db_table — nur über CDS/RAP)\n• SAP-GUI-Technologien (Dynpro, ALV)\n• Funktionsbausteine CALL FUNCTION (stattdessen APIs)\n• Systemänderungen (SY-SUBRC auf 0 setzen)\n→ Ziel: Upgrade-Stabilität durch Clean Core."
+        }
       ],
       "quiz": [
-        {"question": "Welcher Internal-Table-Typ bietet Zugriff in O(1) per UNIQUE KEY?", "options": ["STANDARD", "SORTED", "HASHED", "Alle bieten O(1)"], "correct": 2, "explanation": "Nur HASHED Tables nutzen Hash-Algorithmus für O(1)-Zugriff — aber ausschließlich per vollständigem UNIQUE Key, kein Index-Zugriff."},
-        {"question": "Modernes ABAP erlaubt Inline-Deklaration mit:", "options": ["DECLARE ... ENDDECLARE", "DATA(name) = Wert", "DEFINE ... END-OF-DEFINITION", "CREATE DATA"], "correct": 1, "explanation": "DATA(name) = 'Wert' deklariert die Variable inline und leitet den Typ vom Wert ab. Spätestens seit ABAP 7.40 Standard."},
-        {"question": "Was ist im ABAP Cloud NICHT erlaubt?", "options": ["CDS Views", "RAP Business Objects", "ABAP SQL", "CALL FUNCTION auf beliebige Funktionsbausteine"], "correct": 3, "explanation": "Nur freigegebene SAP APIs sind in ABAP Cloud erlaubt. CALL FUNCTION auf interne Bausteine ist verboten."},
-        {"question": "ADT (ABAP Development Tools) basieren auf:", "options": ["SAP GUI", "Eclipse IDE", "Visual Studio Code", "SAP Web IDE"], "correct": 1, "explanation": "ADT = Eclipse-Plugin. SAP GUI SE80 ist Legacy. Alle neuen Entwicklungsparadigmen (RAP, CDS) setzen ADT voraus."}
+        {
+          "question": "Welcher Internal-Table-Typ bietet Zugriff in O(1) per UNIQUE KEY?",
+          "options": [
+            "STANDARD",
+            "SORTED",
+            "HASHED",
+            "Alle bieten O(1)"
+          ],
+          "correct": 2,
+          "explanation": "Nur HASHED Tables nutzen Hash-Algorithmus für O(1)-Zugriff — aber ausschließlich per vollständigem UNIQUE Key, kein Index-Zugriff."
+        },
+        {
+          "question": "Modernes ABAP erlaubt Inline-Deklaration mit:",
+          "options": [
+            "DECLARE ... ENDDECLARE",
+            "DATA(name) = Wert",
+            "DEFINE ... END-OF-DEFINITION",
+            "CREATE DATA"
+          ],
+          "correct": 1,
+          "explanation": "DATA(name) = 'Wert' deklariert die Variable inline und leitet den Typ vom Wert ab. Spätestens seit ABAP 7.40 Standard."
+        },
+        {
+          "question": "Was ist im ABAP Cloud NICHT erlaubt?",
+          "options": [
+            "CDS Views",
+            "RAP Business Objects",
+            "ABAP SQL",
+            "CALL FUNCTION auf beliebige Funktionsbausteine"
+          ],
+          "correct": 3,
+          "explanation": "Nur freigegebene SAP APIs sind in ABAP Cloud erlaubt. CALL FUNCTION auf interne Bausteine ist verboten."
+        },
+        {
+          "question": "ADT (ABAP Development Tools) basieren auf:",
+          "options": [
+            "SAP GUI",
+            "Eclipse IDE",
+            "Visual Studio Code",
+            "SAP Web IDE"
+          ],
+          "correct": 1,
+          "explanation": "ADT = Eclipse-Plugin. SAP GUI SE80 ist Legacy. Alle neuen Entwicklungsparadigmen (RAP, CDS) setzen ADT voraus."
+        }
       ]
     },
     {
       "id": "ch2",
       "title": "Core Data Services (CDS Views)",
       "flashcards": [
-        {"front": "Was sind CDS (Core Data Services) Views?", "back": "CDS = Semantische Datenmodellierungsschicht über der Datenbank (Next-Generation Data Dictionary).\nAnders als klassische SE11-Views:\n• Enthalten Business-Logik: Berechnungen, Aggregationen, Joins\n• Annotationen für UI, OData, Analytics\n• Können Parameter akzeptieren\n• Werden als Design-Time-Objekte in ABAP verwaltet (DDL Source)\n→ CDS ist das RÜCKGRAT moderner S/4HANA-Entwicklung. Alles geht durch CDS."},
-        {"front": "Nenne wichtige CDS Annotationen und ihren Zweck.", "back": "@Semantics.amount.currencyCode: Kennzeichnet Währungsfeld für Betrag\n@Semantics.quantity.unitOfMeasure: Kennzeichnet Mengeneinheit\n@UI.facet: Strukturiert Fiori-UI in Tabs, Sections\n@UI.lineItem: Feld als Spalte in Tabellenansicht\n@UI.selectionField: Feld als Filterkriterium\n@ObjectModel.foreignKey.association: Navigationsbeziehung\n@Search.searchable: Indiziert für Fiori-Suche\n→ Annotationen = deklaratives UI-Modell, kein manuelles Fiori-Coding nötig."},
-        {"front": "Was sind Associations in CDS und wie unterscheiden sie sich von Joins?", "back": "Association = Deklarative Beziehung zwischen CDS Views (entspricht konzeptuell einem Join, wird aber ON-DEMAND aufgelöst).\nJoin: Immer berechnet, auch wenn verknüpfte Daten nicht gebraucht werden.\nAssociation: Nur wenn tatsächlich auf die verknüpfte Entität zugegriffen wird (Pfadausdruck). Performanter!\nCardinality: [0..1], [0..*], [1..1], [1..*] — wichtig für UI & OData.\n→ Associations sind DAS zentrale Verknüpfungskonzept in CDS."},
-        {"front": "Was sind DCL (Data Control Language) Source Files?", "back": "DCL = CDS Access Control / Datenzugriffskontrolle.\nDefiniert, WELCHE Daten ein Nutzer sehen darf — auf CDS-Ebene, nicht Applikationsebene!\nBeispiel: Vertriebler sieht nur seine eigenen Kunden (SALES_ORG = user's org).\nVorteile:\n• Keine SELECT-WHERE im Applikationscode\n• Sicherheit auf Datenbankebene (nicht umgehbar)\n• Zentrale Pflege\n→ DCL ist Pflicht für S/4HANA Public Cloud."},
-        {"front": "Was sind CDS Table Functions?", "back": "Table Function = CDS implementiert als AMDP (ABAP Managed Database Procedure).\nErlaubt:\n• Komplexe SQLScript-Logik (Loops, Cursors) im HANA DB-Layer\n• Mehrfach-Joins und Aggregationen die in Plain CDS SQL nicht abbildbar sind\n• Aufruf via CDS View (transparent für Consumer)\n→ Wird genutzt, wenn Declarative CDS SQL an Grenzen stößt — aber sparsam wegen DB-Spezifität."}
+        {
+          "front": "Was sind CDS (Core Data Services) Views?",
+          "back": "CDS = Semantische Datenmodellierungsschicht über der Datenbank (Next-Generation Data Dictionary).\nAnders als klassische SE11-Views:\n• Enthalten Business-Logik: Berechnungen, Aggregationen, Joins\n• Annotationen für UI, OData, Analytics\n• Können Parameter akzeptieren\n• Werden als Design-Time-Objekte in ABAP verwaltet (DDL Source)\n→ CDS ist das RÜCKGRAT moderner S/4HANA-Entwicklung. Alles geht durch CDS."
+        },
+        {
+          "front": "Nenne wichtige CDS Annotationen und ihren Zweck.",
+          "back": "@Semantics.amount.currencyCode: Kennzeichnet Währungsfeld für Betrag\n@Semantics.quantity.unitOfMeasure: Kennzeichnet Mengeneinheit\n@UI.facet: Strukturiert Fiori-UI in Tabs, Sections\n@UI.lineItem: Feld als Spalte in Tabellenansicht\n@UI.selectionField: Feld als Filterkriterium\n@ObjectModel.foreignKey.association: Navigationsbeziehung\n@Search.searchable: Indiziert für Fiori-Suche\n→ Annotationen = deklaratives UI-Modell, kein manuelles Fiori-Coding nötig."
+        },
+        {
+          "front": "Was sind Associations in CDS und wie unterscheiden sie sich von Joins?",
+          "back": "Association = Deklarative Beziehung zwischen CDS Views (entspricht konzeptuell einem Join, wird aber ON-DEMAND aufgelöst).\nJoin: Immer berechnet, auch wenn verknüpfte Daten nicht gebraucht werden.\nAssociation: Nur wenn tatsächlich auf die verknüpfte Entität zugegriffen wird (Pfadausdruck). Performanter!\nCardinality: [0..1], [0..*], [1..1], [1..*] — wichtig für UI & OData.\n→ Associations sind DAS zentrale Verknüpfungskonzept in CDS."
+        },
+        {
+          "front": "Was sind DCL (Data Control Language) Source Files?",
+          "back": "DCL = CDS Access Control / Datenzugriffskontrolle.\nDefiniert, WELCHE Daten ein Nutzer sehen darf — auf CDS-Ebene, nicht Applikationsebene!\nBeispiel: Vertriebler sieht nur seine eigenen Kunden (SALES_ORG = user's org).\nVorteile:\n• Keine SELECT-WHERE im Applikationscode\n• Sicherheit auf Datenbankebene (nicht umgehbar)\n• Zentrale Pflege\n→ DCL ist Pflicht für S/4HANA Public Cloud."
+        },
+        {
+          "front": "Was sind CDS Table Functions?",
+          "back": "Table Function = CDS implementiert als AMDP (ABAP Managed Database Procedure).\nErlaubt:\n• Komplexe SQLScript-Logik (Loops, Cursors) im HANA DB-Layer\n• Mehrfach-Joins und Aggregationen die in Plain CDS SQL nicht abbildbar sind\n• Aufruf via CDS View (transparent für Consumer)\n→ Wird genutzt, wenn Declarative CDS SQL an Grenzen stößt — aber sparsam wegen DB-Spezifität."
+        }
       ],
       "quiz": [
-        {"question": "Was tun @UI.lineItem und @UI.selectionField Annotationen?", "options": ["Datenbanksicherheit konfigurieren", "UI-Verhalten deklarativ steuern (Tabelle, Filter)", "Berechtigungen verwalten", "API-Endpunkte definieren"], "correct": 1, "explanation": "UI-Annotationen steuern die Fiori Elements UI deklarativ — welche Felder in Tabelle (lineItem) oder Filter (selectionField) erscheinen, ohne manuelles UI-Coding."},
-        {"question": "Association zwischen CDS Views wird aufgelöst:", "options": ["Immer automatisch (wie Join)", "On-Demand, nur wenn Pfadausdruck tatsächlich zugreift", "Nie — nur Join möglich", "Nur im Debugging-Modus"], "correct": 1, "explanation": "Anders als Joins werden Associations nur aufgelöst, wenn der Consumer die Daten tatsächlich per Pfadausdruck anfordert. Spart Rechenzeit."},
-        {"question": "DCL (Data Control Language) wirkt auf:", "options": ["Applikations-Ebene (UI Controller)", "CDS-View-Ebene (Datenbankzugriff)", "Nur auf SAP-Fiori-Kacheln", "Netzwerk-Ebene"], "correct": 1, "explanation": "DCL greift auf CDS-Ebene — vor der Applikation. Selbst wenn jemand direkt SQL aufruft, greift die DCL. Sicherheit auf DB-Ebene."},
-        {"question": "Eine CDS Table Function eignet sich, wenn:", "options": ["Man einfache SELECTs macht", "Die deklarative CDS SQL-Syntax an ihre Grenzen stößt (komplexe SQLScript-Logik nötig)", "Man SAP GUI Dynpros verwendet", "Keine der Optionen"], "correct": 1, "explanation": "Table Functions = AMDP-Implementierung für Fälle, die Declarative CDS nicht abdecken kann. Aber vorsichtig: DB-spezifisch (HANA)."}
+        {
+          "question": "Was tun @UI.lineItem und @UI.selectionField Annotationen?",
+          "options": [
+            "Datenbanksicherheit konfigurieren",
+            "UI-Verhalten deklarativ steuern (Tabelle, Filter)",
+            "Berechtigungen verwalten",
+            "API-Endpunkte definieren"
+          ],
+          "correct": 1,
+          "explanation": "UI-Annotationen steuern die Fiori Elements UI deklarativ — welche Felder in Tabelle (lineItem) oder Filter (selectionField) erscheinen, ohne manuelles UI-Coding."
+        },
+        {
+          "question": "Association zwischen CDS Views wird aufgelöst:",
+          "options": [
+            "Immer automatisch (wie Join)",
+            "On-Demand, nur wenn Pfadausdruck tatsächlich zugreift",
+            "Nie — nur Join möglich",
+            "Nur im Debugging-Modus"
+          ],
+          "correct": 1,
+          "explanation": "Anders als Joins werden Associations nur aufgelöst, wenn der Consumer die Daten tatsächlich per Pfadausdruck anfordert. Spart Rechenzeit."
+        },
+        {
+          "question": "DCL (Data Control Language) wirkt auf:",
+          "options": [
+            "Applikations-Ebene (UI Controller)",
+            "CDS-View-Ebene (Datenbankzugriff)",
+            "Nur auf SAP-Fiori-Kacheln",
+            "Netzwerk-Ebene"
+          ],
+          "correct": 1,
+          "explanation": "DCL greift auf CDS-Ebene — vor der Applikation. Selbst wenn jemand direkt SQL aufruft, greift die DCL. Sicherheit auf DB-Ebene."
+        },
+        {
+          "question": "Eine CDS Table Function eignet sich, wenn:",
+          "options": [
+            "Man einfache SELECTs macht",
+            "Die deklarative CDS SQL-Syntax an ihre Grenzen stößt (komplexe SQLScript-Logik nötig)",
+            "Man SAP GUI Dynpros verwendet",
+            "Keine der Optionen"
+          ],
+          "correct": 1,
+          "explanation": "Table Functions = AMDP-Implementierung für Fälle, die Declarative CDS nicht abdecken kann. Aber vorsichtig: DB-spezifisch (HANA)."
+        }
       ]
     },
     {
       "id": "ch3",
       "title": "Das ABAP RESTful Programming Model (RAP)",
       "flashcards": [
-        {"front": "Was ist RAP und welche Schichten umfasst es?", "back": "RAP (ABAP RESTful Application Programming Model) = SAPs strategisches Programmiermodell für transaktionale S/4HANA-Anwendungen.\nSchichten:\n1. Data Modeling: CDS Views (Interface Views, Projection Views)\n2. Behavior Definition: Transaktionslogik (Create, Update, Delete, Validations, Determinations)\n3. Service Definition & Binding: OData-Exposure als RESTful Service\n→ Ergebnis: Vollwertige SAP-Fiori-App mit minimalem Code, maximale Generierung durch Framework."},
-        {"front": "Erkläre Managed vs. Unmanaged RAP Szenario.", "back": "Managed: RAP übernimmt ALLE Standard-CRUD-Operationen (Create, Read, Update, Delete). Entwickler definiert nur Business-Validierungen und -Determinations. Weniger Code, engerer Framework-Vorgaben.\nUnmanaged: Entwickler implementiert CUD selbst (READ ist immer Framework). Mehr Freiheit, mehr Code. Für komplexe Szenarien mit nicht-standard DB-Operationen.\n→ Neue Projekte starten Managed, nur bei Bedarf auf Unmanaged wechseln."},
-        {"front": "Was sind Validations und Determinations in RAP?", "back": "Validations: Prüfungen BEIM Speichern (Save). Z.B.: 'Bestellmenge > 0?', 'Kunde hat Kreditlimit?'. Bei Fehler: Meldung, kein Save.\nDeterminations: Automatische Wertermittlung BEI Änderung (Trigger-Zeitpunkt). Z.B.: 'Gesamtpreis = Menge × Einzelpreis', 'Erstelldatum = heute'.\nZeitpunkte: On Modify (bei jeder Änderung) oder On Save (beim Speichern).\n→ Validations sichern Datenkonsistenz, Determinations reduzieren manuelle Eingaben."},
-        {"front": "Was ist Draft Handling in RAP?", "back": "Draft = Zwischenspeichern eines unvollständigen Datensatzes (wie Online-Shop-Warenkorb).\nAktiv: RAP speichert Entwurf in separater Draft-Tabelle. Nutzer kann später fortsetzen.\nLocking: Draft setzt exklusive Sperre auf den Datensatz.\nTransition Draft → Active: Bei Speichern (Save) wird Draft validiert und in aktive Tabelle überführt.\n→ Essentiell für lange Erfassungsprozesse (Bestellungen, Stammdatenänderungen)."},
-        {"front": "Was ist die Behavior Definition und welche Sprache nutzt sie?", "back": "BDEF = Behavior Definition (BDL = Behavior Definition Language).\nDefiniert WAS ein Business Object kann:\n• Standard Operations: Create, Update, Delete\n• Actions: benutzerdefinierte Operationen (z.B. 'Genehmigen', 'Kopieren')\n• Validations & Determinations (Zeitpunkt + Trigger)\n• Draft-Enablement\n• Authorization Master (global/instance)\n→ BDL ist deklarativ (kein ABAP!), die Implementierung erfolgt in ABAP-Klassen."}
+        {
+          "front": "Was ist RAP und welche Schichten umfasst es?",
+          "back": "RAP (ABAP RESTful Application Programming Model) = SAPs strategisches Programmiermodell für transaktionale S/4HANA-Anwendungen.\nSchichten:\n1. Data Modeling: CDS Views (Interface Views, Projection Views)\n2. Behavior Definition: Transaktionslogik (Create, Update, Delete, Validations, Determinations)\n3. Service Definition & Binding: OData-Exposure als RESTful Service\n→ Ergebnis: Vollwertige SAP-Fiori-App mit minimalem Code, maximale Generierung durch Framework."
+        },
+        {
+          "front": "Erkläre Managed vs. Unmanaged RAP Szenario.",
+          "back": "Managed: RAP übernimmt ALLE Standard-CRUD-Operationen (Create, Read, Update, Delete). Entwickler definiert nur Business-Validierungen und -Determinations. Weniger Code, engerer Framework-Vorgaben.\nUnmanaged: Entwickler implementiert CUD selbst (READ ist immer Framework). Mehr Freiheit, mehr Code. Für komplexe Szenarien mit nicht-standard DB-Operationen.\n→ Neue Projekte starten Managed, nur bei Bedarf auf Unmanaged wechseln."
+        },
+        {
+          "front": "Was sind Validations und Determinations in RAP?",
+          "back": "Validations: Prüfungen BEIM Speichern (Save). Z.B.: 'Bestellmenge > 0?', 'Kunde hat Kreditlimit?'. Bei Fehler: Meldung, kein Save.\nDeterminations: Automatische Wertermittlung BEI Änderung (Trigger-Zeitpunkt). Z.B.: 'Gesamtpreis = Menge × Einzelpreis', 'Erstelldatum = heute'.\nZeitpunkte: On Modify (bei jeder Änderung) oder On Save (beim Speichern).\n→ Validations sichern Datenkonsistenz, Determinations reduzieren manuelle Eingaben."
+        },
+        {
+          "front": "Was ist Draft Handling in RAP?",
+          "back": "Draft = Zwischenspeichern eines unvollständigen Datensatzes (wie Online-Shop-Warenkorb).\nAktiv: RAP speichert Entwurf in separater Draft-Tabelle. Nutzer kann später fortsetzen.\nLocking: Draft setzt exklusive Sperre auf den Datensatz.\nTransition Draft → Active: Bei Speichern (Save) wird Draft validiert und in aktive Tabelle überführt.\n→ Essentiell für lange Erfassungsprozesse (Bestellungen, Stammdatenänderungen)."
+        },
+        {
+          "front": "Was ist die Behavior Definition und welche Sprache nutzt sie?",
+          "back": "BDEF = Behavior Definition (BDL = Behavior Definition Language).\nDefiniert WAS ein Business Object kann:\n• Standard Operations: Create, Update, Delete\n• Actions: benutzerdefinierte Operationen (z.B. 'Genehmigen', 'Kopieren')\n• Validations & Determinations (Zeitpunkt + Trigger)\n• Draft-Enablement\n• Authorization Master (global/instance)\n→ BDL ist deklarativ (kein ABAP!), die Implementierung erfolgt in ABAP-Klassen."
+        }
       ],
       "quiz": [
-        {"question": "Im Managed RAP-Szenario implementiert der Entwickler:", "options": ["CRUD komplett selbst", "Nur Business-Validierungen und Determinations, CRUD = Framework", "Nur READ, Rest selbst", "Gar nichts, Managed ist Code-frei"], "correct": 1, "explanation": "Managed = CRUD ist Framework-Sache. Entwickler konzentriert sich auf Business-Logik (Validations, Determinations, Actions)."},
-        {"question": "Eine Validation (Prüfung) in RAP feuert:", "options": ["Immer sofort bei jedem Tastendruck", "Beim Speichern (Save), nach definiertem Trigger", "Nur beim Löschen", "Nur beim Erstellen"], "correct": 1, "explanation": "Validations feuern zum definierten Trigger-Zeitpunkt, meist On Save. Bei Fehler wird der gesamte Save verhindert."},
-        {"question": "Draft Handling in RAP ist wichtig für:", "options": ["Batch-Jobs", "Langlaufende Erfassungsprozesse mit Unterbrechungsmöglichkeit", "Reine Anzeige-Apps", "SAP GUI Dynpros"], "correct": 1, "explanation": "Draft ermöglicht das Zwischenspeichern unvollständiger Daten — essentiell für Bestellungen, Anträge, Stammdatenpflege."},
-        {"question": "Die Behavior Definition Language (BDL) ist:", "options": ["ABAP-Code", "SQLScript", "Deklarativ (kein ABAP), definiert WAS, nicht WIE", "JavaScript"], "correct": 2, "explanation": "BDL ist deklarativ — sie beschreibt das Verhalten (Operationen, Validations, Draft) ohne Implementierung. Die Implementierung folgt in ABAP-Klassen."}
+        {
+          "question": "Im Managed RAP-Szenario implementiert der Entwickler:",
+          "options": [
+            "CRUD komplett selbst",
+            "Nur Business-Validierungen und Determinations, CRUD = Framework",
+            "Nur READ, Rest selbst",
+            "Gar nichts, Managed ist Code-frei"
+          ],
+          "correct": 1,
+          "explanation": "Managed = CRUD ist Framework-Sache. Entwickler konzentriert sich auf Business-Logik (Validations, Determinations, Actions)."
+        },
+        {
+          "question": "Eine Validation (Prüfung) in RAP feuert:",
+          "options": [
+            "Immer sofort bei jedem Tastendruck",
+            "Beim Speichern (Save), nach definiertem Trigger",
+            "Nur beim Löschen",
+            "Nur beim Erstellen"
+          ],
+          "correct": 1,
+          "explanation": "Validations feuern zum definierten Trigger-Zeitpunkt, meist On Save. Bei Fehler wird der gesamte Save verhindert."
+        },
+        {
+          "question": "Draft Handling in RAP ist wichtig für:",
+          "options": [
+            "Batch-Jobs",
+            "Langlaufende Erfassungsprozesse mit Unterbrechungsmöglichkeit",
+            "Reine Anzeige-Apps",
+            "SAP GUI Dynpros"
+          ],
+          "correct": 1,
+          "explanation": "Draft ermöglicht das Zwischenspeichern unvollständiger Daten — essentiell für Bestellungen, Anträge, Stammdatenpflege."
+        },
+        {
+          "question": "Die Behavior Definition Language (BDL) ist:",
+          "options": [
+            "ABAP-Code",
+            "SQLScript",
+            "Deklarativ (kein ABAP), definiert WAS, nicht WIE",
+            "JavaScript"
+          ],
+          "correct": 2,
+          "explanation": "BDL ist deklarativ — sie beschreibt das Verhalten (Operationen, Validations, Draft) ohne Implementierung. Die Implementierung folgt in ABAP-Klassen."
+        }
       ]
     },
     {
       "id": "ch4",
       "title": "OData Services & SAP Fiori",
       "flashcards": [
-        {"front": "Was ist eine Service Definition und Service Binding in RAP?", "back": "Service Definition: Definiert, WELCHE CDS Views als OData-Service exponiert werden. Bestimmt den OData-Namen und die exponierten Entities.\nService Binding: Bindet die Service Definition an ein Protokoll (OData V2/V4 UI) + Publishing-Information (Fiori Launchpad).\n→ Trennung von WAS (Definition) und WIE (Binding) — gleiche CDS kann für UI und API unterschiedlich gebunden werden."},
-        {"front": "Was sind OData UI Annotations und wie steuern sie Fiori Elements?", "back": "OData UI Annotations steuern das automatisch generierte Fiori Elements UI:\n@UI.headerInfo: Titel/Description der Objektseite\n@UI.facet: Tabs/Sections auf der Objektseite\n@UI.fieldGroup: Gruppierung von Feldern in einem Facet\n@UI.lineItem: Spalten in der List Report Tabelle\n@UI.selectionField: Filterfelder im Filter Bar\n@UI.identification: Felder im Objekt-Header\n→ Ergebnis: Voll funktionsfähige Fiori-App OHNE manuelles Frontend-Coding."},
-        {"front": "Was sind Fiori Elements und welche Floorplans gibt es?", "back": "Fiori Elements = Framework-generierte UI basierend auf OData Annotations (kein manuelles UI5-Coding).\nFloorplans:\n• List Report: Tabelle + Filter + Suche (Standard-Übersichtsseite)\n• Object Page: Detailansicht eines Objekts mit Tabs\n• Overview Page: Dashboard mit Cards/KPIs\n• Worklist: Aufgabenliste (Inbox-Pattern)\n• Analytical List Page: Hybride Liste + Grafiken\n→ 80% der Standard-Apps brauchen NUR Fiori Elements, kein UI5."},
-        {"front": "Wie publisht man eine Fiori-App auf dem Launchpad?", "back": "Schritte:\n1. Service Definition + Binding erstellen (OData V2/V4 UI)\n2. IAM App (Identity & Access Management) definieren: Business Catalog + App\n3. Business Role: Catalog zu Rolle zuweisen\n4. PFCG-Rolle: Business Role mit PFCG verknüpfen, Nutzer zuweisen\n5. Launchpad Content Manager: Kachel konfigurieren (Titel, Untertitel, Icon)\n→ Ohne die PFCG/IAM-Schritte ist die App nicht sichtbar/nutzbar."},
-        {"front": "Wann braucht man Custom UI5 statt Fiori Elements?", "back": "Fiori Elements reicht NICHT bei:\n• Stark abweichendem UI-Layout (nicht Standard-Floorplan)\n• Komplexer Interaktivität (Drag & Drop, dynamische Visualisierungen)\n• Mehrere unabhängige OData-Services in einer Seite\n• Eigenem Branding/Benutzerführung\n→ Für Custom UI5: SAP Business Application Studio (BAS) + SAPUI5 Library. Aber: Höhere TCO durch manuelle Pflege."}
+        {
+          "front": "Was ist eine Service Definition und Service Binding in RAP?",
+          "back": "Service Definition: Definiert, WELCHE CDS Views als OData-Service exponiert werden. Bestimmt den OData-Namen und die exponierten Entities.\nService Binding: Bindet die Service Definition an ein Protokoll (OData V2/V4 UI) + Publishing-Information (Fiori Launchpad).\n→ Trennung von WAS (Definition) und WIE (Binding) — gleiche CDS kann für UI und API unterschiedlich gebunden werden."
+        },
+        {
+          "front": "Was sind OData UI Annotations und wie steuern sie Fiori Elements?",
+          "back": "OData UI Annotations steuern das automatisch generierte Fiori Elements UI:\n@UI.headerInfo: Titel/Description der Objektseite\n@UI.facet: Tabs/Sections auf der Objektseite\n@UI.fieldGroup: Gruppierung von Feldern in einem Facet\n@UI.lineItem: Spalten in der List Report Tabelle\n@UI.selectionField: Filterfelder im Filter Bar\n@UI.identification: Felder im Objekt-Header\n→ Ergebnis: Voll funktionsfähige Fiori-App OHNE manuelles Frontend-Coding."
+        },
+        {
+          "front": "Was sind Fiori Elements und welche Floorplans gibt es?",
+          "back": "Fiori Elements = Framework-generierte UI basierend auf OData Annotations (kein manuelles UI5-Coding).\nFloorplans:\n• List Report: Tabelle + Filter + Suche (Standard-Übersichtsseite)\n• Object Page: Detailansicht eines Objekts mit Tabs\n• Overview Page: Dashboard mit Cards/KPIs\n• Worklist: Aufgabenliste (Inbox-Pattern)\n• Analytical List Page: Hybride Liste + Grafiken\n→ 80% der Standard-Apps brauchen NUR Fiori Elements, kein UI5."
+        },
+        {
+          "front": "Wie publisht man eine Fiori-App auf dem Launchpad?",
+          "back": "Schritte:\n1. Service Definition + Binding erstellen (OData V2/V4 UI)\n2. IAM App (Identity & Access Management) definieren: Business Catalog + App\n3. Business Role: Catalog zu Rolle zuweisen\n4. PFCG-Rolle: Business Role mit PFCG verknüpfen, Nutzer zuweisen\n5. Launchpad Content Manager: Kachel konfigurieren (Titel, Untertitel, Icon)\n→ Ohne die PFCG/IAM-Schritte ist die App nicht sichtbar/nutzbar."
+        },
+        {
+          "front": "Wann braucht man Custom UI5 statt Fiori Elements?",
+          "back": "Fiori Elements reicht NICHT bei:\n• Stark abweichendem UI-Layout (nicht Standard-Floorplan)\n• Komplexer Interaktivität (Drag & Drop, dynamische Visualisierungen)\n• Mehrere unabhängige OData-Services in einer Seite\n• Eigenem Branding/Benutzerführung\n→ Für Custom UI5: SAP Business Application Studio (BAS) + SAPUI5 Library. Aber: Höhere TCO durch manuelle Pflege."
+        }
       ],
       "quiz": [
-        {"question": "Fiori Elements generiert UI basierend auf:", "options": ["Manuellem JavaScript-Code", "OData UI Annotations (deklarativ)", "ABAP-Code", "CSS-Dateien"], "correct": 1, "explanation": "Fiori Elements = Code Generation aus OData UI Annotations. Entwickler schreibt CDS + Annotationen. UI entsteht automatisch."},
-        {"question": "Was ist der List Report Floorplan?", "options": ["Ein Dashboard", "Tabelle mit Filter + Suche (Standard-Übersichtsseite)", "Ein Kalender", "Ein Chat-Tool"], "correct": 1, "explanation": "List Report ist der Standard-Einstieg: Fiori-Tabelle mit Filter Bar oben und Suche. Von dort navigiert man zur Object Page."},
-        {"question": "Wofür braucht man IAM (Identity & Access Management) bei einer Fiori-App?", "options": ["UI-Design", "Berechtigungen: Wer sieht welche App/Kachel?", "Datenmodellierung", "Performance-Tuning"], "correct": 1, "explanation": "IAM (Business Catalogs, Business Roles) steuert SICHTBARKEIT und Berechtigungen. Ohne korrekte IAM-Konfiguration ist die App unsichtbar."},
-        {"question": "Service Definition vs Service Binding: Unterschied?", "options": ["Kein Unterschied", "Definition = WAS (Entities), Binding = WIE (Protokoll, Publishing)", "Definition = WIE, Binding = WAS", "Nur ein ABAP-Schlüsselwort"], "correct": 1, "explanation": "Definition = Welche CDS Views werden exponiert. Binding = Welches Protokoll (OData V2/V4) + Wo publiziert (Launchpad)."}
+        {
+          "question": "Fiori Elements generiert UI basierend auf:",
+          "options": [
+            "Manuellem JavaScript-Code",
+            "OData UI Annotations (deklarativ)",
+            "ABAP-Code",
+            "CSS-Dateien"
+          ],
+          "correct": 1,
+          "explanation": "Fiori Elements = Code Generation aus OData UI Annotations. Entwickler schreibt CDS + Annotationen. UI entsteht automatisch."
+        },
+        {
+          "question": "Was ist der List Report Floorplan?",
+          "options": [
+            "Ein Dashboard",
+            "Tabelle mit Filter + Suche (Standard-Übersichtsseite)",
+            "Ein Kalender",
+            "Ein Chat-Tool"
+          ],
+          "correct": 1,
+          "explanation": "List Report ist der Standard-Einstieg: Fiori-Tabelle mit Filter Bar oben und Suche. Von dort navigiert man zur Object Page."
+        },
+        {
+          "question": "Wofür braucht man IAM (Identity & Access Management) bei einer Fiori-App?",
+          "options": [
+            "UI-Design",
+            "Berechtigungen: Wer sieht welche App/Kachel?",
+            "Datenmodellierung",
+            "Performance-Tuning"
+          ],
+          "correct": 1,
+          "explanation": "IAM (Business Catalogs, Business Roles) steuert SICHTBARKEIT und Berechtigungen. Ohne korrekte IAM-Konfiguration ist die App unsichtbar."
+        },
+        {
+          "question": "Service Definition vs Service Binding: Unterschied?",
+          "options": [
+            "Kein Unterschied",
+            "Definition = WAS (Entities), Binding = WIE (Protokoll, Publishing)",
+            "Definition = WIE, Binding = WAS",
+            "Nur ein ABAP-Schlüsselwort"
+          ],
+          "correct": 1,
+          "explanation": "Definition = Welche CDS Views werden exponiert. Binding = Welches Protokoll (OData V2/V4) + Wo publiziert (Launchpad)."
+        }
       ]
     },
     {
       "id": "ch5",
       "title": "Clean Core & Erweiterbarkeit (Extensibility)",
       "flashcards": [
-        {"front": "Was bedeutet 'Clean Core' im S/4HANA-Kontext?", "back": "Clean Core = SAPs Architekturprinzip: Standard-Code bleibt unverändert, Erweiterungen laufen separiert.\nZiele:\n• Upgrade-fähig bleiben (keine Modifikationen die bei Update brechen)\n• Schnellere Innovation (SAP liefert Updates, Kunde übernimmt ohne Regressionstests)\n• Cloud-Ready\nUmsetzung:\n• Key User Extensibility (ohne Coding)\n• Developer Extensibility (auf BTP oder On-Stack, aber separiert)\n• KEINE klassischen Modifikationen mehr (SPAU/SPDD sind Legacy!)."},
-        {"front": "Nenne Beispiele für Key User Extensibility (Kundenentwicklung ohne Code).", "back": "Custom Fields: Neues Feld in Standard-App per Fiori 'Adapt UI' hinzufügen. Wird in DDIC + CDS + UI automatisch erweitert.\nCustom Business Objects: Eigene Datenbanktabellen + einfache UI per Low-Code-Tool.\nCustom Logic: BadI-Implementierungen per Cloud BAdI (Interface definiert, Implementierung on Stack).\n→ Key User = Fachanwender ohne ABAP-Kenntnisse. Werkzeuge: Fiori 'Custom Fields and Logic' App."},
-        {"front": "Was ist Developer Extensibility und wo läuft sie?", "back": "On-Stack: ABAP-Entwicklung direkt auf S/4HANA (RAP, CDS, ABAP). Nur mit öffentlichen SAP APIs. Getrennt via Strukturpaketierung.\nSide-by-Side: Entwicklung auf SAP BTP (Cloud Foundry/ABAP Environment). Per Event/API locker gekoppelt mit S/4.\nWahlkriterien:\n• On-Stack: Enge S/4-Integration nötig, Zugriff auf SAP-Business-Objekte\n• Side-by-Side: Cloud-nativ, lose Kopplung, Innovationstempo höher"},
-        {"front": "Wie migriert man Custom Code von ECC nach S/4HANA?", "back": "1. Custom Code Scanner (SCI/ATC): Automatisiertes Scannen aller Eigenentwicklungen\n2. Simplification Item Check: Welche SAP-APIs werden in S/4 anders/ersetzt?\n3. Priority: Unbenutzter Code → löschen. Benutzter Code → adaptieren.\n4. Quick Fixes per ADT (Refactoring-Tools)\n5. S/4HANA Readiness Check (Cloud)\n→ Typische Probleme: SELECT auf Matnr wurde länger (18→40 Stellen), fehlende Tabellen (MSEG wurde MATDOC), Funktionsbausteine (CALL FUNCTION → API)."},
-        {"front": "Was ist Joule und wie unterstützt es ABAP-Entwickler?", "back": "Joule = SAPs Generative AI für Entwickler (eingebettet in ADT).\nFähigkeiten:\n• Code Generierung: Beschreibung in natürlicher Sprache → ABAP-Code\n• Code Explanation: Erklärt Legacy-Code in englischer/deutscher Sprache\n• Unit Test Generierung: Erzeugt ABAP Unit Tests automatisch\n• Code Review: Prüft auf Clean-Core-Verletzungen und Performance-Probleme\n→ Joule ersetzt NICHT das Verständnis, aber beschleunigt Routinearbeit massiv."}
+        {
+          "front": "Was bedeutet 'Clean Core' im S/4HANA-Kontext?",
+          "back": "Clean Core = SAPs Architekturprinzip: Standard-Code bleibt unverändert, Erweiterungen laufen separiert.\nZiele:\n• Upgrade-fähig bleiben (keine Modifikationen die bei Update brechen)\n• Schnellere Innovation (SAP liefert Updates, Kunde übernimmt ohne Regressionstests)\n• Cloud-Ready\nUmsetzung:\n• Key User Extensibility (ohne Coding)\n• Developer Extensibility (auf BTP oder On-Stack, aber separiert)\n• KEINE klassischen Modifikationen mehr (SPAU/SPDD sind Legacy!)."
+        },
+        {
+          "front": "Nenne Beispiele für Key User Extensibility (Kundenentwicklung ohne Code).",
+          "back": "Custom Fields: Neues Feld in Standard-App per Fiori 'Adapt UI' hinzufügen. Wird in DDIC + CDS + UI automatisch erweitert.\nCustom Business Objects: Eigene Datenbanktabellen + einfache UI per Low-Code-Tool.\nCustom Logic: BadI-Implementierungen per Cloud BAdI (Interface definiert, Implementierung on Stack).\n→ Key User = Fachanwender ohne ABAP-Kenntnisse. Werkzeuge: Fiori 'Custom Fields and Logic' App."
+        },
+        {
+          "front": "Was ist Developer Extensibility und wo läuft sie?",
+          "back": "On-Stack: ABAP-Entwicklung direkt auf S/4HANA (RAP, CDS, ABAP). Nur mit öffentlichen SAP APIs. Getrennt via Strukturpaketierung.\nSide-by-Side: Entwicklung auf SAP BTP (Cloud Foundry/ABAP Environment). Per Event/API locker gekoppelt mit S/4.\nWahlkriterien:\n• On-Stack: Enge S/4-Integration nötig, Zugriff auf SAP-Business-Objekte\n• Side-by-Side: Cloud-nativ, lose Kopplung, Innovationstempo höher"
+        },
+        {
+          "front": "Wie migriert man Custom Code von ECC nach S/4HANA?",
+          "back": "1. Custom Code Scanner (SCI/ATC): Automatisiertes Scannen aller Eigenentwicklungen\n2. Simplification Item Check: Welche SAP-APIs werden in S/4 anders/ersetzt?\n3. Priority: Unbenutzter Code → löschen. Benutzter Code → adaptieren.\n4. Quick Fixes per ADT (Refactoring-Tools)\n5. S/4HANA Readiness Check (Cloud)\n→ Typische Probleme: SELECT auf Matnr wurde länger (18→40 Stellen), fehlende Tabellen (MSEG wurde MATDOC), Funktionsbausteine (CALL FUNCTION → API)."
+        },
+        {
+          "front": "Was ist Joule und wie unterstützt es ABAP-Entwickler?",
+          "back": "Joule = SAPs Generative AI für Entwickler (eingebettet in ADT).\nFähigkeiten:\n• Code Generierung: Beschreibung in natürlicher Sprache → ABAP-Code\n• Code Explanation: Erklärt Legacy-Code in englischer/deutscher Sprache\n• Unit Test Generierung: Erzeugt ABAP Unit Tests automatisch\n• Code Review: Prüft auf Clean-Core-Verletzungen und Performance-Probleme\n→ Joule ersetzt NICHT das Verständnis, aber beschleunigt Routinearbeit massiv."
+        }
       ],
       "quiz": [
-        {"question": "Clean Core zielt primär auf:", "options": ["Weniger Kundenentwicklungen generell", "Upgrade-Stabilität durch Trennung von Standard und Erweiterungen", "Geringere Hardware-Kosten", "Nur Fiori UI"], "correct": 1, "explanation": "Clean Core trennt Standard-Code (unangetastet) von Kundenentwicklungen. Upgrade-Sicherheit und Cloud-Readiness sind die Kernziele."},
-        {"question": "Custom Fields in einer Standard-Fiori-App per Key User Extensibility:", "options": ["Erfordert ABAP-Coding", "Wird per 'Adapt UI' ohne Coding erweitert — DDIC + CDS + UI automatisch", "Muss von SAP genehmigt werden", "Ist nur in On-Premise möglich"], "correct": 1, "explanation": "Key User Extensibility = in-app Erweiterung ohne ABAP. Custom Fields werden automatisch in DDIC, CDS Views und UI integriert."},
-        {"question": "Side-by-Side Extensibility auf BTP ist geeignet für:", "options": ["Kern-Modifikationen", "Cloud-native Apps mit loser Kopplung an S/4HANA", "SAP GUI Erweiterungen", "Ausschließlich Reporting"], "correct": 1, "explanation": "Side-by-Side auf BTP = Cloud-Entwicklung (Node.js, Java, CAP, ABAP Cloud) mit Event-/API-Kopplung. Innovationstempo höher, S/4 bleibt Clean."},
-        {"question": "Die Migration von Custom Code nach S/4HANA beginnt mit:", "options": ["Sofortigem Löschen allen Codes", "Custom Code Scanner (ATC) + Simplification Item Check", "Neuimplementierung von Grund auf", "Manueller Code-Durchsicht"], "correct": 1, "explanation": "ATC (ABAP Test Cockpit) scannt automatisch den gesamten Custom Code und prüft auf Simplification Items. Ergebnis = Migrations-Backlog."}
+        {
+          "question": "Clean Core zielt primär auf:",
+          "options": [
+            "Weniger Kundenentwicklungen generell",
+            "Upgrade-Stabilität durch Trennung von Standard und Erweiterungen",
+            "Geringere Hardware-Kosten",
+            "Nur Fiori UI"
+          ],
+          "correct": 1,
+          "explanation": "Clean Core trennt Standard-Code (unangetastet) von Kundenentwicklungen. Upgrade-Sicherheit und Cloud-Readiness sind die Kernziele."
+        },
+        {
+          "question": "Custom Fields in einer Standard-Fiori-App per Key User Extensibility:",
+          "options": [
+            "Erfordert ABAP-Coding",
+            "Wird per 'Adapt UI' ohne Coding erweitert — DDIC + CDS + UI automatisch",
+            "Muss von SAP genehmigt werden",
+            "Ist nur in On-Premise möglich"
+          ],
+          "correct": 1,
+          "explanation": "Key User Extensibility = in-app Erweiterung ohne ABAP. Custom Fields werden automatisch in DDIC, CDS Views und UI integriert."
+        },
+        {
+          "question": "Side-by-Side Extensibility auf BTP ist geeignet für:",
+          "options": [
+            "Kern-Modifikationen",
+            "Cloud-native Apps mit loser Kopplung an S/4HANA",
+            "SAP GUI Erweiterungen",
+            "Ausschließlich Reporting"
+          ],
+          "correct": 1,
+          "explanation": "Side-by-Side auf BTP = Cloud-Entwicklung (Node.js, Java, CAP, ABAP Cloud) mit Event-/API-Kopplung. Innovationstempo höher, S/4 bleibt Clean."
+        },
+        {
+          "question": "Die Migration von Custom Code nach S/4HANA beginnt mit:",
+          "options": [
+            "Sofortigem Löschen allen Codes",
+            "Custom Code Scanner (ATC) + Simplification Item Check",
+            "Neuimplementierung von Grund auf",
+            "Manueller Code-Durchsicht"
+          ],
+          "correct": 1,
+          "explanation": "ATC (ABAP Test Cockpit) scannt automatisch den gesamten Custom Code und prüft auf Simplification Items. Ergebnis = Migrations-Backlog."
+        }
       ]
     }
   ]

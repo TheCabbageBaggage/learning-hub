@@ -10,68 +10,288 @@
       "id": "ch1",
       "title": "PP Grundlagen & Stammdaten (Master Data)",
       "flashcards": [
-        {"front": "Was sind die 5 zentralen PP-Stammdatenobjekte?", "back": "1. Material (Materialstamm): MRP-Sichten, Planungsdaten, Dispositionsdaten\n2. BOM / Stückliste (Bill of Materials): Zusammensetzung eines Erzeugnisses (Komponenten + Mengen)\n3. Work Center / Arbeitsplatz: Ort der Fertigung, Kapazität, Maschinen-/Personendaten, Kostenstelle\n4. Routing / Arbeitsplan: Fertigungsablauf (Arbeitsvorgänge, Reihenfolge, Vorgabezeiten)\n5. Production Version (Fertigungsversion): Kombination aus BOM + Routing + Produktionslinie → gültig für Zeitraum\n→ Ohne diese 5 Objekte läuft kein MRP und kein Fertigungsauftrag."},
-        {"front": "Was ist eine Stückliste (BOM) und welche Typen gibt es?", "back": "BOM (Bill of Materials) = Strukturierte Liste aller Komponenten eines Erzeugnisses mit Menge und Einheit.\nTypen:\n• Material BOM (CS01/02/03): Klassisch, Material als Kopf\n• Equipment BOM: Für Instandhaltungs-Equipment\n• Sales Order BOM (Kundenauftragsstückliste): Variantenfertigung\n• Work Breakdown Structure BOM: Für Projektsystem\n→ BOM + Routing = Kern jedes Fertigungsprozesses. Ohne BOM weiß SAP nicht, was verbraucht wird."},
-        {"front": "Was enthält ein Work Center / Arbeitsplatz?", "back": "Arbeitsplatz-Daten (CR01/02/03):\n• Kapazitätsdaten: Verfügbare Maschinen-/Personenstunden pro Tag, Schichten\n• Kostendaten: Kostenstelle, Kostensatz (Leistungstarif)\n• Formel-Daten: Wie wird die Maschinenzeit berechnet (z.B. Rüstzeit + Stückzeit × Menge)\n• Kalender: Werktage, Feiertage, Wartungsfenster\n• Hierarchie: Arbeitsplatz-Gruppen\n→ Work Center = Verknüpfungspunkt von PP (Zeit) und CO (Kosten)."},
-        {"front": "Was enthält ein Routing / Arbeitsplan?", "back": "Routing (CA01/02/03):\n• Operations / Vorgänge: Fertigungsschritte mit Reihenfolge (10, 20, 30...)\n• Zuweisung Arbeitsplatz pro Vorgang\n• Vorgabezeiten: Rüstzeit, Bearbeitungszeit, Maschinenzeit → pro Einheit\n• Materialzuweisungen: Welche Komponenten in welchem Vorgang verbraucht?\n• Prüfmerkmale: Qualitätskontrollen (QM-Integration)\n→ Routing bestimmt Durchlaufzeit + Kosten. PP/DS nutzt es für Feinplanung."},
-        {"front": "Was ist Material Master Data Governance (MDG) und wozu braucht man sie?", "back": "MDG (Master Data Governance) = Workflow-gesteuerte Stammdatenpflege mit 4-Augen-Prinzip.\nTypischer Workflow:\n1. Fachabteilung beantragt neue Materialstammsicht\n2. Datenpfleger füllt Felder mit Vorlagen\n3. Genehmiger prüft und gibt frei\n4. Automatische Verteilung an angeschlossene Systeme (via DRF/ALE)\n→ Ohne MDG: Jeder pflegt irgendwo, Datenqualität leidet, MRP-Lauf wird falsch. Essentiell in regulierten Industrien."}
+        {
+          "front": "Was sind die 5 zentralen PP-Stammdatenobjekte?",
+          "back": "1. Material (Materialstamm): MRP-Sichten, Planungsdaten, Dispositionsdaten\n2. BOM / Stückliste (Bill of Materials): Zusammensetzung eines Erzeugnisses (Komponenten + Mengen)\n3. Work Center / Arbeitsplatz: Ort der Fertigung, Kapazität, Maschinen-/Personendaten, Kostenstelle\n4. Routing / Arbeitsplan: Fertigungsablauf (Arbeitsvorgänge, Reihenfolge, Vorgabezeiten)\n5. Production Version (Fertigungsversion): Kombination aus BOM + Routing + Produktionslinie → gültig für Zeitraum\n→ Ohne diese 5 Objekte läuft kein MRP und kein Fertigungsauftrag."
+        },
+        {
+          "front": "Was ist eine Stückliste (BOM) und welche Typen gibt es?",
+          "back": "BOM (Bill of Materials) = Strukturierte Liste aller Komponenten eines Erzeugnisses mit Menge und Einheit.\nTypen:\n• Material BOM (CS01/02/03): Klassisch, Material als Kopf\n• Equipment BOM: Für Instandhaltungs-Equipment\n• Sales Order BOM (Kundenauftragsstückliste): Variantenfertigung\n• Work Breakdown Structure BOM: Für Projektsystem\n→ BOM + Routing = Kern jedes Fertigungsprozesses. Ohne BOM weiß SAP nicht, was verbraucht wird."
+        },
+        {
+          "front": "Was enthält ein Work Center / Arbeitsplatz?",
+          "back": "Arbeitsplatz-Daten (CR01/02/03):\n• Kapazitätsdaten: Verfügbare Maschinen-/Personenstunden pro Tag, Schichten\n• Kostendaten: Kostenstelle, Kostensatz (Leistungstarif)\n• Formel-Daten: Wie wird die Maschinenzeit berechnet (z.B. Rüstzeit + Stückzeit × Menge)\n• Kalender: Werktage, Feiertage, Wartungsfenster\n• Hierarchie: Arbeitsplatz-Gruppen\n→ Work Center = Verknüpfungspunkt von PP (Zeit) und CO (Kosten)."
+        },
+        {
+          "front": "Was enthält ein Routing / Arbeitsplan?",
+          "back": "Routing (CA01/02/03):\n• Operations / Vorgänge: Fertigungsschritte mit Reihenfolge (10, 20, 30...)\n• Zuweisung Arbeitsplatz pro Vorgang\n• Vorgabezeiten: Rüstzeit, Bearbeitungszeit, Maschinenzeit → pro Einheit\n• Materialzuweisungen: Welche Komponenten in welchem Vorgang verbraucht?\n• Prüfmerkmale: Qualitätskontrollen (QM-Integration)\n→ Routing bestimmt Durchlaufzeit + Kosten. PP/DS nutzt es für Feinplanung."
+        },
+        {
+          "front": "Was ist Material Master Data Governance (MDG) und wozu braucht man sie?",
+          "back": "MDG (Master Data Governance) = Workflow-gesteuerte Stammdatenpflege mit 4-Augen-Prinzip.\nTypischer Workflow:\n1. Fachabteilung beantragt neue Materialstammsicht\n2. Datenpfleger füllt Felder mit Vorlagen\n3. Genehmiger prüft und gibt frei\n4. Automatische Verteilung an angeschlossene Systeme (via DRF/ALE)\n→ Ohne MDG: Jeder pflegt irgendwo, Datenqualität leidet, MRP-Lauf wird falsch. Essentiell in regulierten Industrien."
+        }
       ],
       "quiz": [
-        {"question": "Eine Production Version (Fertigungsversion) verknüpft:", "options": ["Nur Material + Werk", "BOM + Routing + Produktionslinie (gültig für Zeitraum)", "Nur Material + Lieferant", "Material + Kunde"], "correct": 1, "explanation": "Fertigungsversion = gültige Kombination von BOM + Arbeitsplan/Arbeitsplatz (Routing) + Linie für einen Zeitraum. Determiniert, WIE ein Material produziert wird."},
-        {"question": "Wozu dient der Arbeitsplan (Routing) hauptsächlich?", "options": ["Nur für die Buchhaltung", "Definiert Fertigungsablauf: Vorgänge, Zeiten, Komponentenzuordnung", "Nur für die Personalabteilung", "Nur für den Vertrieb"], "correct": 1, "explanation": "Der Arbeitsplan definiert den Fertigungsablauf — Schritt-für-Schritt mit Vorgabezeiten und Komponenten. Grundlage für Durchlaufzeit, Kapazitätsplanung und Kosten."},
-        {"question": "Welches ist KEIN PP-Stammdatenobjekt?", "options": ["Materialstamm", "Kunde (Customer Master)", "Stückliste (BOM)", "Arbeitsplatz (Work Center)"], "correct": 1, "explanation": "Der Kundenstamm ist SD/Vertrieb, nicht PP. Die 5 Kern-PP-Objekte sind: Material, BOM, Arbeitsplatz, Arbeitsplan und Fertigungsversion."},
-        {"question": "MDG (Master Data Governance) dient:", "options": ["Der System-Performance", "Workflow-gesteuerter Stammdatenpflege mit Genehmigungsprozess", "Der Datenbank-Optimierung", "Nur der Fiori UI"], "correct": 1, "explanation": "MDG = Workflow + 4-Augen-Prinzip für Stammdatenpflege. Stellt Datenqualität sicher, essentiell für MRP-Korrektheit und Compliance."}
+        {
+          "question": "Eine Production Version (Fertigungsversion) verknüpft:",
+          "options": [
+            "Nur Material + Werk",
+            "BOM + Routing + Produktionslinie (gültig für Zeitraum)",
+            "Nur Material + Lieferant",
+            "Material + Kunde"
+          ],
+          "correct": 1,
+          "explanation": "Fertigungsversion = gültige Kombination von BOM + Arbeitsplan/Arbeitsplatz (Routing) + Linie für einen Zeitraum. Determiniert, WIE ein Material produziert wird."
+        },
+        {
+          "question": "Wozu dient der Arbeitsplan (Routing) hauptsächlich?",
+          "options": [
+            "Nur für die Buchhaltung",
+            "Definiert Fertigungsablauf: Vorgänge, Zeiten, Komponentenzuordnung",
+            "Nur für die Personalabteilung",
+            "Nur für den Vertrieb"
+          ],
+          "correct": 1,
+          "explanation": "Der Arbeitsplan definiert den Fertigungsablauf — Schritt-für-Schritt mit Vorgabezeiten und Komponenten. Grundlage für Durchlaufzeit, Kapazitätsplanung und Kosten."
+        },
+        {
+          "question": "Welches ist KEIN PP-Stammdatenobjekt?",
+          "options": [
+            "Materialstamm",
+            "Kunde (Customer Master)",
+            "Stückliste (BOM)",
+            "Arbeitsplatz (Work Center)"
+          ],
+          "correct": 1,
+          "explanation": "Der Kundenstamm ist SD/Vertrieb, nicht PP. Die 5 Kern-PP-Objekte sind: Material, BOM, Arbeitsplatz, Arbeitsplan und Fertigungsversion."
+        },
+        {
+          "question": "MDG (Master Data Governance) dient:",
+          "options": [
+            "Der System-Performance",
+            "Workflow-gesteuerter Stammdatenpflege mit Genehmigungsprozess",
+            "Der Datenbank-Optimierung",
+            "Nur der Fiori UI"
+          ],
+          "correct": 1,
+          "explanation": "MDG = Workflow + 4-Augen-Prinzip für Stammdatenpflege. Stellt Datenqualität sicher, essentiell für MRP-Korrektheit und Compliance."
+        }
       ]
     },
     {
       "id": "ch2",
       "title": "Sales & Operations Planning (S&OP / Absatz- und Produktionsgrobplanung)",
       "flashcards": [
-        {"front": "Was ist der S&OP-Prozess und seine Phasen?", "back": "S&OP = Integrierter, monatlicher Planungsprozess zwischen Vertrieb, Produktion, Finanzen.\nPhasen:\n1. Demand Review: Absatzprognose, Markttrends, Sales Pipeline\n2. Supply Review: Produktionskapazität, Lieferanten, Bestände\n3. Pre-S&OP: Abgleich Demand vs Supply, Engpass-Identifikation, Szenarien\n4. Executive S&OP: Entscheidung über Ressourcenzuteilung, Budget, Eskalationen\n→ S&OP schließt die Lücke zwischen Strategie und Tagesgeschäft."},
-        {"front": "Was sind Planned Independent Requirements (PIR / Planprimärbedarfe)?", "back": "PIR = Mengenprognose auf Fertigwarenebene (unabhängig von konkreten Kundenaufträgen).\nNutzung:\n• MRP-Lauf plant Produktion/Einkauf basierend auf PIR\n• Bei Kundenauftrag: 'Consumption' — Kundenauftrag 'frisst' PIR auf (nicht doppelt planen!)\nStrategien:\n• Make-to-Stock (MTS / 10): Produktion auf Lager, PIR treiben\n• Make-to-Order (MTO / 20): Nur bei Kundenauftrag, PIR = null\n→ PIR sind das START-SIGNAL für MRP in MTS-Fertigung."},
-        {"front": "Was ist Demand Management im S/4HANA-Kontext?", "back": "Demand Management = Prozess zur Erfassung und Verwaltung aller Bedarfsquellen:\n1. PIR (Planprimärbedarfe) — Forecast\n2. Sales Orders (Kundenaufträge) — hart\n3. Stock Transport Orders — Umlagerungen\n4. Dependent Requirements (Sekundärbedarfe) — aus BOM-Auflösung\n→ Alle diese Quellen fließen in MRP ein. S/4HANA bietet Fiori-Apps für Demand Management und vereinfachte Massenpflege."},
-        {"front": "Was ist der Unterschied zwischen SAP S&OP (in ERP) und SAP IBP?", "back": "ERP S&OP (klassisch): Einfache Tabellenplanung (MC87/88/89). Funktional begrenzt, keine Statistikintegration.\nSAP IBP (Cloud): Moderne Supply-Chain-Planung:\n• Demand Sensing: KI-gestützte kurzfristige Prognosen\n• Inventory Optimization: Multi-Echelon-Bestandsoptimierung\n• Supply & Response: Constraint-basierte Versorgungsplanung\n• Excel-UI + SAP Analytics Cloud\n→ IBP ersetzt zunehmend klassisches ERP S&OP. Der CFO sieht IBP-Daten direkt in Analytics."},
-        {"front": "Was ist der Forecast (Prognose) und welche Modelle nutzt SAP?", "back": "Forecast = Statistische Vorhersage künftiger Bedarfe aus historischen Daten.\nSAP-Modelle:\n• Constant Model: Keine Trend/Saison\n• Trend Model: Linear steigend/fallend\n• Seasonal Model: Regelmäßige Jahreszeitmuster\n• Seasonal Trend: Kombination\n• ML-basiert (IBP): Automatische Modellauswahl\nParameter: Alpha (Gewichtung aktueller vs historischer Werte), Beta (Trendgewichtung), Gamma (Saisongewichtung)."}
+        {
+          "front": "Was ist der S&OP-Prozess und seine Phasen?",
+          "back": "S&OP = Integrierter, monatlicher Planungsprozess zwischen Vertrieb, Produktion, Finanzen.\nPhasen:\n1. Demand Review: Absatzprognose, Markttrends, Sales Pipeline\n2. Supply Review: Produktionskapazität, Lieferanten, Bestände\n3. Pre-S&OP: Abgleich Demand vs Supply, Engpass-Identifikation, Szenarien\n4. Executive S&OP: Entscheidung über Ressourcenzuteilung, Budget, Eskalationen\n→ S&OP schließt die Lücke zwischen Strategie und Tagesgeschäft."
+        },
+        {
+          "front": "Was sind Planned Independent Requirements (PIR / Planprimärbedarfe)?",
+          "back": "PIR = Mengenprognose auf Fertigwarenebene (unabhängig von konkreten Kundenaufträgen).\nNutzung:\n• MRP-Lauf plant Produktion/Einkauf basierend auf PIR\n• Bei Kundenauftrag: 'Consumption' — Kundenauftrag 'frisst' PIR auf (nicht doppelt planen!)\nStrategien:\n• Make-to-Stock (MTS / 10): Produktion auf Lager, PIR treiben\n• Make-to-Order (MTO / 20): Nur bei Kundenauftrag, PIR = null\n→ PIR sind das START-SIGNAL für MRP in MTS-Fertigung."
+        },
+        {
+          "front": "Was ist Demand Management im S/4HANA-Kontext?",
+          "back": "Demand Management = Prozess zur Erfassung und Verwaltung aller Bedarfsquellen:\n1. PIR (Planprimärbedarfe) — Forecast\n2. Sales Orders (Kundenaufträge) — hart\n3. Stock Transport Orders — Umlagerungen\n4. Dependent Requirements (Sekundärbedarfe) — aus BOM-Auflösung\n→ Alle diese Quellen fließen in MRP ein. S/4HANA bietet Fiori-Apps für Demand Management und vereinfachte Massenpflege."
+        },
+        {
+          "front": "Was ist der Unterschied zwischen SAP S&OP (in ERP) und SAP IBP?",
+          "back": "ERP S&OP (klassisch): Einfache Tabellenplanung (MC87/88/89). Funktional begrenzt, keine Statistikintegration.\nSAP IBP (Cloud): Moderne Supply-Chain-Planung:\n• Demand Sensing: KI-gestützte kurzfristige Prognosen\n• Inventory Optimization: Multi-Echelon-Bestandsoptimierung\n• Supply & Response: Constraint-basierte Versorgungsplanung\n• Excel-UI + SAP Analytics Cloud\n→ IBP ersetzt zunehmend klassisches ERP S&OP. Der CFO sieht IBP-Daten direkt in Analytics."
+        },
+        {
+          "front": "Was ist der Forecast (Prognose) und welche Modelle nutzt SAP?",
+          "back": "Forecast = Statistische Vorhersage künftiger Bedarfe aus historischen Daten.\nSAP-Modelle:\n• Constant Model: Keine Trend/Saison\n• Trend Model: Linear steigend/fallend\n• Seasonal Model: Regelmäßige Jahreszeitmuster\n• Seasonal Trend: Kombination\n• ML-basiert (IBP): Automatische Modellauswahl\nParameter: Alpha (Gewichtung aktueller vs historischer Werte), Beta (Trendgewichtung), Gamma (Saisongewichtung)."
+        }
       ],
       "quiz": [
-        {"question": "Im S&OP-Prozess folgt die Phase 'Executive S&OP' auf:", "options": ["Demand Review", "Supply Review", "Pre-S&OP (Abgleich Demand/Supply)", "Direkt auf Forecasting"], "correct": 2, "explanation": "Executive S&OP ist der finale Entscheidungspunkt nach Pre-S&OP. Dort werden Ressourcenzuteilungen und Budget-Freigaben entschieden."},
-        {"question": "Consumption (Verrechnung) von PIR bedeutet:", "options": ["PIR werden ins nächste Jahr verschoben", "Kundenauftrag reduziert/ersetzt PIR — damit nicht doppelt geplant wird", "PIR werden gelöscht", "PIR werden in den SOP übertragen"], "correct": 1, "explanation": "Consumption = Kundenauftrag 'verbraucht' den Planprimärbedarf. Ohne Consumption würde MRP Kundenauftrag PLUS PIR planen — Doppelmengen."},
-        {"question": "Was gehört NICHT zu Demand Management?", "options": ["Kundenaufträge (Sales Orders)", "Lieferantenbestellungen (Purchase Orders)", "Planprimärbedarfe (PIR)", "Umlagerungen (Stock Transport Orders)"], "correct": 1, "explanation": "Purchase Orders sind BESCHAFFUNG (Supply), nicht Demand. Demand Management steuert die BEDARFS-Seite (was wird benötigt)."},
-        {"question": "SAP IBP ist gegenüber klassischem ERP S&OP:", "options": ["Gleichwertig", "Cloud-basiert mit KI, Demand Sensing und mehrstufiger Optimierung — deutlich leistungsfähiger", "Nur für kleine Unternehmen", "Rein manuelle Planung"], "correct": 1, "explanation": "IBP = Cloud-native Advanced Planning mit KI (Demand Sensing), Multi-Echelon Inventory Optimization und Echtzeit-Szenariorechnung. ERP S&OP ist Basisplanung."}
+        {
+          "question": "Im S&OP-Prozess folgt die Phase 'Executive S&OP' auf:",
+          "options": [
+            "Demand Review",
+            "Supply Review",
+            "Pre-S&OP (Abgleich Demand/Supply)",
+            "Direkt auf Forecasting"
+          ],
+          "correct": 2,
+          "explanation": "Executive S&OP ist der finale Entscheidungspunkt nach Pre-S&OP. Dort werden Ressourcenzuteilungen und Budget-Freigaben entschieden."
+        },
+        {
+          "question": "Consumption (Verrechnung) von PIR bedeutet:",
+          "options": [
+            "PIR werden ins nächste Jahr verschoben",
+            "Kundenauftrag reduziert/ersetzt PIR — damit nicht doppelt geplant wird",
+            "PIR werden gelöscht",
+            "PIR werden in den SOP übertragen"
+          ],
+          "correct": 1,
+          "explanation": "Consumption = Kundenauftrag 'verbraucht' den Planprimärbedarf. Ohne Consumption würde MRP Kundenauftrag PLUS PIR planen — Doppelmengen."
+        },
+        {
+          "question": "Was gehört NICHT zu Demand Management?",
+          "options": [
+            "Kundenaufträge (Sales Orders)",
+            "Lieferantenbestellungen (Purchase Orders)",
+            "Planprimärbedarfe (PIR)",
+            "Umlagerungen (Stock Transport Orders)"
+          ],
+          "correct": 1,
+          "explanation": "Purchase Orders sind BESCHAFFUNG (Supply), nicht Demand. Demand Management steuert die BEDARFS-Seite (was wird benötigt)."
+        },
+        {
+          "question": "SAP IBP ist gegenüber klassischem ERP S&OP:",
+          "options": [
+            "Gleichwertig",
+            "Cloud-basiert mit KI, Demand Sensing und mehrstufiger Optimierung — deutlich leistungsfähiger",
+            "Nur für kleine Unternehmen",
+            "Rein manuelle Planung"
+          ],
+          "correct": 1,
+          "explanation": "IBP = Cloud-native Advanced Planning mit KI (Demand Sensing), Multi-Echelon Inventory Optimization und Echtzeit-Szenariorechnung. ERP S&OP ist Basisplanung."
+        }
       ]
     },
     {
       "id": "ch3",
       "title": "Materialbedarfsplanung (MRP / Material Requirements Planning)",
       "flashcards": [
-        {"front": "Wie funktioniert der MRP-Lauf grundsätzlich?", "back": "MRP berechnet:\n1. Was wird benötigt? (Bedarfe: PIR, Kundenaufträge, Sekundärbedarfe)\n2. Was ist vorhanden? (Bestand, Zugänge: Fertigungsaufträge, Bestellungen)\n3. Lücke = Nettobedarf\n4. Losgrößenrechnung: Zusammenfassung von Bedarfen zu wirtschaftlichen Losen\n5. Terminierung: Rückwärts (ab Bedarfstermin) → Starttermin\nErgebnis: Planaufträge (Planned Orders) oder Kaufanforderungen (Purchase Requisitions)."},
-        {"front": "Was sind die MRP-Typen (MRP Types) und wann nutzt man welchen?", "back": "MRP = Material Requirements Planning — automatische Planung, Bedarfs-/Bestandsgeführt.\nMPS (Master Production Schedule / 0): Für A-Teile (Fertigware, hohes Volumen). Wird in der Grobplanung besonders behandelt.\nReorder Point (Disposition nach Bestellpunkt / VB): Unterschreitet der Bestand einen Schwellwert → Nachschub. Für C-Teile (Schrauben, Verbrauchsmaterial).\nNo MRP (ND): Keine Planung, rein manuell."},
-        {"front": "Was ist MRP Live auf HANA und worin unterscheidet es sich vom klassischen MRP?", "back": "MRP Live = Neue MRP-Engine auf HANA (Transaktion MD01N):\n• In-Memory: Alle Kalkulationen in HANA (keine Applikations-Server-Last)\n• Massive Parallelisierung: Tausende Materialien gleichzeitig\n• Single-Level: Plant nur EINE Stücklistenebene → schnell, aber Bottom-Up-Logik beachten\nKlassischer MRP (MD01/MD02): Applikationsserver-basiert, sequentiell, multi-level.\n→ MRP Live ist 10-100× schneller für Massenplanung."},
-        {"front": "Was sind Losgrößenverfahren (Lot Sizing) und welche sind gebräuchlich?", "back": "Losgröße bestimmt, WIE Bedarfe zu Fertigungs-/Bestelllosen zusammengefasst werden.\nVerfahren:\n• Exact Lot-for-Lot (EX): 1:1, Bedarf = Los. Keine Lagerkosten, aber viele Rüstvorgänge.\n• Fixed Lot Size (FX): Feste Menge pro Los. Einfach.\n• Periodic (z.B. TB = Tageslos, WB = Wochenlos): Alle Bedarfe einer Periode zusammengefasst.\n• Groff/Part-Period: Optimiert Rüst- vs Lagerkosten.\n→ Wahl beeinflusst Bestände, Kapitalbindung UND Rüstkosten."},
-        {"front": "Was ist Safety Stock (Sicherheitsbestand) und wie wird er berechnet?", "back": "Safety Stock = Pufferbestand für Nachfrage- und Lieferzeitschwankungen.\nBerechnungsmethoden:\n• Manuell: Fixwert im Materialstamm\n• Statistische Berechnung: Servicegrad (Ziel: 95% Lieferbereitschaft) × MAD (Mean Absolute Deviation) × √Wiederbeschaffungszeit\n• Dynamische Berechnung: Safety Stock passt sich aktuellem Bedarfsverlauf an\n→ Zu viel Safety Stock: Kapital gebunden. Zu wenig: Fehltteile, Produktionsstillstand. CFO-kritisch!"}
+        {
+          "front": "Wie funktioniert der MRP-Lauf grundsätzlich?",
+          "back": "MRP berechnet:\n1. Was wird benötigt? (Bedarfe: PIR, Kundenaufträge, Sekundärbedarfe)\n2. Was ist vorhanden? (Bestand, Zugänge: Fertigungsaufträge, Bestellungen)\n3. Lücke = Nettobedarf\n4. Losgrößenrechnung: Zusammenfassung von Bedarfen zu wirtschaftlichen Losen\n5. Terminierung: Rückwärts (ab Bedarfstermin) → Starttermin\nErgebnis: Planaufträge (Planned Orders) oder Kaufanforderungen (Purchase Requisitions)."
+        },
+        {
+          "front": "Was sind die MRP-Typen (MRP Types) und wann nutzt man welchen?",
+          "back": "MRP = Material Requirements Planning — automatische Planung, Bedarfs-/Bestandsgeführt.\nMPS (Master Production Schedule / 0): Für A-Teile (Fertigware, hohes Volumen). Wird in der Grobplanung besonders behandelt.\nReorder Point (Disposition nach Bestellpunkt / VB): Unterschreitet der Bestand einen Schwellwert → Nachschub. Für C-Teile (Schrauben, Verbrauchsmaterial).\nNo MRP (ND): Keine Planung, rein manuell."
+        },
+        {
+          "front": "Was ist MRP Live auf HANA und worin unterscheidet es sich vom klassischen MRP?",
+          "back": "MRP Live = Neue MRP-Engine auf HANA (Transaktion MD01N):\n• In-Memory: Alle Kalkulationen in HANA (keine Applikations-Server-Last)\n• Massive Parallelisierung: Tausende Materialien gleichzeitig\n• Single-Level: Plant nur EINE Stücklistenebene → schnell, aber Bottom-Up-Logik beachten\nKlassischer MRP (MD01/MD02): Applikationsserver-basiert, sequentiell, multi-level.\n→ MRP Live ist 10-100× schneller für Massenplanung."
+        },
+        {
+          "front": "Was sind Losgrößenverfahren (Lot Sizing) und welche sind gebräuchlich?",
+          "back": "Losgröße bestimmt, WIE Bedarfe zu Fertigungs-/Bestelllosen zusammengefasst werden.\nVerfahren:\n• Exact Lot-for-Lot (EX): 1:1, Bedarf = Los. Keine Lagerkosten, aber viele Rüstvorgänge.\n• Fixed Lot Size (FX): Feste Menge pro Los. Einfach.\n• Periodic (z.B. TB = Tageslos, WB = Wochenlos): Alle Bedarfe einer Periode zusammengefasst.\n• Groff/Part-Period: Optimiert Rüst- vs Lagerkosten.\n→ Wahl beeinflusst Bestände, Kapitalbindung UND Rüstkosten."
+        },
+        {
+          "front": "Was ist Safety Stock (Sicherheitsbestand) und wie wird er berechnet?",
+          "back": "Safety Stock = Pufferbestand für Nachfrage- und Lieferzeitschwankungen.\nBerechnungsmethoden:\n• Manuell: Fixwert im Materialstamm\n• Statistische Berechnung: Servicegrad (Ziel: 95% Lieferbereitschaft) × MAD (Mean Absolute Deviation) × √Wiederbeschaffungszeit\n• Dynamische Berechnung: Safety Stock passt sich aktuellem Bedarfsverlauf an\n→ Zu viel Safety Stock: Kapital gebunden. Zu wenig: Fehltteile, Produktionsstillstand. CFO-kritisch!"
+        }
       ],
       "quiz": [
-        {"question": "MRP Live auf HANA plant:", "options": ["Multi-Level (alle Stücklistenebenen auf einmal)", "Single-Level (eine Ebene) mit massiver Parallelisierung", "Nur MPS-Artikel", "Nur manuell"], "correct": 1, "explanation": "MRP Live = Single-Level Planung pro Material auf HANA — nicht multi-level wie MD01. Aber extrem schnell durch Parallelisierung."},
-        {"question": "Welches Losgrößenverfahren minimiert Lagerkosten am stärksten?", "options": ["Fixed Lot Size (FX)", "Exact Lot-for-Lot (EX) — Bedarf = Los", "Weekly Lot (WB)", "Groff-Verfahren"], "correct": 1, "explanation": "Lot-for-Lot = Jeder Bedarf einzeln, kein Aufbau von Lagerbeständen. Minimale Kapitalbindung, aber hohe Rüstkosten bei vielen Kleinstlosen."},
-        {"question": "Der Reorder Point (Bestellpunkt) eignet sich für:", "options": ["Hochwertige Fertigwaren", "C-Teile mit gleichmäßigem Verbrauch (Schrauben, Verbrauchsmaterial)", "Spezialanfertigungen", "Nur MTS-Fertigung"], "correct": 1, "explanation": "Reorder Point = einfach, bei Unterschreitung Bestellung. Für C-Teile ideal (niedriger Wert, regelmäßiger Verbrauch), nicht für komplexe Planung."},
-        {"question": "Safety Stock deckt ab:", "options": ["Saisonale Spitzen", "Nachfrage- und Lieferzeitschwankungen (Prognoseunsicherheit)", "Nur Qualitätsmängel", "Nur Lieferantenausfälle"], "correct": 1, "explanation": "Safety Stock = statistischer Puffer für Prognosefehler und Lieferanten-Schwankungen. Servicegrad (z.B. 95%) bestimmt Höhe."}
+        {
+          "question": "MRP Live auf HANA plant:",
+          "options": [
+            "Multi-Level (alle Stücklistenebenen auf einmal)",
+            "Single-Level (eine Ebene) mit massiver Parallelisierung",
+            "Nur MPS-Artikel",
+            "Nur manuell"
+          ],
+          "correct": 1,
+          "explanation": "MRP Live = Single-Level Planung pro Material auf HANA — nicht multi-level wie MD01. Aber extrem schnell durch Parallelisierung."
+        },
+        {
+          "question": "Welches Losgrößenverfahren minimiert Lagerkosten am stärksten?",
+          "options": [
+            "Fixed Lot Size (FX)",
+            "Exact Lot-for-Lot (EX) — Bedarf = Los",
+            "Weekly Lot (WB)",
+            "Groff-Verfahren"
+          ],
+          "correct": 1,
+          "explanation": "Lot-for-Lot = Jeder Bedarf einzeln, kein Aufbau von Lagerbeständen. Minimale Kapitalbindung, aber hohe Rüstkosten bei vielen Kleinstlosen."
+        },
+        {
+          "question": "Der Reorder Point (Bestellpunkt) eignet sich für:",
+          "options": [
+            "Hochwertige Fertigwaren",
+            "C-Teile mit gleichmäßigem Verbrauch (Schrauben, Verbrauchsmaterial)",
+            "Spezialanfertigungen",
+            "Nur MTS-Fertigung"
+          ],
+          "correct": 1,
+          "explanation": "Reorder Point = einfach, bei Unterschreitung Bestellung. Für C-Teile ideal (niedriger Wert, regelmäßiger Verbrauch), nicht für komplexe Planung."
+        },
+        {
+          "question": "Safety Stock deckt ab:",
+          "options": [
+            "Saisonale Spitzen",
+            "Nachfrage- und Lieferzeitschwankungen (Prognoseunsicherheit)",
+            "Nur Qualitätsmängel",
+            "Nur Lieferantenausfälle"
+          ],
+          "correct": 1,
+          "explanation": "Safety Stock = statistischer Puffer für Prognosefehler und Lieferanten-Schwankungen. Servicegrad (z.B. 95%) bestimmt Höhe."
+        }
       ]
     },
     {
       "id": "ch4",
       "title": "Fertigungsaufträge & Kapazitätsplanung (Production Orders & Capacity Planning)",
       "flashcards": [
-        {"front": "Beschreibe den Lebenszyklus eines Fertigungsauftrags (Production Order Lifecycle).", "back": "1. Anlage (Creation): Freigabe aus MRP-Planauftrag oder manuell (CO01)\n2. Freigabe (Release): Produktion darf beginnen (CO02). Druck von Fertigungspapieren.\n3. Materialbereitstellung: Komponenten per Transfer Posting (MIGO) an Auftrag\n4. Rückmeldung (Confirmation): Vorgänge rückmelden — Mengen, Zeiten, Ausschuss (CO11N)\n5. Wareneingang: Fertigware auf Lager buchen (MIGO 101)\n6. Abrechnung (Settlement): Auftragskosten an Material/FI (KO88)\n7. Abschluss (Close): Technisch abgeschlossen (keine weiteren Buchungen)"},
-        {"front": "Wie funktioniert die Kapazitätsplanung und -einlastung?", "back": "Capacity Planning:\n1. Ermittlung Kapazitätsbedarf aus Arbeitsplan (Rüstzeit + Bearbeitungszeit × Menge)\n2. Abgleich mit verfügbarer Kapazität des Arbeitsplatzes\n3. Engpass? → Capacity Leveling (Kapazitätsabgleich):\n   • Einlastungsstrategie: Vorwärts (frühestmöglich), Rückwärts (spätestmöglich), Mittelpunkt\n   • Dispatch (Reihenfolge): Nach Priorität, Liefertermin, kürzester Rüstzeit\n4. Feinplanung (PP/DS): Optimierungs-Algorithmus für komplexe Engpass-Steuerung\n→ Unterlast = Kosten. Überlast = Terminverzug."},
-        {"front": "Was ist der Unterschied zwischen Diskreter, Prozess- und Serienfertigung?", "back": "Diskret: Einzelne, zählbare Stücke (Automobil, Maschinenbau). Auftragsbezogen. Komplexe BOM, viele Varianten.\nProcess (Prozessfertigung): Fließende Mengen (Chemie, Pharma, Nahrungsmittel). Chargenführung, Rezepturen statt BOM.\nRepetitive (Serienfertigung): Gleiche Produkte über lange Zeit (Elektronik, Konsumgüter). Periodische Abrechnung statt Einzelauftrag.\n→ S/4HANA unterstützt alle drei, aber das Customizing unterscheidet sich massiv."},
-        {"front": "Was ist eine Rückmeldung (Confirmation) und welche Funktionen hat sie?", "back": "Rückmeldung (CO11N/CO15):\n• Mengenrückmeldung: GUT-Menge + Ausschuss\n• Zeitrückmeldung: Ist-Zeiten (Rüst, Maschine, Personal)\n• Terminrückmeldung: Ist-Start / Ist-Ende\n• Statusänderung: Teil-/Endrückmeldung → Auftrag wird 'abgeschlossen'\n• Materialnachverbrauch: Zusätzliche Komponenten erfassen\n→ Rückmeldung ist der DATENLIEFERANT für Controlling: Ist-Kosten, Plan-Ist-Vergleich, Kapazitätsentlastung."},
-        {"front": "Was ist PP/DS (Production Planning and Detailed Scheduling)?", "back": "PP/DS = Erweiterte Feinplanung für komplexe Fertigungsumgebungen (embedded in S/4HANA seit 1610).\nFeatures:\n• Endliche Kapazitätseinplanung (nicht nur unendlich wie Standard-MRP)\n• Blockplanung: Kampagnen, Rüstoptimierung\n• Optimierungsalgorithmen: Genetische Algorithmen, Constraint-basierte Planung\n• Interaktive Plantafel: Drag & Drop, visuelle Umplanung\n→ PP/DS kommt zum Einsatz, wenn Standard-Kapazitätsplanung nicht reicht (z.B. Halbleiterfertigung, komplexe Linien)."}
+        {
+          "front": "Beschreibe den Lebenszyklus eines Fertigungsauftrags (Production Order Lifecycle).",
+          "back": "1. Anlage (Creation): Freigabe aus MRP-Planauftrag oder manuell (CO01)\n2. Freigabe (Release): Produktion darf beginnen (CO02). Druck von Fertigungspapieren.\n3. Materialbereitstellung: Komponenten per Transfer Posting (MIGO) an Auftrag\n4. Rückmeldung (Confirmation): Vorgänge rückmelden — Mengen, Zeiten, Ausschuss (CO11N)\n5. Wareneingang: Fertigware auf Lager buchen (MIGO 101)\n6. Abrechnung (Settlement): Auftragskosten an Material/FI (KO88)\n7. Abschluss (Close): Technisch abgeschlossen (keine weiteren Buchungen)"
+        },
+        {
+          "front": "Wie funktioniert die Kapazitätsplanung und -einlastung?",
+          "back": "Capacity Planning:\n1. Ermittlung Kapazitätsbedarf aus Arbeitsplan (Rüstzeit + Bearbeitungszeit × Menge)\n2. Abgleich mit verfügbarer Kapazität des Arbeitsplatzes\n3. Engpass? → Capacity Leveling (Kapazitätsabgleich):\n   • Einlastungsstrategie: Vorwärts (frühestmöglich), Rückwärts (spätestmöglich), Mittelpunkt\n   • Dispatch (Reihenfolge): Nach Priorität, Liefertermin, kürzester Rüstzeit\n4. Feinplanung (PP/DS): Optimierungs-Algorithmus für komplexe Engpass-Steuerung\n→ Unterlast = Kosten. Überlast = Terminverzug."
+        },
+        {
+          "front": "Was ist der Unterschied zwischen Diskreter, Prozess- und Serienfertigung?",
+          "back": "Diskret: Einzelne, zählbare Stücke (Automobil, Maschinenbau). Auftragsbezogen. Komplexe BOM, viele Varianten.\nProcess (Prozessfertigung): Fließende Mengen (Chemie, Pharma, Nahrungsmittel). Chargenführung, Rezepturen statt BOM.\nRepetitive (Serienfertigung): Gleiche Produkte über lange Zeit (Elektronik, Konsumgüter). Periodische Abrechnung statt Einzelauftrag.\n→ S/4HANA unterstützt alle drei, aber das Customizing unterscheidet sich massiv."
+        },
+        {
+          "front": "Was ist eine Rückmeldung (Confirmation) und welche Funktionen hat sie?",
+          "back": "Rückmeldung (CO11N/CO15):\n• Mengenrückmeldung: GUT-Menge + Ausschuss\n• Zeitrückmeldung: Ist-Zeiten (Rüst, Maschine, Personal)\n• Terminrückmeldung: Ist-Start / Ist-Ende\n• Statusänderung: Teil-/Endrückmeldung → Auftrag wird 'abgeschlossen'\n• Materialnachverbrauch: Zusätzliche Komponenten erfassen\n→ Rückmeldung ist der DATENLIEFERANT für Controlling: Ist-Kosten, Plan-Ist-Vergleich, Kapazitätsentlastung."
+        },
+        {
+          "front": "Was ist PP/DS (Production Planning and Detailed Scheduling)?",
+          "back": "PP/DS = Erweiterte Feinplanung für komplexe Fertigungsumgebungen (embedded in S/4HANA seit 1610).\nFeatures:\n• Endliche Kapazitätseinplanung (nicht nur unendlich wie Standard-MRP)\n• Blockplanung: Kampagnen, Rüstoptimierung\n• Optimierungsalgorithmen: Genetische Algorithmen, Constraint-basierte Planung\n• Interaktive Plantafel: Drag & Drop, visuelle Umplanung\n→ PP/DS kommt zum Einsatz, wenn Standard-Kapazitätsplanung nicht reicht (z.B. Halbleiterfertigung, komplexe Linien)."
+        }
       ],
       "quiz": [
-        {"question": "Die Abrechnung eines Fertigungsauftrags (Settlement KO88) überträgt:", "options": ["Die Auftragsmengen", "Die Auftragskosten an Material/FI (und ggf. CO-PA)", "Die Arbeitsplandaten", "Nur die Ausschussmengen"], "correct": 1, "explanation": "KO88 (Settlement) rechnet Auftragskosten auf Materialkonto/FI ab. Differenzen aus Plan-Ist erscheinen als Abweichungen im Controlling."},
-        {"question": "Kapazitätsabgleich (Capacity Leveling) wird notwendig bei:", "options": ["Unterlast", "Engpass / Kapazitätsüberlast — Nachfrage > verfügbare Kapazität", "Immer, egal ob Engpass oder nicht", "Nur bei Serienfertigung"], "correct": 1, "explanation": "Capacity Leveling kommt bei Engpässen zum Einsatz. Unterlast oder ausreichende Kapazität brauchen keinen Abgleich."},
-        {"question": "Rückmeldung (Confirmation) dient hauptsächlich:", "options": ["Der Materialbedarfsplanung", "Der Ist-Datenerfassung: Mengen, Zeiten, Ausschuss — Basis für Controlling", "Der Stücklistenpflege", "Nur der Personalabrechnung"], "correct": 1, "explanation": "Rückmeldung = Ist-Datenquelle. Plan-Ist-Vergleich, Kostenermittlung und Kapazitätsentlastung basieren darauf. Ohne Rückmeldung blindes Controlling."},
-        {"question": "PP/DS wird benötigt, wenn:", "options": ["Einfache MRP-Planung ausreicht", "Komplexe endliche Kapazitätsplanung mit Optimierung erforderlich ist", "Nur MTO-Fertigung vorliegt", "Keine Kapazitätsengpässe existieren"], "correct": 1, "explanation": "PP/DS = Advanced Planning für komplexe Fertigung mit endlicher Kapazität, Optimierungsalgorithmen und interaktiver Plantafel."}
+        {
+          "question": "Die Abrechnung eines Fertigungsauftrags (Settlement KO88) überträgt:",
+          "options": [
+            "Die Auftragsmengen",
+            "Die Auftragskosten an Material/FI (und ggf. CO-PA)",
+            "Die Arbeitsplandaten",
+            "Nur die Ausschussmengen"
+          ],
+          "correct": 1,
+          "explanation": "KO88 (Settlement) rechnet Auftragskosten auf Materialkonto/FI ab. Differenzen aus Plan-Ist erscheinen als Abweichungen im Controlling."
+        },
+        {
+          "question": "Kapazitätsabgleich (Capacity Leveling) wird notwendig bei:",
+          "options": [
+            "Unterlast",
+            "Engpass / Kapazitätsüberlast — Nachfrage > verfügbare Kapazität",
+            "Immer, egal ob Engpass oder nicht",
+            "Nur bei Serienfertigung"
+          ],
+          "correct": 1,
+          "explanation": "Capacity Leveling kommt bei Engpässen zum Einsatz. Unterlast oder ausreichende Kapazität brauchen keinen Abgleich."
+        },
+        {
+          "question": "Rückmeldung (Confirmation) dient hauptsächlich:",
+          "options": [
+            "Der Materialbedarfsplanung",
+            "Der Ist-Datenerfassung: Mengen, Zeiten, Ausschuss — Basis für Controlling",
+            "Der Stücklistenpflege",
+            "Nur der Personalabrechnung"
+          ],
+          "correct": 1,
+          "explanation": "Rückmeldung = Ist-Datenquelle. Plan-Ist-Vergleich, Kostenermittlung und Kapazitätsentlastung basieren darauf. Ohne Rückmeldung blindes Controlling."
+        },
+        {
+          "question": "PP/DS wird benötigt, wenn:",
+          "options": [
+            "Einfache MRP-Planung ausreicht",
+            "Komplexe endliche Kapazitätsplanung mit Optimierung erforderlich ist",
+            "Nur MTO-Fertigung vorliegt",
+            "Keine Kapazitätsengpässe existieren"
+          ],
+          "correct": 1,
+          "explanation": "PP/DS = Advanced Planning für komplexe Fertigung mit endlicher Kapazität, Optimierungsalgorithmen und interaktiver Plantafel."
+        }
       ]
     }
   ]

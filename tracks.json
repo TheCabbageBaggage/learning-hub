@@ -1,0 +1,62 @@
+[
+  {
+    "id": "cfo-finance",
+    "title": "CFO Finance",
+    "description": "Finanzwissen für den modernen CFO: Controlling, IFRS, Treasury, M&A, Risikomanagement",
+    "icon": "📊",
+    "color": "#2C5F7C",
+    "books": [
+      {
+        "id": "principles-of-finance",
+        "title": "Principles of Finance",
+        "author": "Dahlquist & Knight (OpenStax, CC BY 4.0)",
+        "source": "content/cfo-finance/principles-of-finance.json",
+        "chapters": []
+      },
+      {
+        "id": "mit-financial-accounting",
+        "title": "Financial Accounting",
+        "author": "Prof. S.P. Kothari (MIT OCW 15.511, CC BY-NC-SA)",
+        "source": "content/cfo-finance/mit-financial-accounting.json",
+        "chapters": []
+      },
+      {
+        "id": "corporate-finance-oer",
+        "title": "Corporate Finance",
+        "author": "BCcampus Open Publishing (CC BY 4.0)",
+        "source": "content/cfo-finance/corporate-finance-oer.json",
+        "chapters": []
+      }
+    ]
+  },
+  {
+    "id": "sap-s4",
+    "title": "SAP S/4HANA",
+    "description": "ABAP RAP, Produktionsplanung, BTP, Analytics Cloud",
+    "icon": "🏭",
+    "color": "#3D8B8B",
+    "books": [
+      {
+        "id": "abap-rap",
+        "title": "ABAP RESTful Programming Model (RAP)",
+        "author": "SAP Learning (Free)",
+        "source": "content/sap-s4/abap-rap.json",
+        "chapters": []
+      },
+      {
+        "id": "produktionsplanung-pp",
+        "title": "Produktionsplanung mit SAP S/4HANA",
+        "author": "SAP Community & Rheinwerk",
+        "source": "content/sap-s4/produktionsplanung-pp.json",
+        "chapters": []
+      },
+      {
+        "id": "sap-btp-analytics",
+        "title": "SAP BTP & Analytics",
+        "author": "SAP Learning (Free)",
+        "source": "content/sap-s4/sap-btp-analytics.json",
+        "chapters": []
+      }
+    ]
+  }
+]

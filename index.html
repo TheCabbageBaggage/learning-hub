@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learning Hub</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+</head>
+<body>
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">📚 <span>Learning</span> Hub</div>
+      <nav class="header-links">
+        <a href="/" data-nav>Dashboard</a>
+        <a href="/stats" data-nav>Statistics</a>
+      </nav>
+      <button class="hamburger" aria-label="Menu" onclick="document.querySelector('.header-links').classList.toggle('open')">☰</button>
+    </header>
+
+    <main id="app-main" class="app-main">
+      <!-- Content rendered by app.js -->
+    </main>
+  </div>
+
+  <script src="js/store.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

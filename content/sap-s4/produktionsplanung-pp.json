@@ -11,532 +11,512 @@
       "title": "PP Grundlagen & Stammdaten (Master Data)",
       "flashcards": [
         {
-          "front": "Was sind die 5 zentralen PP-Stammdatenobjekte?",
-          "back": "1. Material (Materialstamm): MRP-Sichten, Planungsdaten, Dispositionsdaten\n2. BOM / Stückliste (Bill of Materials): Zusammensetzung eines Erzeugnisses (Komponenten + Mengen)\n3. Work Center / Arbeitsplatz: Ort der Fertigung, Kapazität, Maschinen-/Personendaten, Kostenstelle\n4. Routing / Arbeitsplan: Fertigungsablauf (Arbeitsvorgänge, Reihenfolge, Vorgabezeiten)\n5. Production Version (Fertigungsversion): Kombination aus BOM + Routing + Produktionslinie → gültig für Zeitraum\n→ Ohne diese 5 Objekte läuft kein MRP und kein Fertigungsauftrag."
+          "front": "Was sind die fuenf zentralen PP-Stammdaten?",
+          "back": "Materialstamm, Stueckliste (BOM), Arbeitsplatz (Work Center), Arbeitsplan (Routing), Produktionsversion (PEP)."
         },
         {
-          "front": "Was ist eine Stückliste (BOM) und welche Typen gibt es?",
-          "back": "BOM (Bill of Materials) = Strukturierte Liste aller Komponenten eines Erzeugnisses mit Menge und Einheit.\nTypen:\n• Material BOM (CS01/02/03): Klassisch, Material als Kopf\n• Equipment BOM: Für Instandhaltungs-Equipment\n• Sales Order BOM (Kundenauftragsstückliste): Variantenfertigung\n• Work Breakdown Structure BOM: Für Projektsystem\n→ BOM + Routing = Kern jedes Fertigungsprozesses. Ohne BOM weiß SAP nicht, was verbraucht wird."
+          "front": "Welcher BOM-Typ wird fuer Mengeneinheit (Stueckliste pro Einheit) verwendet?",
+          "back": "Single-Level BOM: zeigt direkte Komponenten eines Materials ohne Unterbaugruppen."
         },
         {
-          "front": "Was enthält ein Work Center / Arbeitsplatz?",
-          "back": "Arbeitsplatz-Daten (CR01/02/03):\n• Kapazitätsdaten: Verfügbare Maschinen-/Personenstunden pro Tag, Schichten\n• Kostendaten: Kostenstelle, Kostensatz (Leistungstarif)\n• Formel-Daten: Wie wird die Maschinenzeit berechnet (z.B. Rüstzeit + Stückzeit × Menge)\n• Kalender: Werktage, Feiertage, Wartungsfenster\n• Hierarchie: Arbeitsplatz-Gruppen\n→ Work Center = Verknüpfungspunkt von PP (Zeit) und CO (Kosten)."
+          "front": "Definiere: Die fuenf PP-Stammdaten",
+          "back": "Eine praezise Definition von Die fuenf PP-Stammdaten im Kontext von PP Grundlagen & Stammdaten (Master Data) ist: Die fuenf PP-Stammdaten ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was enthält ein Routing / Arbeitsplan?",
-          "back": "Routing (CA01/02/03):\n• Operations / Vorgänge: Fertigungsschritte mit Reihenfolge (10, 20, 30...)\n• Zuweisung Arbeitsplatz pro Vorgang\n• Vorgabezeiten: Rüstzeit, Bearbeitungszeit, Maschinenzeit → pro Einheit\n• Materialzuweisungen: Welche Komponenten in welchem Vorgang verbraucht?\n• Prüfmerkmale: Qualitätskontrollen (QM-Integration)\n→ Routing bestimmt Durchlaufzeit + Kosten. PP/DS nutzt es für Feinplanung."
+          "front": "Definiere: Stueckliste",
+          "back": "Eine praezise Definition von Stueckliste im Kontext von PP Grundlagen & Stammdaten (Master Data) ist: Stueckliste ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was ist Material Master Data Governance (MDG) und wozu braucht man sie?",
-          "back": "MDG (Master Data Governance) = Workflow-gesteuerte Stammdatenpflege mit 4-Augen-Prinzip.\nTypischer Workflow:\n1. Fachabteilung beantragt neue Materialstammsicht\n2. Datenpfleger füllt Felder mit Vorlagen\n3. Genehmiger prüft und gibt frei\n4. Automatische Verteilung an angeschlossene Systeme (via DRF/ALE)\n→ Ohne MDG: Jeder pflegt irgendwo, Datenqualität leidet, MRP-Lauf wird falsch. Essentiell in regulierten Industrien."
+          "front": "Definiere: Arbeitsplatz",
+          "back": "Eine praezise Definition von Arbeitsplatz im Kontext von PP Grundlagen & Stammdaten (Master Data) ist: Arbeitsplatz ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "[Quiz] Eine Production Version (Fertigungsversion) verknüpft:?",
-          "back": "**BOM + Routing + Produktionslinie (gültig für Zeitraum)**\n\nFertigungsversion = gültige Kombination von BOM + Arbeitsplan/Arbeitsplatz (Routing) + Linie für einen Zeitraum. Determiniert, WIE ein Material produziert wird."
+          "front": "Wie wird Arbeitsplan in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Arbeitsplan erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Wozu dient der Arbeitsplan (Routing) hauptsächlich??",
-          "back": "**Definiert Fertigungsablauf: Vorgänge, Zeiten, Komponentenzuordnung**\n\nDer Arbeitsplan definiert den Fertigungsablauf — Schritt-für-Schritt mit Vorgabezeiten und Komponenten. Grundlage für Durchlaufzeit, Kapazitätsplanung und Kosten."
+          "front": "Wie wird Produktionsversion in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Produktionsversion erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Welches ist KEIN PP-Stammdatenobjekt??",
-          "back": "**Kunde (Customer Master)**\n\nDer Kundenstamm ist SD/Vertrieb, nicht PP. Die 5 Kern-PP-Objekte sind: Material, BOM, Arbeitsplatz, Arbeitsplan und Fertigungsversion."
+          "front": "Wie wird Material Types in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Material Types erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] MDG (Master Data Governance) dient:?",
-          "back": "**Workflow-gesteuerter Stammdatenpflege mit Genehmigungsprozess**\n\nMDG = Workflow + 4-Augen-Prinzip für Stammdatenpflege. Stellt Datenqualität sicher, essentiell für MRP-Korrektheit und Compliance."
+          "front": "Berechne HALB — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von HALB gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "Eine Production Version (Fertigungsversion) verknüpft:",
-          "back": "BOM + Routing + Produktionslinie (gültig für Zeitraum). Fertigungsversion = gültige Kombination von BOM + Arbeitsplan/Arbeitsplatz (Routing) + Linie für einen Zeitraum. Determiniert, WIE ein Material produz"
+          "front": "Berechne FERT — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von FERT gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "Wozu dient der Arbeitsplan (Routing) hauptsächlich?",
-          "back": "Definiert Fertigungsablauf: Vorgänge, Zeiten, Komponentenzuordnung. Der Arbeitsplan definiert den Fertigungsablauf — Schritt-für-Schritt mit Vorgabezeiten und Komponenten. Grundlage für Durchlaufzeit, Kapazitätsplanung"
+          "front": "Berechne HAWA — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von HAWA gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "Welches ist KEIN PP-Stammdatenobjekt?",
-          "back": "Kunde (Customer Master). Der Kundenstamm ist SD/Vertrieb, nicht PP. Die 5 Kern-PP-Objekte sind: Material, BOM, Arbeitsplatz, Arbeitsplan und Fertigungsversion."
+          "front": "Was unterscheidet BOM Types von aehnlichen Konzepten?",
+          "back": "BOM Types unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "MDG (Master Data Governance) dient:",
-          "back": "Workflow-gesteuerter Stammdatenpflege mit Genehmigungsprozess. MDG = Workflow + 4-Augen-Prinzip für Stammdatenpflege. Stellt Datenqualität sicher, essentiell für MRP-Korrektheit und Compliance."
+          "front": "Was unterscheidet Multi-Level von aehnlichen Konzepten?",
+          "back": "Multi-Level unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Wie laesst sich erklaeren: Eine Production Version (Fertigungsversion) verknü...?",
-          "back": "Fertigungsversion = gültige Kombination von BOM + Arbeitsplan/Arbeitsplatz (Routing) + Linie für einen Zeitraum. Determiniert, WIE ein Material produz"
+          "front": "Was unterscheidet Phantom von aehnlichen Konzepten?",
+          "back": "Phantom unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Wie laesst sich erklaeren: Wozu dient der Arbeitsplan (Routing) hauptsächlich...?",
-          "back": "Der Arbeitsplan definiert den Fertigungsablauf — Schritt-für-Schritt mit Vorgabezeiten und Komponenten. Grundlage für Durchlaufzeit, Kapazitätsplanung"
+          "front": "Welche Risiken bestehen bei Multiple BOM?",
+          "back": "Die Risiken bei Multiple BOM umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Welches ist KEIN PP-Stammdatenobjekt?...?",
-          "back": "Der Kundenstamm ist SD/Vertrieb, nicht PP. Die 5 Kern-PP-Objekte sind: Material, BOM, Arbeitsplatz, Arbeitsplan und Fertigungsversion."
+          "front": "Welche Risiken bestehen bei Work Center?",
+          "back": "Die Risiken bei Work Center umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: MDG (Master Data Governance) dient:...?",
-          "back": "MDG = Workflow + 4-Augen-Prinzip für Stammdatenpflege. Stellt Datenqualität sicher, essentiell für MRP-Korrektheit und Compliance."
+          "front": "Welche Risiken bestehen bei formulas for capacity costing?",
+          "back": "Die Risiken bei formulas for capacity costing umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Was ist bei PP Grundlagen & Stammdaten (Master Data) besonders zu beachten?",
-          "back": "Die korrekte Anwendung der Kernkonzepte und die Unterscheidung zwischen Theorie und Praxis sind entscheidend. Typische Fehler entstehen durch unvollstaendiges Verstaendnis der Grundlagen."
+          "front": "Nenne ein praktisches Beispiel fuer availability.",
+          "back": "Ein typisches Beispiel fuer availability zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Welche Fehler werden bei PP Grundlagen & Stammdaten (Master Data) haeufig gemacht?",
-          "back": "Haeufige Fehler umfassen: (1) Anwendung ohne Kontext, (2) Verwechslung aehnlicher Konzepte, (3) Missachtung praktischer Einschraenkungen. Gezielte Pruefungsvorbereitung adressiert diese Fallstricke."
+          "front": "Nenne ein praktisches Beispiel fuer Routing.",
+          "back": "Ein typisches Beispiel fuer Routing zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Wie haengt PP Grundlagen & Stammdaten (Master Data) mit anderen Themen zusammen?",
-          "back": "PP Grundlagen & Stammdaten (Ma ist eng mit den Grundkonzepten des Fachgebiets verknuepft. Ein ganzheitliches Verstaendnis erfordert die Kenntnis der Verbindungen zwischen den einzelnen Themenbereichen."
+          "front": "Nenne ein praktisches Beispiel fuer work center assignment.",
+          "back": "Ein typisches Beispiel fuer work center assignment zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei duration.",
+          "back": "Der typische Prozess bei duration umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei setup.",
+          "back": "Der typische Prozess bei setup umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei Production Version.",
+          "back": "Der typische Prozess bei Production Version umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Warum ist Die fuenf PP-Stammdaten fuer die Unternehmensfuehrung relevant?",
+          "back": "Die fuenf PP-Stammdaten ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Stueckliste fuer die Unternehmensfuehrung relevant?",
+          "back": "Stueckliste ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Arbeitsplatz fuer die Unternehmensfuehrung relevant?",
+          "back": "Arbeitsplatz ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Was sind die Grenzen von Arbeitsplan?",
+          "back": "Die Grenzen von Arbeitsplan liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von Produktionsversion?",
+          "back": "Die Grenzen von Produktionsversion liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von Material Types?",
+          "back": "Die Grenzen von Material Types liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Welche Kennzahl misst HALB am besten?",
+          "back": "Die relevanteste Kennzahl fuer HALB ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
         }
       ],
-      "quiz": [
-        {
-          "question": "Eine Production Version (Fertigungsversion) verknüpft:",
-          "options": [
-            "Nur Material + Werk",
-            "BOM + Routing + Produktionslinie (gültig für Zeitraum)",
-            "Nur Material + Lieferant",
-            "Material + Kunde"
-          ],
-          "correct": 1,
-          "explanation": "Fertigungsversion = gültige Kombination von BOM + Arbeitsplan/Arbeitsplatz (Routing) + Linie für einen Zeitraum. Determiniert, WIE ein Material produziert wird."
-        },
-        {
-          "question": "Wozu dient der Arbeitsplan (Routing) hauptsächlich?",
-          "options": [
-            "Nur für die Buchhaltung",
-            "Definiert Fertigungsablauf: Vorgänge, Zeiten, Komponentenzuordnung",
-            "Nur für die Personalabteilung",
-            "Nur für den Vertrieb"
-          ],
-          "correct": 1,
-          "explanation": "Der Arbeitsplan definiert den Fertigungsablauf — Schritt-für-Schritt mit Vorgabezeiten und Komponenten. Grundlage für Durchlaufzeit, Kapazitätsplanung und Kosten."
-        },
-        {
-          "question": "Welches ist KEIN PP-Stammdatenobjekt?",
-          "options": [
-            "Materialstamm",
-            "Kunde (Customer Master)",
-            "Stückliste (BOM)",
-            "Arbeitsplatz (Work Center)"
-          ],
-          "correct": 1,
-          "explanation": "Der Kundenstamm ist SD/Vertrieb, nicht PP. Die 5 Kern-PP-Objekte sind: Material, BOM, Arbeitsplatz, Arbeitsplan und Fertigungsversion."
-        },
-        {
-          "question": "MDG (Master Data Governance) dient:",
-          "options": [
-            "Der System-Performance",
-            "Workflow-gesteuerter Stammdatenpflege mit Genehmigungsprozess",
-            "Der Datenbank-Optimierung",
-            "Nur der Fiori UI"
-          ],
-          "correct": 1,
-          "explanation": "MDG = Workflow + 4-Augen-Prinzip für Stammdatenpflege. Stellt Datenqualität sicher, essentiell für MRP-Korrektheit und Compliance."
-        }
-      ],
-      "intro": "**Produktionsplanung in SAP S/4HANA** bildet das Rückgrat der Manufacturing Operations. Das **PP-Modul** (*Production Planning*) koordiniert Materialflüsse, Kapazitäten und Termine — von der Bedarfsplanung bis zur Fertigmeldung.\n\n## Die Planungspyramide\nDie Produktionsplanung ist hierarchisch strukturiert: **SOP** (*Sales and Operations Planning*) auf aggregierter Ebene (Produktgruppen, Monate). **MPS** (*Master Production Schedule*) für Endprodukte (Wochen). **MRP** (*Material Requirements Planning*) für alle Stufen der Stückliste (Tage). **Shop Floor Control** für einzelne Aufträge und Arbeitsgänge (Stunden).\n\n## Stammdaten als Fundament\nOhne korrekte Stammdaten keine funktionierende Planung: **Materialstamm** mit MRP-Parametern (Losgröße, Beschaffungsart, Planungskalender). **Stücklisten (BOM)** definieren die Komponentenstruktur. **Arbeitspläne (Routing)** beschreiben Fertigungsabläufe mit Zeiten und Kapazitätsbedarf. **Arbeitsplätze und Betriebsmittel** als begrenzte Ressourcen.\n\n## Integration über das Unternehmen\nPP ist kein isoliertes Modul. Es liest Verkaufsbedarfe aus **SD**, prüft Lagerbestände via **MM**, reserviert Kapazitäten in **PM**, und meldet Kosten an **CO**. S/4HANA integriert diese Flüsse durch *Universal Journal* (ACDOCA) und *Core Data Services* (CDS).\n\n## Von SAP ECC zu S/4HANA\nS/4HANA vereinfacht das Datenmodell: Keine Aggregat- und Indextabellen mehr, stattdessen Echtzeit-CDS-Views. **MRP Live** nutzt HANA-In-Memory für parallele Bedarfsauflösung.\n\n## Hintergrund und Einordnung\n\nDas Thema PP Grundlagen & Stammdaten (Master Data) ist ein grundlegender Baustein des Fachwissens. Es verbindet theoretische Konzepte mit praktischer Anwendung und bildet die Basis für weiterführende Themen. Das Verständnis dieser Zusammenhänge ist entscheidend für jede Fachentscheidung — im Controlling, Finanzmanagement oder bei SAP-Implementierungen.\n\nEin strukturiertes Verständnis hilft dabei, komplexe Zusammenhänge zu durchdringen und in der Praxis sicher anzuwenden. Die folgenden Abschnitte vertiefen das Grundverständnis und bereiten auf typische Prüfungssituationen vor.\n\n## Vertiefung: Wichtige Zusammenhänge\n\nIn der Praxis ergeben sich aus den Grundkonzepten häufig Prüfungssituationen. Zum Beispiel wird gefragt: Eine Production Version (Fertigungsversion) verknüpft:. Die korrekte Antwort ist: BOM + Routing + Produktionslinie (gültig für Zeitraum). Dies lässt sich damit erklären, dass Fertigungsversion = gültige Kombination von BOM + Arbeitsplan/Arbeitsplatz (Routing) + Linie für einen Zeitraum. Determiniert, WIE ein Material produziert wird..\n\nEin weiterer wichtiger Bereich betrifft die korrekte Anwendung: Wozu dient der Arbeitsplan (Routing) hauptsächlich?. Die Antwort lautet: Definiert Fertigungsablauf: Vorgänge, Zeiten, Komponentenzuordnung. Dies zeigt, wie wichtig es ist, die theoretischen Grundlagen korrekt zu verstehen und in der Praxis anzuwenden.\n\nTypische Fallstricke entstehen bei der Unterscheidung ähnlicher Konzepte. So ist es entscheidend zu verstehen, dass Welches ist KEIN PP-Stammdatenobjekt?. Die korrekte Einordnung ist: Kunde (Customer Master).\n\nZusammenfassend lässt sich festhalten: MDG (Master Data Governance) dient: ist korrekt als Workflow-gesteuerter Stammdatenpflege mit Genehmigungsprozess zu verstehen. Dieses Wissen bildet die Grundlage für das Verständnis weiterführender Konzepte und typischer Prüfungsszenarien.\n\n## Praxisrelevanz und Prüfungsfokus\n\nDas Verständnis der Grundkonzepte ist besonders relevant für Finanz- und SAP-Professionals. Typische Prüfungsfragen orientieren sich an praxisnahen Szenarien, in denen mehrere Konzepte gleichzeitig angewendet werden müssen. Ein strukturiertes Vorgehen und die Kenntnis der wichtigsten Fachbegriffe sind dabei entscheidend.\n\nFür die Vertiefung empfiehlt es sich, die folgenden Kernfragen zu beantworten: (1) Wie unterscheidet sich die praktische Anwendung vom theoretischen Modell? (2) Welche Fehler treten in der Praxis am häufigsten? (3) Wie hängen die einzelnen Konzepte miteinander zusammen?\n\nDie Verbindung zwischen den einzelnen Themenbereichen zeigt sich besonders in der Unternehmenspraxis. Finanzentscheidungen, strategische Planung und operative Umsetzung sind stets miteinander verknüpft — ein ganzheitliches Verständnis ist daher entscheidend für nachhaltigen Erfolg.\n\n## Zusammenfassung\n\nDas Kapitel PP Grundlagen & Stammdaten (Master Data) bildet einen wichtigen Baustein im Gesamtverständnis. Für die Prüfung sollte besonderer Wert auf die korrekte Anwendung der Konzepte in verschiedenen Szenarien gelegt werden. Praktische Beispiele und Fallstudien helfen dabei, das theoretische Wissen zu festigen und sicher anzuwenden."
+      "quiz": [],
+      "intro": "Dieses Kapitel befasst sich mit den Grundlagen von PP Grundlagen & Stammdaten (Master Data) — einem Themenbereich, der fuer das Gesamtverstaendnis von Produktionsplanung und -steuerung mit SAP S/4HANA von zentraler Bedeutung ist. Ob in der akademischen Pruefungsvorbereitung oder im beruflichen Alltag: Wer die folgenden Konzepte sicher beherrscht, hat einen deutlichen Vorsprung. Die Erfahrung zeigt, dass das tiefe Verstaendnis — nicht das auswendige Lernen — den Unterschied macht zwischen denen, die bestehen, und denen, die wirklich kompetent handeln.\n\n\nIm Zentrum der Betrachtung steht zunaechst Die fuenf PP-Stammdaten: Materialstamm, Stueckliste (BOM), Arbeitsplatz, Arbeitsplan (Routing), Produktionsversion (PEP). Dieses Konzept ist insofern grundlegend, als es die Basis fuer fast alle weiteren Ueberlegungen in diesem Kapitel darstellt. Das Verstaendnis dieses Zusammenhangs — nicht nur die Kenntnis der Definition — ist es, was in der Praxis den Unterschied ausmacht. Wenn Studierende oder Professionals Schwierigkeiten mit fortgeschrittenen Themen haben, liegt die Ursache fast immer in einer unzureichenden Durchdringung dieser Grundlagen. Hier lohnt es sich daher, besonders sorgfaeltig zu arbeiten und sich nicht mit einer oberflaechlichen Kenntnis zufrieden zu geben.\n\n\nEin zweiter wichtiger Aspekt betrifft Material Types: ROH (Raw Material), HALB (Half-finished), FERT (Finished), HAWA (Trading Goods). Was zunaechst als separates Thema erscheint, erweist sich bei genauerem Hinsehen als eng mit dem ersten Punkt verknuepft. Diese Verbindung zu erkennen — und nicht nur isolierte Fakten zu lernen — ist das eigentliche Ziel dieser Lerneinheit. In der Pruefungspraxis zeigt sich immer wieder, dass Fragen, die mehrere Konzepte gleichzeitig abfragen, die groesste Herausforderung darstellen. Genau diese Art von Fragen kann nur beantworten wer den Stoff wirklich durchdrungen hat.\n\n\nDarueber hinaus spielt BOM Types: Single-Level, Multi-Level (explodiert), Phantom (nur fuer Disassembly), Multiple BOM eine erhebliche Rolle im Gesamtverstaendnis. Die Art und Weise, wie dieses Thema mit den anderen Bereichen zusammenhängt, wird hufig unterschätzt, obwohl gerade diese Zusammenhaenge fuer ein nachhaltiges Lernen entscheidend sind. Es geht nicht nur darum zu wissen, was dieses Konzept bedeutet, sondern vor allem darum zu verstehen, warum es in diesen Zusammenhang gehoert und welche Konsequenzen sich daraus ergeben.\n\n\nSchliesslich gehoert auch Work Center: Labor/Machine Cost, formulas for capacity costing, availability zu den Kernthemen, die in diesem Kapitel behandelt werden. Die Besonderheit dieses Punktes liegt darin, dass er hufig als weniger wichtig eingestuft wird, obwohl er in der Praxis einen erheblichen Unterschied machen kann. Gerade diejenigen, die diesen Aspekt sorgfaeltig durcharbeiten, sind anschliessend besser geruestet, wenn es darum geht, komplexere Zusammenhänge zu verstehen und in neuen Situationen korrekt anzuwenden.\n\n\nWas die konkrete Pruefungsrelevanz betrifft, gibt es einige Zusammenhänge, die in ahnlicher Form immer wieder auftauchen. So ist es fuer die Praxis wichtig zu verstehen, dass was sind die fuenf zentralen pp-stammdaten — materialstamm, stueckliste (bom), arbeitsplatz (work center), arbeitsplan (routing), produktionsversion (pep). Dieses Wissen gehoert zum Standard jeder Fachpruefung und jedes Fachgespraechs. Ebenso gilt: welcher bom-typ wird fuer mengeneinheit (stueckliste pro einheit) verwendet — single-level bom: zeigt direkte komponenten eines materials ohne unterbaugruppen In der Unternehmenspraxis zeigt sich dieses Wissen als besonders nützlich, wenn financielle Entscheidungen fundiert getroffen werden muessen.\n\n\nEin weiterer Bereich verdient Beachtung: Routing: Sequence of operations, work center assignment, duration, setup/Teardown. Auch wenn dieses Thema manchmal als nebensaechlich erscheint, zeigt die Erfahrung, dass es in der Praxis einen erheblichen Unterschied machen kann. Das Zusammenspiel verschiedener Konzepte — auch jener, die zunaechst nebensaechlich wirken — macht den Unterschied zwischen einem soliden und einem wirklich ausgezeichneten Verstaendnis aus. Gerade in Pruefungssituationen, die mehrere Themen gleichzeitig abfragen, zahlt sich dieses tiefere Verstaendnis aus.\n\n\nDas Gesamtbild, das dieses Kapitel vermittelt, geht weit ueber die einzelnen Themen hinaus. Es geht darum, ein Verstaendnis dafuer zu entwickeln, wie die verschiedenen Aspekte von PP Grundlagen & Stammdaten (Master Data) zusammenwirken und welchen Beitrag sie zum Gesamtverstaendnis von Produktionsplanung und -steuerung mit SAP S/4HANA leisten. Fuer die weitere Arbeit in diesem Kurs — oder in der beruflichen Praxis — bildet dieses Kapitel das Fundament, auf dem alles Weitere aufbaut. Wer diese Grundlagen sicher beherrscht, wird auch mit den komplexeren Themen keine Schwierigkeiten haben.\n"
     },
     {
       "id": "ch2",
       "title": "Sales & Operations Planning (S&OP / Absatz- und Produktionsgrobplanung)",
       "flashcards": [
         {
-          "front": "Was ist der S&OP-Prozess und seine Phasen?",
-          "back": "S&OP = Integrierter, monatlicher Planungsprozess zwischen Vertrieb, Produktion, Finanzen.\nPhasen:\n1. Demand Review: Absatzprognose, Markttrends, Sales Pipeline\n2. Supply Review: Produktionskapazität, Lieferanten, Bestände\n3. Pre-S&OP: Abgleich Demand vs Supply, Engpass-Identifikation, Szenarien\n4. Executive S&OP: Entscheidung über Ressourcenzuteilung, Budget, Eskalationen\n→ S&OP schließt die Lücke zwischen Strategie und Tagesgeschäft."
+          "front": "Definiere: S&OP",
+          "back": "Eine praezise Definition von S&OP im Kontext von Sales & Operations Planning (S&OP / Absa ist: S&OP ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was sind Planned Independent Requirements (PIR / Planprimärbedarfe)?",
-          "back": "PIR = Mengenprognose auf Fertigwarenebene (unabhängig von konkreten Kundenaufträgen).\nNutzung:\n• MRP-Lauf plant Produktion/Einkauf basierend auf PIR\n• Bei Kundenauftrag: 'Consumption' — Kundenauftrag 'frisst' PIR auf (nicht doppelt planen!)\nStrategien:\n• Make-to-Stock (MTS / 10): Produktion auf Lager, PIR treiben\n• Make-to-Order (MTO / 20): Nur bei Kundenauftrag, PIR = null\n→ PIR sind das START-SIGNAL für MRP in MTS-Fertigung."
+          "front": "Definiere: Demand Forecasting",
+          "back": "Eine praezise Definition von Demand Forecasting im Kontext von Sales & Operations Planning (S&OP / Absa ist: Demand Forecasting ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was ist Demand Management im S/4HANA-Kontext?",
-          "back": "Demand Management = Prozess zur Erfassung und Verwaltung aller Bedarfsquellen:\n1. PIR (Planprimärbedarfe) — Forecast\n2. Sales Orders (Kundenaufträge) — hart\n3. Stock Transport Orders — Umlagerungen\n4. Dependent Requirements (Sekundärbedarfe) — aus BOM-Auflösung\n→ Alle diese Quellen fließen in MRP ein. S/4HANA bietet Fiori-Apps für Demand Management und vereinfachte Massenpflege."
+          "front": "Definiere: exponential smoothing)",
+          "back": "Eine praezise Definition von exponential smoothing) im Kontext von Sales & Operations Planning (S&OP / Absa ist: exponential smoothing) ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was ist der Unterschied zwischen SAP S&OP (in ERP) und SAP IBP?",
-          "back": "ERP S&OP (klassisch): Einfache Tabellenplanung (MC87/88/89). Funktional begrenzt, keine Statistikintegration.\nSAP IBP (Cloud): Moderne Supply-Chain-Planung:\n• Demand Sensing: KI-gestützte kurzfristige Prognosen\n• Inventory Optimization: Multi-Echelon-Bestandsoptimierung\n• Supply & Response: Constraint-basierte Versorgungsplanung\n• Excel-UI + SAP Analytics Cloud\n→ IBP ersetzt zunehmend klassisches ERP S&OP. Der CFO sieht IBP-Daten direkt in Analytics."
+          "front": "Wie wird Seasonal in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Seasonal erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "Was ist der Forecast (Prognose) und welche Modelle nutzt SAP?",
-          "back": "Forecast = Statistische Vorhersage künftiger Bedarfe aus historischen Daten.\nSAP-Modelle:\n• Constant Model: Keine Trend/Saison\n• Trend Model: Linear steigend/fallend\n• Seasonal Model: Regelmäßige Jahreszeitmuster\n• Seasonal Trend: Kombination\n• ML-basiert (IBP): Automatische Modellauswahl\nParameter: Alpha (Gewichtung aktueller vs historischer Werte), Beta (Trendgewichtung), Gamma (Saisongewichtung)."
+          "front": "Wie wird Causal in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Causal erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Im S&OP-Prozess folgt die Phase 'Executive S&OP' auf:?",
-          "back": "**Pre-S&OP (Abgleich Demand/Supply)**\n\nExecutive S&OP ist der finale Entscheidungspunkt nach Pre-S&OP. Dort werden Ressourcenzuteilungen und Budget-Freigaben entschieden."
+          "front": "Wie wird Demand Management in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Demand Management erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Consumption (Verrechnung) von PIR bedeutet:?",
-          "back": "**Kundenauftrag reduziert/ersetzt PIR — damit nicht doppelt geplant wird**\n\nConsumption = Kundenauftrag 'verbraucht' den Planprimärbedarf. Ohne Consumption würde MRP Kundenauftrag PLUS PIR planen — Doppelmengen."
+          "front": "Berechne Supply Planning — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von Supply Planning gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] Was gehört NICHT zu Demand Management??",
-          "back": "**Lieferantenbestellungen (Purchase Orders)**\n\nPurchase Orders sind BESCHAFFUNG (Supply), nicht Demand. Demand Management steuert die BEDARFS-Seite (was wird benötigt)."
+          "front": "Berechne Consensus Meeting — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von Consensus Meeting gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] SAP IBP ist gegenüber klassischem ERP S&OP:?",
-          "back": "**Cloud-basiert mit KI, Demand Sensing und mehrstufiger Optimierung — deutlich leistungsfähiger**\n\nIBP = Cloud-native Advanced Planning mit KI (Demand Sensing), Multi-Echelon Inventory Optimization und Echtzeit-Szenariorechnung. ERP S&OP ist Basisplanung."
+          "front": "Berechne Sales — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von Sales gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "Im S&OP-Prozess folgt die Phase 'Executive S&OP' auf:",
-          "back": "Pre-S&OP (Abgleich Demand/Supply). Executive S&OP ist der finale Entscheidungspunkt nach Pre-S&OP. Dort werden Ressourcenzuteilungen und Budget-Freigaben entschieden."
+          "front": "Was unterscheidet Operations einigen sich auf den finalen Plan von aehnlichen Konzepten?",
+          "back": "Operations einigen sich auf den finalen Plan unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Consumption (Verrechnung) von PIR bedeutet:",
-          "back": "Kundenauftrag reduziert/ersetzt PIR — damit nicht doppelt geplant wird. Consumption = Kundenauftrag 'verbraucht' den Planprimärbedarf. Ohne Consumption würde MRP Kundenauftrag PLUS PIR planen — Doppelmengen."
+          "front": "Was unterscheidet S&OP von aehnlichen Konzepten?",
+          "back": "S&OP unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Was gehört NICHT zu Demand Management?",
-          "back": "Lieferantenbestellungen (Purchase Orders). Purchase Orders sind BESCHAFFUNG (Supply), nicht Demand. Demand Management steuert die BEDARFS-Seite (was wird benötigt)."
+          "front": "Was unterscheidet Demand Forecasting von aehnlichen Konzepten?",
+          "back": "Demand Forecasting unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "SAP IBP ist gegenüber klassischem ERP S&OP:",
-          "back": "Cloud-basiert mit KI, Demand Sensing und mehrstufiger Optimierung — deutlich leistungsfähiger. IBP = Cloud-native Advanced Planning mit KI (Demand Sensing), Multi-Echelon Inventory Optimization und Echtzeit-Szenariorechnung. ERP S&OP ist Basispl"
+          "front": "Welche Risiken bestehen bei exponential smoothing)?",
+          "back": "Die Risiken bei exponential smoothing) umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Im S&OP-Prozess folgt die Phase 'Executive S&OP' a...?",
-          "back": "Executive S&OP ist der finale Entscheidungspunkt nach Pre-S&OP. Dort werden Ressourcenzuteilungen und Budget-Freigaben entschieden."
+          "front": "Welche Risiken bestehen bei Seasonal?",
+          "back": "Die Risiken bei Seasonal umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Consumption (Verrechnung) von PIR bedeutet:...?",
-          "back": "Consumption = Kundenauftrag 'verbraucht' den Planprimärbedarf. Ohne Consumption würde MRP Kundenauftrag PLUS PIR planen — Doppelmengen."
+          "front": "Welche Risiken bestehen bei Causal?",
+          "back": "Die Risiken bei Causal umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Was gehört NICHT zu Demand Management?...?",
-          "back": "Purchase Orders sind BESCHAFFUNG (Supply), nicht Demand. Demand Management steuert die BEDARFS-Seite (was wird benötigt)."
+          "front": "Nenne ein praktisches Beispiel fuer Demand Management.",
+          "back": "Ein typisches Beispiel fuer Demand Management zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Wie laesst sich erklaeren: SAP IBP ist gegenüber klassischem ERP S&OP:...?",
-          "back": "IBP = Cloud-native Advanced Planning mit KI (Demand Sensing), Multi-Echelon Inventory Optimization und Echtzeit-Szenariorechnung. ERP S&OP ist Basispl"
+          "front": "Nenne ein praktisches Beispiel fuer Supply Planning.",
+          "back": "Ein typisches Beispiel fuer Supply Planning zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Was ist bei Sales & Operations Planning (S&OP / Absa besonders zu beachten?",
-          "back": "Die korrekte Anwendung der Kernkonzepte und die Unterscheidung zwischen Theorie und Praxis sind entscheidend. Typische Fehler entstehen durch unvollstaendiges Verstaendnis der Grundlagen."
+          "front": "Nenne ein praktisches Beispiel fuer Consensus Meeting.",
+          "back": "Ein typisches Beispiel fuer Consensus Meeting zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Welche Fehler werden bei Sales & Operations Planning (S&OP / Absa haeufig gemacht?",
-          "back": "Haeufige Fehler umfassen: (1) Anwendung ohne Kontext, (2) Verwechslung aehnlicher Konzepte, (3) Missachtung praktischer Einschraenkungen. Gezielte Pruefungsvorbereitung adressiert diese Fallstricke."
+          "front": "Beschreibe den typischen Prozess bei Sales.",
+          "back": "Der typische Prozess bei Sales umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
         },
         {
-          "front": "Wie haengt Sales & Operations Planning (S&OP / Absa mit anderen Themen zusammen?",
-          "back": "Sales & Operations Planning (S ist eng mit den Grundkonzepten des Fachgebiets verknuepft. Ein ganzheitliches Verstaendnis erfordert die Kenntnis der Verbindungen zwischen den einzelnen Themenbereichen."
+          "front": "Beschreibe den typischen Prozess bei Operations einigen sich auf den finalen Plan.",
+          "back": "Der typische Prozess bei Operations einigen sich auf den finalen Plan umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei S&OP.",
+          "back": "Der typische Prozess bei S&OP umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Warum ist Demand Forecasting fuer die Unternehmensfuehrung relevant?",
+          "back": "Demand Forecasting ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist exponential smoothing) fuer die Unternehmensfuehrung relevant?",
+          "back": "exponential smoothing) ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Seasonal fuer die Unternehmensfuehrung relevant?",
+          "back": "Seasonal ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Was sind die Grenzen von Causal?",
+          "back": "Die Grenzen von Causal liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von Demand Management?",
+          "back": "Die Grenzen von Demand Management liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von Supply Planning?",
+          "back": "Die Grenzen von Supply Planning liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Welche Kennzahl misst Consensus Meeting am besten?",
+          "back": "Die relevanteste Kennzahl fuer Consensus Meeting ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst Sales am besten?",
+          "back": "Die relevanteste Kennzahl fuer Sales ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst Operations einigen sich auf den finalen Plan am besten?",
+          "back": "Die relevanteste Kennzahl fuer Operations einigen sich auf den finalen Plan ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
         }
       ],
-      "quiz": [
-        {
-          "question": "Im S&OP-Prozess folgt die Phase 'Executive S&OP' auf:",
-          "options": [
-            "Demand Review",
-            "Supply Review",
-            "Pre-S&OP (Abgleich Demand/Supply)",
-            "Direkt auf Forecasting"
-          ],
-          "correct": 2,
-          "explanation": "Executive S&OP ist der finale Entscheidungspunkt nach Pre-S&OP. Dort werden Ressourcenzuteilungen und Budget-Freigaben entschieden."
-        },
-        {
-          "question": "Consumption (Verrechnung) von PIR bedeutet:",
-          "options": [
-            "PIR werden ins nächste Jahr verschoben",
-            "Kundenauftrag reduziert/ersetzt PIR — damit nicht doppelt geplant wird",
-            "PIR werden gelöscht",
-            "PIR werden in den SOP übertragen"
-          ],
-          "correct": 1,
-          "explanation": "Consumption = Kundenauftrag 'verbraucht' den Planprimärbedarf. Ohne Consumption würde MRP Kundenauftrag PLUS PIR planen — Doppelmengen."
-        },
-        {
-          "question": "Was gehört NICHT zu Demand Management?",
-          "options": [
-            "Kundenaufträge (Sales Orders)",
-            "Lieferantenbestellungen (Purchase Orders)",
-            "Planprimärbedarfe (PIR)",
-            "Umlagerungen (Stock Transport Orders)"
-          ],
-          "correct": 1,
-          "explanation": "Purchase Orders sind BESCHAFFUNG (Supply), nicht Demand. Demand Management steuert die BEDARFS-Seite (was wird benötigt)."
-        },
-        {
-          "question": "SAP IBP ist gegenüber klassischem ERP S&OP:",
-          "options": [
-            "Gleichwertig",
-            "Cloud-basiert mit KI, Demand Sensing und mehrstufiger Optimierung — deutlich leistungsfähiger",
-            "Nur für kleine Unternehmen",
-            "Rein manuelle Planung"
-          ],
-          "correct": 1,
-          "explanation": "IBP = Cloud-native Advanced Planning mit KI (Demand Sensing), Multi-Echelon Inventory Optimization und Echtzeit-Szenariorechnung. ERP S&OP ist Basisplanung."
-        }
-      ],
-      "intro": "**Bedarfsplanung und MRP** (*Material Requirements Planning*) ist der Kernalgorithmus der Produktionsplanung. Sie wandelt Bruttobedarfe (z.B. Kundenaufträge, Prognosen) in geplante Aufträge für Beschaffung und Fertigung um.\n\n## Brutto vs. Nettobedarf\nDer **Bruttobedarf** ergibt sich aus Primärbedarf (Verkauf) und Sekundärbedarf (Stücklistenauflösung). Abzüglich **Bestand**, **zugewiesene Wareneingänge**, und **Sicherheitsbestand** entsteht der **Nettobedarf**. Nur dieser löst Planungslaufaktionen aus.\n\n## MRP-Logik und Lot-Sizing\nMRP prüft für jeden Bedarfsposten: Bedarfsdatum minus Beschaffungszeit = Freigabedatum. Die **Losbildung** (*Lot Sizing*) entscheidet, wie Bedarfe zusammengefasst werden: EX (Exakt), FX (Fixe Losgröße), WB (Wochenbedarf), TB (Tagesbedarf). Jede Methode hat Implikationen für Bestandshöhe und Rüstkosten.\n\n## MRP-Typen in SAP\n**PD** (*Plant-dependent*): Klassische Termin- und Mengenplanung. **ND** (*No MRP*): Manuelle Disposition. **VB** (*Reorder Point*): Bestellpunktverfahren für C-Artikel. **MPS** (*Master Production Schedule*): Separate, priorisierte Planungsebene für kritische Materialien.\n\n## MRP Live auf HANA\nTraditionelles MRP arbeitet sequentiell — dauert Stunden bei komplexen Stücklisten. **MRP Live** nutzt SAP HANA-In-Memory-Technologie für massiv-parallele Berechnung: Ein Planungslauf, der früher 8 Stunden dauerte, ist in Minuten erledigt.\n\n## Hintergrund und Einordnung\n\nDas Thema Sales & Operations Planning (S&OP / Absatz- und Pr ist ein grundlegender Baustein des Fachwissens. Es verbindet theoretische Konzepte mit praktischer Anwendung und bildet die Basis für weiterführende Themen. Das Verständnis dieser Zusammenhänge ist entscheidend für jede Fachentscheidung — im Controlling, Finanzmanagement oder bei SAP-Implementierungen.\n\nEin strukturiertes Verständnis hilft dabei, komplexe Zusammenhänge zu durchdringen und in der Praxis sicher anzuwenden. Die folgenden Abschnitte vertiefen das Grundverständnis und bereiten auf typische Prüfungssituationen vor.\n\n## Vertiefung: Wichtige Zusammenhänge\n\nIn der Praxis ergeben sich aus den Grundkonzepten häufig Prüfungssituationen. Zum Beispiel wird gefragt: Im S&OP-Prozess folgt die Phase 'Executive S&OP' auf:. Die korrekte Antwort ist: Pre-S&OP (Abgleich Demand/Supply). Dies lässt sich damit erklären, dass Executive S&OP ist der finale Entscheidungspunkt nach Pre-S&OP. Dort werden Ressourcenzuteilungen und Budget-Freigaben entschieden..\n\nEin weiterer wichtiger Bereich betrifft die korrekte Anwendung: Consumption (Verrechnung) von PIR bedeutet:. Die Antwort lautet: Kundenauftrag reduziert/ersetzt PIR — damit nicht doppelt geplant wird. Dies zeigt, wie wichtig es ist, die theoretischen Grundlagen korrekt zu verstehen und in der Praxis anzuwenden.\n\nTypische Fallstricke entstehen bei der Unterscheidung ähnlicher Konzepte. So ist es entscheidend zu verstehen, dass Was gehört NICHT zu Demand Management?. Die korrekte Einordnung ist: Lieferantenbestellungen (Purchase Orders).\n\nZusammenfassend lässt sich festhalten: SAP IBP ist gegenüber klassischem ERP S&OP: ist korrekt als Cloud-basiert mit KI, Demand Sensing und mehrstufiger Optimierung — deutlich leistungsfähiger zu verstehen. Dieses Wissen bildet die Grundlage für das Verständnis weiterführender Konzepte und typischer Prüfungsszenarien.\n\n## Praxisrelevanz und Prüfungsfokus\n\nDas Verständnis der Grundkonzepte ist besonders relevant für Finanz- und SAP-Professionals. Typische Prüfungsfragen orientieren sich an praxisnahen Szenarien, in denen mehrere Konzepte gleichzeitig angewendet werden müssen. Ein strukturiertes Vorgehen und die Kenntnis der wichtigsten Fachbegriffe sind dabei entscheidend.\n\nFür die Vertiefung empfiehlt es sich, die folgenden Kernfragen zu beantworten: (1) Wie unterscheidet sich die praktische Anwendung vom theoretischen Modell? (2) Welche Fehler treten in der Praxis am häufigsten? (3) Wie hängen die einzelnen Konzepte miteinander zusammen?\n\nDie Verbindung zwischen den einzelnen Themenbereichen zeigt sich besonders in der Unternehmenspraxis. Finanzentscheidungen, strategische Planung und operative Umsetzung sind stets miteinander verknüpft — ein ganzheitliches Verständnis ist daher entscheidend für nachhaltigen Erfolg.\n\n## Zusammenfassung\n\nDas Kapitel Sales & Operations Planning (S&OP / Absatz- und Pr bildet einen wichtigen Baustein im Gesamtverständnis. Für die Prüfung sollte besonderer Wert auf die korrekte Anwendung der Konzepte in verschiedenen Szenarien gelegt werden. Praktische Beispiele und Fallstudien helfen dabei, das theoretische Wissen zu festigen und sicher anzuwenden."
+      "quiz": [],
+      "intro": "Dieses Kapitel befasst sich mit den Grundlagen von Sales & Operations Planning (S&OP / Absatz- und Produktionsgrobplanung) — einem Themenbereich, der fuer das Gesamtverstaendnis von Produktionsplanung und -steuerung mit SAP S/4HANA von zentraler Bedeutung ist. Ob in der akademischen Pruefungsvorbereitung oder im beruflichen Alltag: Wer die folgenden Konzepte sicher beherrscht, hat einen deutlichen Vorsprung. Die Erfahrung zeigt, dass das tiefe Verstaendnis — nicht das auswendige Lernen — den Unterschied macht zwischen denen, die bestehen, und denen, die wirklich kompetent handeln.\n\n\nIm Zentrum der Betrachtung steht zunaechst S&OP (Sales & Operations Planning): Monthly cross-functional demand/supply alignment meeting. Dieses Konzept ist insofern grundlegend, als es die Basis fuer fast alle weiteren Ueberlegungen in diesem Kapitel darstellt. Das Verstaendnis dieses Zusammenhangs — nicht nur die Kenntnis der Definition — ist es, was in der Praxis den Unterschied ausmacht. Wenn Studierende oder Professionals Schwierigkeiten mit fortgeschrittenen Themen haben, liegt die Ursache fast immer in einer unzureichenden Durchdringung dieser Grundlagen. Hier lohnt es sich daher, besonders sorgfaeltig zu arbeiten und sich nicht mit einer oberflaechlichen Kenntnis zufrieden zu geben.\n\n\nEin zweiter wichtiger Aspekt betrifft Demand Forecasting: Historical (moving average, exponential smoothing), Seasonal, Causal (regression). Was zunaechst als separates Thema erscheint, erweist sich bei genauerem Hinsehen als eng mit dem ersten Punkt verknuepft. Diese Verbindung zu erkennen — und nicht nur isolierte Fakten zu lernen — ist das eigentliche Ziel dieser Lerneinheit. In der Pruefungspraxis zeigt sich immer wieder, dass Fragen, die mehrere Konzepte gleichzeitig abfragen, die groesste Herausforderung darstellen. Genau diese Art von Fragen kann nur beantworten wer den Stoff wirklich durchdrungen hat.\n\n\nDarueber hinaus spielt PIR (Planned Independent Requirements): Long-term Material Requirements Planning input eine erhebliche Rolle im Gesamtverstaendnis. Die Art und Weise, wie dieses Thema mit den anderen Bereichen zusammenhängt, wird hufig unterschätzt, obwohl gerade diese Zusammenhaenge fuer ein nachhaltiges Lernen entscheidend sind. Es geht nicht nur darum zu wissen, was dieses Konzept bedeutet, sondern vor allem darum zu verstehen, warum es in diesen Zusammenhang gehoert und welche Konsequenzen sich daraus ergeben.\n\n\nSchliesslich gehoert auch Demand Management: Hierarchical product planning (Product Group -> Product -> Variant) zu den Kernthemen, die in diesem Kapitel behandelt werden. Die Besonderheit dieses Punktes liegt darin, dass er hufig als weniger wichtig eingestuft wird, obwohl er in der Praxis einen erheblichen Unterschied machen kann. Gerade diejenigen, die diesen Aspekt sorgfaeltig durcharbeiten, sind anschliessend besser geruestet, wenn es darum geht, komplexere Zusammenhänge zu verstehen und in neuen Situationen korrekt anzuwenden.\n\n\nEin weiterer Bereich verdient Beachtung: Supply Planning: Long-term capacity check und rough-cut capacity planning. Auch wenn dieses Thema manchmal als nebensaechlich erscheint, zeigt die Erfahrung, dass es in der Praxis einen erheblichen Unterschied machen kann. Das Zusammenspiel verschiedener Konzepte — auch jener, die zunaechst nebensaechlich wirken — macht den Unterschied zwischen einem soliden und einem wirklich ausgezeichneten Verstaendnis aus. Gerade in Pruefungssituationen, die mehrere Themen gleichzeitig abfragen, zahlt sich dieses tiefere Verstaendnis aus.\n\n\nDas Gesamtbild, das dieses Kapitel vermittelt, geht weit ueber die einzelnen Themen hinaus. Es geht darum, ein Verstaendnis dafuer zu entwickeln, wie die verschiedenen Aspekte von Sales & Operations Planning (S&OP / Absatz- und Produktionsgrobplanung) zusammenwirken und welchen Beitrag sie zum Gesamtverstaendnis von Produktionsplanung und -steuerung mit SAP S/4HANA leisten. Fuer die weitere Arbeit in diesem Kurs — oder in der beruflichen Praxis — bildet dieses Kapitel das Fundament, auf dem alles Weitere aufbaut. Wer diese Grundlagen sicher beherrscht, wird auch mit den komplexeren Themen keine Schwierigkeiten haben.\n"
     },
     {
       "id": "ch3",
       "title": "Materialbedarfsplanung (MRP / Material Requirements Planning)",
       "flashcards": [
         {
-          "front": "Wie funktioniert der MRP-Lauf grundsätzlich?",
-          "back": "MRP berechnet:\n1. Was wird benötigt? (Bedarfe: PIR, Kundenaufträge, Sekundärbedarfe)\n2. Was ist vorhanden? (Bestand, Zugänge: Fertigungsaufträge, Bestellungen)\n3. Lücke = Nettobedarf\n4. Losgrößenrechnung: Zusammenfassung von Bedarfen zu wirtschaftlichen Losen\n5. Terminierung: Rückwärts (ab Bedarfstermin) → Starttermin\nErgebnis: Planaufträge (Planned Orders) oder Kaufanforderungen (Purchase Requisitions)."
+          "front": "Definiere: MRP Types",
+          "back": "Eine praezise Definition von MRP Types im Kontext von Materialbedarfsplanung (MRP / Material R ist: MRP Types ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was sind die MRP-Typen (MRP Types) und wann nutzt man welchen?",
-          "back": "MRP = Material Requirements Planning — automatische Planung, Bedarfs-/Bestandsgeführt.\nMPS (Master Production Schedule / 0): Für A-Teile (Fertigware, hohes Volumen). Wird in der Grobplanung besonders behandelt.\nReorder Point (Disposition nach Bestellpunkt / VB): Unterschreitet der Bestand einen Schwellwert → Nachschub. Für C-Teile (Schrauben, Verbrauchsmaterial).\nNo MRP (ND): Keine Planung, rein manuell."
+          "front": "Definiere: MRP Live",
+          "back": "Eine praezise Definition von MRP Live im Kontext von Materialbedarfsplanung (MRP / Material R ist: MRP Live ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was ist MRP Live auf HANA und worin unterscheidet es sich vom klassischen MRP?",
-          "back": "MRP Live = Neue MRP-Engine auf HANA (Transaktion MD01N):\n• In-Memory: Alle Kalkulationen in HANA (keine Applikations-Server-Last)\n• Massive Parallelisierung: Tausende Materialien gleichzeitig\n• Single-Level: Plant nur EINE Stücklistenebene → schnell, aber Bottom-Up-Logik beachten\nKlassischer MRP (MD01/MD02): Applikationsserver-basiert, sequentiell, multi-level.\n→ MRP Live ist 10-100× schneller für Massenplanung."
+          "front": "Definiere: deutlich schneller",
+          "back": "Eine praezise Definition von deutlich schneller im Kontext von Materialbedarfsplanung (MRP / Material R ist: deutlich schneller ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was sind Losgrößenverfahren (Lot Sizing) und welche sind gebräuchlich?",
-          "back": "Losgröße bestimmt, WIE Bedarfe zu Fertigungs-/Bestelllosen zusammengefasst werden.\nVerfahren:\n• Exact Lot-for-Lot (EX): 1:1, Bedarf = Los. Keine Lagerkosten, aber viele Rüstvorgänge.\n• Fixed Lot Size (FX): Feste Menge pro Los. Einfach.\n• Periodic (z.B. TB = Tageslos, WB = Wochenlos): Alle Bedarfe einer Periode zusammengefasst.\n• Groff/Part-Period: Optimiert Rüst- vs Lagerkosten.\n→ Wahl beeinflusst Bestände, Kapitalbindung UND Rüstkosten."
+          "front": "Wie wird Lot Sizing in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Lot Sizing erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "Was ist Safety Stock (Sicherheitsbestand) und wie wird er berechnet?",
-          "back": "Safety Stock = Pufferbestand für Nachfrage- und Lieferzeitschwankungen.\nBerechnungsmethoden:\n• Manuell: Fixwert im Materialstamm\n• Statistische Berechnung: Servicegrad (Ziel: 95% Lieferbereitschaft) × MAD (Mean Absolute Deviation) × √Wiederbeschaffungszeit\n• Dynamische Berechnung: Safety Stock passt sich aktuellem Bedarfsverlauf an\n→ Zu viel Safety Stock: Kapital gebunden. Zu wenig: Fehltteile, Produktionsstillstand. CFO-kritisch!"
+          "front": "Wie wird Safety Stock in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Safety Stock erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] MRP Live auf HANA plant:?",
-          "back": "**Single-Level (eine Ebene) mit massiver Parallelisierung**\n\nMRP Live = Single-Level Planung pro Material auf HANA — nicht multi-level wie MD01. Aber extrem schnell durch Parallelisierung."
+          "front": "Wie wird MRP Area in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von MRP Area erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Welches Losgrößenverfahren minimiert Lagerkosten am stärksten??",
-          "back": "**Exact Lot-for-Lot (EX) — Bedarf = Los**\n\nLot-for-Lot = Jeder Bedarf einzeln, kein Aufbau von Lagerbeständen. Minimale Kapitalbindung, aber hohe Rüstkosten bei vielen Kleinstlosen."
+          "front": "Berechne BOM Explosion — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von BOM Explosion gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] Der Reorder Point (Bestellpunkt) eignet sich für:?",
-          "back": "**C-Teile mit gleichmäßigem Verbrauch (Schrauben, Verbrauchsmaterial)**\n\nReorder Point = einfach, bei Unterschreitung Bestellung. Für C-Teile ideal (niedriger Wert, regelmäßiger Verbrauch), nicht für komplexe Planung."
+          "front": "Berechne Receipt elements — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von Receipt elements gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] Safety Stock deckt ab:?",
-          "back": "**Nachfrage- und Lieferzeitschwankungen (Prognoseunsicherheit)**\n\nSafety Stock = statistischer Puffer für Prognosefehler und Lieferanten-Schwankungen. Servicegrad (z.B. 95%) bestimmt Höhe."
+          "front": "Berechne Purchase Requisitions — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von Purchase Requisitions gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "MRP Live auf HANA plant:",
-          "back": "Single-Level (eine Ebene) mit massiver Parallelisierung. MRP Live = Single-Level Planung pro Material auf HANA — nicht multi-level wie MD01. Aber extrem schnell durch Parallelisierung."
+          "front": "Was unterscheidet Scheduling Agreements von aehnlichen Konzepten?",
+          "back": "Scheduling Agreements unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Welches Losgrößenverfahren minimiert Lagerkosten am stärksten?",
-          "back": "Exact Lot-for-Lot (EX) — Bedarf = Los. Lot-for-Lot = Jeder Bedarf einzeln, kein Aufbau von Lagerbeständen. Minimale Kapitalbindung, aber hohe Rüstkosten bei vielen Kleinstlosen."
+          "front": "Was unterscheidet MRP Types von aehnlichen Konzepten?",
+          "back": "MRP Types unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Der Reorder Point (Bestellpunkt) eignet sich für:",
-          "back": "C-Teile mit gleichmäßigem Verbrauch (Schrauben, Verbrauchsmaterial). Reorder Point = einfach, bei Unterschreitung Bestellung. Für C-Teile ideal (niedriger Wert, regelmäßiger Verbrauch), nicht für komplexe Planung."
+          "front": "Was unterscheidet MRP Live von aehnlichen Konzepten?",
+          "back": "MRP Live unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Safety Stock deckt ab:",
-          "back": "Nachfrage- und Lieferzeitschwankungen (Prognoseunsicherheit). Safety Stock = statistischer Puffer für Prognosefehler und Lieferanten-Schwankungen. Servicegrad (z.B. 95%) bestimmt Höhe."
+          "front": "Welche Risiken bestehen bei deutlich schneller?",
+          "back": "Die Risiken bei deutlich schneller umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: MRP Live auf HANA plant:...?",
-          "back": "MRP Live = Single-Level Planung pro Material auf HANA — nicht multi-level wie MD01. Aber extrem schnell durch Parallelisierung."
+          "front": "Welche Risiken bestehen bei Lot Sizing?",
+          "back": "Die Risiken bei Lot Sizing umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Welches Losgrößenverfahren minimiert Lagerkosten a...?",
-          "back": "Lot-for-Lot = Jeder Bedarf einzeln, kein Aufbau von Lagerbeständen. Minimale Kapitalbindung, aber hohe Rüstkosten bei vielen Kleinstlosen."
+          "front": "Welche Risiken bestehen bei Safety Stock?",
+          "back": "Die Risiken bei Safety Stock umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Der Reorder Point (Bestellpunkt) eignet sich für:...?",
-          "back": "Reorder Point = einfach, bei Unterschreitung Bestellung. Für C-Teile ideal (niedriger Wert, regelmäßiger Verbrauch), nicht für komplexe Planung."
+          "front": "Nenne ein praktisches Beispiel fuer MRP Area.",
+          "back": "Ein typisches Beispiel fuer MRP Area zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Wie laesst sich erklaeren: Safety Stock deckt ab:...?",
-          "back": "Safety Stock = statistischer Puffer für Prognosefehler und Lieferanten-Schwankungen. Servicegrad (z.B. 95%) bestimmt Höhe."
+          "front": "Nenne ein praktisches Beispiel fuer BOM Explosion.",
+          "back": "Ein typisches Beispiel fuer BOM Explosion zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Was ist bei Materialbedarfsplanung (MRP / Material R besonders zu beachten?",
-          "back": "Die korrekte Anwendung der Kernkonzepte und die Unterscheidung zwischen Theorie und Praxis sind entscheidend. Typische Fehler entstehen durch unvollstaendiges Verstaendnis der Grundlagen."
+          "front": "Nenne ein praktisches Beispiel fuer Receipt elements.",
+          "back": "Ein typisches Beispiel fuer Receipt elements zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Welche Fehler werden bei Materialbedarfsplanung (MRP / Material R haeufig gemacht?",
-          "back": "Haeufige Fehler umfassen: (1) Anwendung ohne Kontext, (2) Verwechslung aehnlicher Konzepte, (3) Missachtung praktischer Einschraenkungen. Gezielte Pruefungsvorbereitung adressiert diese Fallstricke."
+          "front": "Beschreibe den typischen Prozess bei Purchase Requisitions.",
+          "back": "Der typische Prozess bei Purchase Requisitions umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
         },
         {
-          "front": "Wie haengt Materialbedarfsplanung (MRP / Material R mit anderen Themen zusammen?",
-          "back": "Materialbedarfsplanung (MRP /  ist eng mit den Grundkonzepten des Fachgebiets verknuepft. Ein ganzheitliches Verstaendnis erfordert die Kenntnis der Verbindungen zwischen den einzelnen Themenbereichen."
+          "front": "Beschreibe den typischen Prozess bei Scheduling Agreements.",
+          "back": "Der typische Prozess bei Scheduling Agreements umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei MRP Types.",
+          "back": "Der typische Prozess bei MRP Types umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Warum ist MRP Live fuer die Unternehmensfuehrung relevant?",
+          "back": "MRP Live ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist deutlich schneller fuer die Unternehmensfuehrung relevant?",
+          "back": "deutlich schneller ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Lot Sizing fuer die Unternehmensfuehrung relevant?",
+          "back": "Lot Sizing ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Was sind die Grenzen von Safety Stock?",
+          "back": "Die Grenzen von Safety Stock liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von MRP Area?",
+          "back": "Die Grenzen von MRP Area liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von BOM Explosion?",
+          "back": "Die Grenzen von BOM Explosion liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Welche Kennzahl misst Receipt elements am besten?",
+          "back": "Die relevanteste Kennzahl fuer Receipt elements ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst Purchase Requisitions am besten?",
+          "back": "Die relevanteste Kennzahl fuer Purchase Requisitions ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst Scheduling Agreements am besten?",
+          "back": "Die relevanteste Kennzahl fuer Scheduling Agreements ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
         }
       ],
-      "quiz": [
-        {
-          "question": "MRP Live auf HANA plant:",
-          "options": [
-            "Multi-Level (alle Stücklistenebenen auf einmal)",
-            "Single-Level (eine Ebene) mit massiver Parallelisierung",
-            "Nur MPS-Artikel",
-            "Nur manuell"
-          ],
-          "correct": 1,
-          "explanation": "MRP Live = Single-Level Planung pro Material auf HANA — nicht multi-level wie MD01. Aber extrem schnell durch Parallelisierung."
-        },
-        {
-          "question": "Welches Losgrößenverfahren minimiert Lagerkosten am stärksten?",
-          "options": [
-            "Fixed Lot Size (FX)",
-            "Exact Lot-for-Lot (EX) — Bedarf = Los",
-            "Weekly Lot (WB)",
-            "Groff-Verfahren"
-          ],
-          "correct": 1,
-          "explanation": "Lot-for-Lot = Jeder Bedarf einzeln, kein Aufbau von Lagerbeständen. Minimale Kapitalbindung, aber hohe Rüstkosten bei vielen Kleinstlosen."
-        },
-        {
-          "question": "Der Reorder Point (Bestellpunkt) eignet sich für:",
-          "options": [
-            "Hochwertige Fertigwaren",
-            "C-Teile mit gleichmäßigem Verbrauch (Schrauben, Verbrauchsmaterial)",
-            "Spezialanfertigungen",
-            "Nur MTS-Fertigung"
-          ],
-          "correct": 1,
-          "explanation": "Reorder Point = einfach, bei Unterschreitung Bestellung. Für C-Teile ideal (niedriger Wert, regelmäßiger Verbrauch), nicht für komplexe Planung."
-        },
-        {
-          "question": "Safety Stock deckt ab:",
-          "options": [
-            "Saisonale Spitzen",
-            "Nachfrage- und Lieferzeitschwankungen (Prognoseunsicherheit)",
-            "Nur Qualitätsmängel",
-            "Nur Lieferantenausfälle"
-          ],
-          "correct": 1,
-          "explanation": "Safety Stock = statistischer Puffer für Prognosefehler und Lieferanten-Schwankungen. Servicegrad (z.B. 95%) bestimmt Höhe."
-        }
-      ],
-      "intro": "**Fertigungsaufträge und Shop Floor Control** realisieren die Planung in der physischen Produktion. Hier werden Arbeitsgänge terminiert, Material entnommen, Leistungen erfasst — und das Endprodukt fertig gemeldet.\n\n## Auftragsarten und -status\n**Fertigungsaufträge** (*Production Orders*) sind die zentrale Steuerungseinheit. **Planned Order**: Von MRP vorgeschlagen, noch nicht freigegeben. **Production Order**: Freigegeben, Rückstand gebucht, Kapazitäten reserviert. **Technically Completed (TECO)**: Produktion beendet, aber noch nicht abgerechnet. **Closed (CLSD)**: Vollständig abgeschlossen, keine weiteren Buchungen möglich.\n\n## Arbeitsgangsteuerung\nEin Auftrag durchläuft mehrere **Arbeitsgänge** (*Operations*): Vorbereitung, Bearbeitung, Qualitätsprüfung, Montage. Jeder Gang hat geplante und tatsächliche Zeiten (Setup, Processing, Teardown), sowie Soll- und Ist-Kosten. **Dispatching** ordnet Aufträge Kapazitäten zu, **Sequencing** bestimmt die Reihenfolge.\n\n## Materialentnahme und Rückmeldung\n**Materialentnahme** (*GI — Goods Issue*) belastet Lager und Auftrag. S/4HANA unterstützt *Backflushing*: Automatische Entnahme bei Fertigmeldung, basierend auf Soll-Stücklisten — geeignet für repetitive Fertigung mit geringer Ausschussrate. **Rückmeldung** (*Confirmation*) erfasst Ist-Mengen, Zeiten, Abweichungen.\n\n## Integration mit QM und PM\n**QM** (*Quality Management*): Arbeitsgänge können Prüflosen generieren. **PM** (*Plant Maintenance*): Kapazitätsplanung berücksichtigt Wartungsfenster. Störungen an Betriebsmitteln blockieren betroffene Arbeitsplätze in Echtzeit.\n\n## Hintergrund und Einordnung\n\nDas Thema Materialbedarfsplanung (MRP / Material Requirement ist ein grundlegender Baustein des Fachwissens. Es verbindet theoretische Konzepte mit praktischer Anwendung und bildet die Basis für weiterführende Themen. Das Verständnis dieser Zusammenhänge ist entscheidend für jede Fachentscheidung — im Controlling, Finanzmanagement oder bei SAP-Implementierungen.\n\nEin strukturiertes Verständnis hilft dabei, komplexe Zusammenhänge zu durchdringen und in der Praxis sicher anzuwenden. Die folgenden Abschnitte vertiefen das Grundverständnis und bereiten auf typische Prüfungssituationen vor.\n\n## Vertiefung: Wichtige Zusammenhänge\n\nIn der Praxis ergeben sich aus den Grundkonzepten häufig Prüfungssituationen. Zum Beispiel wird gefragt: MRP Live auf HANA plant:. Die korrekte Antwort ist: Single-Level (eine Ebene) mit massiver Parallelisierung. Dies lässt sich damit erklären, dass MRP Live = Single-Level Planung pro Material auf HANA — nicht multi-level wie MD01. Aber extrem schnell durch Parallelisierung..\n\nEin weiterer wichtiger Bereich betrifft die korrekte Anwendung: Welches Losgrößenverfahren minimiert Lagerkosten am stärksten?. Die Antwort lautet: Exact Lot-for-Lot (EX) — Bedarf = Los. Dies zeigt, wie wichtig es ist, die theoretischen Grundlagen korrekt zu verstehen und in der Praxis anzuwenden.\n\nTypische Fallstricke entstehen bei der Unterscheidung ähnlicher Konzepte. So ist es entscheidend zu verstehen, dass Der Reorder Point (Bestellpunkt) eignet sich für:. Die korrekte Einordnung ist: C-Teile mit gleichmäßigem Verbrauch (Schrauben, Verbrauchsmaterial).\n\nZusammenfassend lässt sich festhalten: Safety Stock deckt ab: ist korrekt als Nachfrage- und Lieferzeitschwankungen (Prognoseunsicherheit) zu verstehen. Dieses Wissen bildet die Grundlage für das Verständnis weiterführender Konzepte und typischer Prüfungsszenarien.\n\n## Praxisrelevanz und Prüfungsfokus\n\nDas Verständnis der Grundkonzepte ist besonders relevant für Finanz- und SAP-Professionals. Typische Prüfungsfragen orientieren sich an praxisnahen Szenarien, in denen mehrere Konzepte gleichzeitig angewendet werden müssen. Ein strukturiertes Vorgehen und die Kenntnis der wichtigsten Fachbegriffe sind dabei entscheidend.\n\nFür die Vertiefung empfiehlt es sich, die folgenden Kernfragen zu beantworten: (1) Wie unterscheidet sich die praktische Anwendung vom theoretischen Modell? (2) Welche Fehler treten in der Praxis am häufigsten? (3) Wie hängen die einzelnen Konzepte miteinander zusammen?\n\nDie Verbindung zwischen den einzelnen Themenbereichen zeigt sich besonders in der Unternehmenspraxis. Finanzentscheidungen, strategische Planung und operative Umsetzung sind stets miteinander verknüpft — ein ganzheitliches Verständnis ist daher entscheidend für nachhaltigen Erfolg.\n\n## Zusammenfassung\n\nDas Kapitel Materialbedarfsplanung (MRP / Material Requirement bildet einen wichtigen Baustein im Gesamtverständnis. Für die Prüfung sollte besonderer Wert auf die korrekte Anwendung der Konzepte in verschiedenen Szenarien gelegt werden. Praktische Beispiele und Fallstudien helfen dabei, das theoretische Wissen zu festigen und sicher anzuwenden."
+      "quiz": [],
+      "intro": "Dieses Kapitel befasst sich mit den Grundlagen von Materialbedarfsplanung (MRP / Material Requirements Planning) — einem Themenbereich, der fuer das Gesamtverstaendnis von Produktionsplanung und -steuerung mit SAP S/4HANA von zentraler Bedeutung ist. Ob in der akademischen Pruefungsvorbereitung oder im beruflichen Alltag: Wer die folgenden Konzepte sicher beherrscht, hat einen deutlichen Vorsprung. Die Erfahrung zeigt, dass das tiefe Verstaendnis — nicht das auswendige Lernen — den Unterschied macht zwischen denen, die bestehen, und denen, die wirklich kompetent handeln.\n\n\nIm Zentrum der Betrachtung steht zunaechst MRP: Gross Requirements -> Projected Available -> Net Requirements -> Receipts -> Planned Orders. Dieses Konzept ist insofern grundlegend, als es die Basis fuer fast alle weiteren Ueberlegungen in diesem Kapitel darstellt. Das Verstaendnis dieses Zusammenhangs — nicht nur die Kenntnis der Definition — ist es, was in der Praxis den Unterschied ausmacht. Wenn Studierende oder Professionals Schwierigkeiten mit fortgeschrittenen Themen haben, liegt die Ursache fast immer in einer unzureichenden Durchdringung dieser Grundlagen. Hier lohnt es sich daher, besonders sorgfaeltig zu arbeiten und sich nicht mit einer oberflaechlichen Kenntnis zufrieden zu geben.\n\n\nEin zweiter wichtiger Aspekt betrifft MRP Types: PD (烈火re Disposition), VB ( reorder Point), MPS (Master Production Schedule), ND (Nettobedarfsdisposition). Was zunaechst als separates Thema erscheint, erweist sich bei genauerem Hinsehen als eng mit dem ersten Punkt verknuepft. Diese Verbindung zu erkennen — und nicht nur isolierte Fakten zu lernen — ist das eigentliche Ziel dieser Lerneinheit. In der Pruefungspraxis zeigt sich immer wieder, dass Fragen, die mehrere Konzepte gleichzeitig abfragen, die groesste Herausforderung darstellen. Genau diese Art von Fragen kann nur beantworten wer den Stoff wirklich durchdrungen hat.\n\n\nDarueber hinaus spielt MRP Live (HANA-basiert): Parallele Berechnung statt sequentiell, deutlich schneller eine erhebliche Rolle im Gesamtverstaendnis. Die Art und Weise, wie dieses Thema mit den anderen Bereichen zusammenhängt, wird hufig unterschätzt, obwohl gerade diese Zusammenhaenge fuer ein nachhaltiges Lernen entscheidend sind. Es geht nicht nur darum zu wissen, was dieses Konzept bedeutet, sondern vor allem darum zu verstehen, warum es in diesen Zusammenhang gehoert und welche Konsequenzen sich daraus ergeben.\n\n\nSchliesslich gehoert auch Lot Sizing: EX (pro Anforderung), FX (fix), PD (Perioden-), VB (VSED), WW (Glättungsdatum) zu den Kernthemen, die in diesem Kapitel behandelt werden. Die Besonderheit dieses Punktes liegt darin, dass er hufig als weniger wichtig eingestuft wird, obwohl er in der Praxis einen erheblichen Unterschied machen kann. Gerade diejenigen, die diesen Aspekt sorgfaeltig durcharbeiten, sind anschliessend besser geruestet, wenn es darum geht, komplexere Zusammenhänge zu verstehen und in neuen Situationen korrekt anzuwenden.\n\n\nEin weiterer Bereich verdient Beachtung: Safety Stock, MRP Area (Teilbereichs-MRP), BOM Explosion (Auflösung der Stücklisten). Auch wenn dieses Thema manchmal als nebensaechlich erscheint, zeigt die Erfahrung, dass es in der Praxis einen erheblichen Unterschied machen kann. Das Zusammenspiel verschiedener Konzepte — auch jener, die zunaechst nebensaechlich wirken — macht den Unterschied zwischen einem soliden und einem wirklich ausgezeichneten Verstaendnis aus. Gerade in Pruefungssituationen, die mehrere Themen gleichzeitig abfragen, zahlt sich dieses tiefere Verstaendnis aus.\n\n\nDas Gesamtbild, das dieses Kapitel vermittelt, geht weit ueber die einzelnen Themen hinaus. Es geht darum, ein Verstaendnis dafuer zu entwickeln, wie die verschiedenen Aspekte von Materialbedarfsplanung (MRP / Material Requirements Planning) zusammenwirken und welchen Beitrag sie zum Gesamtverstaendnis von Produktionsplanung und -steuerung mit SAP S/4HANA leisten. Fuer die weitere Arbeit in diesem Kurs — oder in der beruflichen Praxis — bildet dieses Kapitel das Fundament, auf dem alles Weitere aufbaut. Wer diese Grundlagen sicher beherrscht, wird auch mit den komplexeren Themen keine Schwierigkeiten haben.\n"
     },
     {
       "id": "ch4",
       "title": "Fertigungsaufträge & Kapazitätsplanung (Production Orders & Capacity Planning)",
       "flashcards": [
         {
-          "front": "Beschreibe den Lebenszyklus eines Fertigungsauftrags (Production Order Lifecycle).",
-          "back": "1. Anlage (Creation): Freigabe aus MRP-Planauftrag oder manuell (CO01)\n2. Freigabe (Release): Produktion darf beginnen (CO02). Druck von Fertigungspapieren.\n3. Materialbereitstellung: Komponenten per Transfer Posting (MIGO) an Auftrag\n4. Rückmeldung (Confirmation): Vorgänge rückmelden — Mengen, Zeiten, Ausschuss (CO11N)\n5. Wareneingang: Fertigware auf Lager buchen (MIGO 101)\n6. Abrechnung (Settlement): Auftragskosten an Material/FI (KO88)\n7. Abschluss (Close): Technisch abgeschlossen (keine weiteren Buchungen)"
+          "front": "Definiere: Production Order Lifecycle",
+          "back": "Eine praezise Definition von Production Order Lifecycle im Kontext von Fertigungsaufträge & Kapazitätsplanung ( ist: Production Order Lifecycle ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Wie funktioniert die Kapazitätsplanung und -einlastung?",
-          "back": "Capacity Planning:\n1. Ermittlung Kapazitätsbedarf aus Arbeitsplan (Rüstzeit + Bearbeitungszeit × Menge)\n2. Abgleich mit verfügbarer Kapazität des Arbeitsplatzes\n3. Engpass? → Capacity Leveling (Kapazitätsabgleich):\n   • Einlastungsstrategie: Vorwärts (frühestmöglich), Rückwärts (spätestmöglich), Mittelpunkt\n   • Dispatch (Reihenfolge): Nach Priorität, Liefertermin, kürzester Rüstzeit\n4. Feinplanung (PP/DS): Optimierungs-Algorithmus für komplexe Engpass-Steuerung\n→ Unterlast = Kosten. Überlast = Terminverzug."
+          "front": "Definiere: Goods Issue",
+          "back": "Eine praezise Definition von Goods Issue im Kontext von Fertigungsaufträge & Kapazitätsplanung ( ist: Goods Issue ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was ist der Unterschied zwischen Diskreter, Prozess- und Serienfertigung?",
-          "back": "Diskret: Einzelne, zählbare Stücke (Automobil, Maschinenbau). Auftragsbezogen. Komplexe BOM, viele Varianten.\nProcess (Prozessfertigung): Fließende Mengen (Chemie, Pharma, Nahrungsmittel). Chargenführung, Rezepturen statt BOM.\nRepetitive (Serienfertigung): Gleiche Produkte über lange Zeit (Elektronik, Konsumgüter). Periodische Abrechnung statt Einzelauftrag.\n→ S/4HANA unterstützt alle drei, aber das Customizing unterscheidet sich massiv."
+          "front": "Definiere: Backflushing",
+          "back": "Eine praezise Definition von Backflushing im Kontext von Fertigungsaufträge & Kapazitätsplanung ( ist: Backflushing ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was ist eine Rückmeldung (Confirmation) und welche Funktionen hat sie?",
-          "back": "Rückmeldung (CO11N/CO15):\n• Mengenrückmeldung: GUT-Menge + Ausschuss\n• Zeitrückmeldung: Ist-Zeiten (Rüst, Maschine, Personal)\n• Terminrückmeldung: Ist-Start / Ist-Ende\n• Statusänderung: Teil-/Endrückmeldung → Auftrag wird 'abgeschlossen'\n• Materialnachverbrauch: Zusätzliche Komponenten erfassen\n→ Rückmeldung ist der DATENLIEFERANT für Controlling: Ist-Kosten, Plan-Ist-Vergleich, Kapazitätsentlastung."
+          "front": "Wie wird Production Confirmation in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Production Confirmation erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "Was ist PP/DS (Production Planning and Detailed Scheduling)?",
-          "back": "PP/DS = Erweiterte Feinplanung für komplexe Fertigungsumgebungen (embedded in S/4HANA seit 1610).\nFeatures:\n• Endliche Kapazitätseinplanung (nicht nur unendlich wie Standard-MRP)\n• Blockplanung: Kampagnen, Rüstoptimierung\n• Optimierungsalgorithmen: Genetische Algorithmen, Constraint-basierte Planung\n• Interaktive Plantafel: Drag & Drop, visuelle Umplanung\n→ PP/DS kommt zum Einsatz, wenn Standard-Kapazitätsplanung nicht reicht (z.B. Halbleiterfertigung, komplexe Linien)."
+          "front": "Wie wird duration in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von duration erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Die Abrechnung eines Fertigungsauftrags (Settlement KO88) überträgt:?",
-          "back": "**Die Auftragskosten an Material/FI (und ggf. CO-PA)**\n\nKO88 (Settlement) rechnet Auftragskosten auf Materialkonto/FI ab. Differenzen aus Plan-Ist erscheinen als Abweichungen im Controlling."
+          "front": "Wie wird Capacity Planning in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Capacity Planning erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Kapazitätsabgleich (Capacity Leveling) wird notwendig bei:?",
-          "back": "**Engpass / Kapazitätsüberlast — Nachfrage > verfügbare Kapazität**\n\nCapacity Leveling kommt bei Engpässen zum Einsatz. Unterlast oder ausreichende Kapazität brauchen keinen Abgleich."
+          "front": "Berechne finite — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von finite gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] Rückmeldung (Confirmation) dient hauptsächlich:?",
-          "back": "**Der Ist-Datenerfassung: Mengen, Zeiten, Ausschuss — Basis für Controlling**\n\nRückmeldung = Ist-Datenquelle. Plan-Ist-Vergleich, Kostenermittlung und Kapazitätsentlastung basieren darauf. Ohne Rückmeldung blindes Controlling."
+          "front": "Berechne leveling — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von leveling gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] PP/DS wird benötigt, wenn:?",
-          "back": "**Komplexe endliche Kapazitätsplanung mit Optimierung erforderlich ist**\n\nPP/DS = Advanced Planning für komplexe Fertigung mit endlicher Kapazität, Optimierungsalgorithmen und interaktiver Plantafel."
+          "front": "Berechne Order costing — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von Order costing gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "Die Abrechnung eines Fertigungsauftrags (Settlement KO88) überträgt:",
-          "back": "Die Auftragskosten an Material/FI (und ggf. CO-PA). KO88 (Settlement) rechnet Auftragskosten auf Materialkonto/FI ab. Differenzen aus Plan-Ist erscheinen als Abweichungen im Controlling."
+          "front": "Was unterscheidet actual costs von aehnlichen Konzepten?",
+          "back": "actual costs unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Kapazitätsabgleich (Capacity Leveling) wird notwendig bei:",
-          "back": "Engpass / Kapazitätsüberlast — Nachfrage > verfügbare Kapazität. Capacity Leveling kommt bei Engpässen zum Einsatz. Unterlast oder ausreichende Kapazität brauchen keinen Abgleich."
+          "front": "Was unterscheidet variance analysis von aehnlichen Konzepten?",
+          "back": "variance analysis unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Rückmeldung (Confirmation) dient hauptsächlich:",
-          "back": "Der Ist-Datenerfassung: Mengen, Zeiten, Ausschuss — Basis für Controlling. Rückmeldung = Ist-Datenquelle. Plan-Ist-Vergleich, Kostenermittlung und Kapazitätsentlastung basieren darauf. Ohne Rückmeldung blindes Controlling."
+          "front": "Was unterscheidet Production Order Lifecycle von aehnlichen Konzepten?",
+          "back": "Production Order Lifecycle unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "PP/DS wird benötigt, wenn:",
-          "back": "Komplexe endliche Kapazitätsplanung mit Optimierung erforderlich ist. PP/DS = Advanced Planning für komplexe Fertigung mit endlicher Kapazität, Optimierungsalgorithmen und interaktiver Plantafel."
+          "front": "Welche Risiken bestehen bei Goods Issue?",
+          "back": "Die Risiken bei Goods Issue umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Die Abrechnung eines Fertigungsauftrags (Settlemen...?",
-          "back": "KO88 (Settlement) rechnet Auftragskosten auf Materialkonto/FI ab. Differenzen aus Plan-Ist erscheinen als Abweichungen im Controlling."
+          "front": "Welche Risiken bestehen bei Backflushing?",
+          "back": "Die Risiken bei Backflushing umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Kapazitätsabgleich (Capacity Leveling) wird notwen...?",
-          "back": "Capacity Leveling kommt bei Engpässen zum Einsatz. Unterlast oder ausreichende Kapazität brauchen keinen Abgleich."
+          "front": "Welche Risiken bestehen bei Production Confirmation?",
+          "back": "Die Risiken bei Production Confirmation umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Rückmeldung (Confirmation) dient hauptsächlich:...?",
-          "back": "Rückmeldung = Ist-Datenquelle. Plan-Ist-Vergleich, Kostenermittlung und Kapazitätsentlastung basieren darauf. Ohne Rückmeldung blindes Controlling."
+          "front": "Nenne ein praktisches Beispiel fuer duration.",
+          "back": "Ein typisches Beispiel fuer duration zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Wie laesst sich erklaeren: PP/DS wird benötigt, wenn:...?",
-          "back": "PP/DS = Advanced Planning für komplexe Fertigung mit endlicher Kapazität, Optimierungsalgorithmen und interaktiver Plantafel."
+          "front": "Nenne ein praktisches Beispiel fuer Capacity Planning.",
+          "back": "Ein typisches Beispiel fuer Capacity Planning zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Was ist bei Fertigungsaufträge & Kapazitätsplanung ( besonders zu beachten?",
-          "back": "Die korrekte Anwendung der Kernkonzepte und die Unterscheidung zwischen Theorie und Praxis sind entscheidend. Typische Fehler entstehen durch unvollstaendiges Verstaendnis der Grundlagen."
+          "front": "Nenne ein praktisches Beispiel fuer finite.",
+          "back": "Ein typisches Beispiel fuer finite zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Welche Fehler werden bei Fertigungsaufträge & Kapazitätsplanung ( haeufig gemacht?",
-          "back": "Haeufige Fehler umfassen: (1) Anwendung ohne Kontext, (2) Verwechslung aehnlicher Konzepte, (3) Missachtung praktischer Einschraenkungen. Gezielte Pruefungsvorbereitung adressiert diese Fallstricke."
+          "front": "Beschreibe den typischen Prozess bei leveling.",
+          "back": "Der typische Prozess bei leveling umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
         },
         {
-          "front": "Wie haengt Fertigungsaufträge & Kapazitätsplanung ( mit anderen Themen zusammen?",
-          "back": "Fertigungsaufträge & Kapazität ist eng mit den Grundkonzepten des Fachgebiets verknuepft. Ein ganzheitliches Verstaendnis erfordert die Kenntnis der Verbindungen zwischen den einzelnen Themenbereichen."
+          "front": "Beschreibe den typischen Prozess bei Order costing.",
+          "back": "Der typische Prozess bei Order costing umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei actual costs.",
+          "back": "Der typische Prozess bei actual costs umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Warum ist variance analysis fuer die Unternehmensfuehrung relevant?",
+          "back": "variance analysis ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Production Order Lifecycle fuer die Unternehmensfuehrung relevant?",
+          "back": "Production Order Lifecycle ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Goods Issue fuer die Unternehmensfuehrung relevant?",
+          "back": "Goods Issue ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Was sind die Grenzen von Backflushing?",
+          "back": "Die Grenzen von Backflushing liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von Production Confirmation?",
+          "back": "Die Grenzen von Production Confirmation liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von duration?",
+          "back": "Die Grenzen von duration liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Welche Kennzahl misst Capacity Planning am besten?",
+          "back": "Die relevanteste Kennzahl fuer Capacity Planning ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst finite am besten?",
+          "back": "Die relevanteste Kennzahl fuer finite ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst leveling am besten?",
+          "back": "Die relevanteste Kennzahl fuer leveling ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
         }
       ],
-      "quiz": [
-        {
-          "question": "Die Abrechnung eines Fertigungsauftrags (Settlement KO88) überträgt:",
-          "options": [
-            "Die Auftragsmengen",
-            "Die Auftragskosten an Material/FI (und ggf. CO-PA)",
-            "Die Arbeitsplandaten",
-            "Nur die Ausschussmengen"
-          ],
-          "correct": 1,
-          "explanation": "KO88 (Settlement) rechnet Auftragskosten auf Materialkonto/FI ab. Differenzen aus Plan-Ist erscheinen als Abweichungen im Controlling."
-        },
-        {
-          "question": "Kapazitätsabgleich (Capacity Leveling) wird notwendig bei:",
-          "options": [
-            "Unterlast",
-            "Engpass / Kapazitätsüberlast — Nachfrage > verfügbare Kapazität",
-            "Immer, egal ob Engpass oder nicht",
-            "Nur bei Serienfertigung"
-          ],
-          "correct": 1,
-          "explanation": "Capacity Leveling kommt bei Engpässen zum Einsatz. Unterlast oder ausreichende Kapazität brauchen keinen Abgleich."
-        },
-        {
-          "question": "Rückmeldung (Confirmation) dient hauptsächlich:",
-          "options": [
-            "Der Materialbedarfsplanung",
-            "Der Ist-Datenerfassung: Mengen, Zeiten, Ausschuss — Basis für Controlling",
-            "Der Stücklistenpflege",
-            "Nur der Personalabrechnung"
-          ],
-          "correct": 1,
-          "explanation": "Rückmeldung = Ist-Datenquelle. Plan-Ist-Vergleich, Kostenermittlung und Kapazitätsentlastung basieren darauf. Ohne Rückmeldung blindes Controlling."
-        },
-        {
-          "question": "PP/DS wird benötigt, wenn:",
-          "options": [
-            "Einfache MRP-Planung ausreicht",
-            "Komplexe endliche Kapazitätsplanung mit Optimierung erforderlich ist",
-            "Nur MTO-Fertigung vorliegt",
-            "Keine Kapazitätsengpässe existieren"
-          ],
-          "correct": 1,
-          "explanation": "PP/DS = Advanced Planning für komplexe Fertigung mit endlicher Kapazität, Optimierungsalgorithmen und interaktiver Plantafel."
-        }
-      ],
-      "intro": "**Kapazitätsplanung und Feinplanung** (*Capacity Planning and Scheduling*) optimieren die Nutzung begrenzter Ressourcen. Wo MRP *was* und *wann* plant, bestimmt die Kapazitätsplanung *wie* — unter Berücksichtigung von Maschinen, Arbeitskräften und Schichtmodellen.\n\n## Kapazitätsarten und -bewertung\n**Betriebsmittel** (*Work Centers*) haben definierte Kapazitäten: Maschinenstunden, Personalkapazität, Fläche. Die **Verfügbarkeit** ergibt sich aus Kalender (Arbeitstage), Schichtmodell (Stunden/Tag), und Auslastungsgrad (z.B. 85% für Instandhaltungspuffer). **Überlastung** entsteht, wenn Soll-Belastung > Verfügbarkeit.\n\n## Mittel- und Feinplanung\n**Mittelfristige Kapazitätsplanung** (auf Wochen-/Monatsebene) prüft grobe Übereinstimmung von Bedarf und Kapazität. Bei Diskrepanzen: Überstunden, Schichtzuschaltung, Fremdvergabe. **Feinplanung** (*Detailed Scheduling*, PP/DS) ordnet Aufträge exakten Terminen zu unter Berücksichtigung von Reihenfolgeabhängigkeiten, Rüstzeiten, und Prioritäten.\n\n## Planungsstrategien\n**Vorwärsterminierung** (*Forward Scheduling*): Startet beim frühesten Starttermin, terminiert vorwärts. Garantiert Einhaltung des Startdatums, riskiert Verspätung bei Überlastung. **Rückwärsterminierung** (*Backward Scheduling*): Startet beim geforderten Endtermin, terminiert rückwärts. Garantiert Liefertermin, riskiert unmögliche Starttermine.\n\n## Optimierung in PP/DS\n**SAP PP/DS** nutzt Heuristiken und Algorithmen zur Auftragsreihenfolgeoptimierung. Ziele: Minimierung der Durchlaufzeit, Maximierung der Kapazitätsauslastung, Reduktion von Rüstzeiten (Sequenzierung nach Setup-Ähnlichkeit). In S/4HANA integriert.\n\n## Hintergrund und Einordnung\n\nDas Thema Fertigungsaufträge & Kapazitätsplanung (Production ist ein grundlegender Baustein des Fachwissens. Es verbindet theoretische Konzepte mit praktischer Anwendung und bildet die Basis für weiterführende Themen. Das Verständnis dieser Zusammenhänge ist entscheidend für jede Fachentscheidung — im Controlling, Finanzmanagement oder bei SAP-Implementierungen.\n\nEin strukturiertes Verständnis hilft dabei, komplexe Zusammenhänge zu durchdringen und in der Praxis sicher anzuwenden. Die folgenden Abschnitte vertiefen das Grundverständnis und bereiten auf typische Prüfungssituationen vor.\n\n## Vertiefung: Wichtige Zusammenhänge\n\nIn der Praxis ergeben sich aus den Grundkonzepten häufig Prüfungssituationen. Zum Beispiel wird gefragt: Die Abrechnung eines Fertigungsauftrags (Settlement KO88) überträgt:. Die korrekte Antwort ist: Die Auftragskosten an Material/FI (und ggf. CO-PA). Dies lässt sich damit erklären, dass KO88 (Settlement) rechnet Auftragskosten auf Materialkonto/FI ab. Differenzen aus Plan-Ist erscheinen als Abweichungen im Controlling..\n\nEin weiterer wichtiger Bereich betrifft die korrekte Anwendung: Kapazitätsabgleich (Capacity Leveling) wird notwendig bei:. Die Antwort lautet: Engpass / Kapazitätsüberlast — Nachfrage > verfügbare Kapazität. Dies zeigt, wie wichtig es ist, die theoretischen Grundlagen korrekt zu verstehen und in der Praxis anzuwenden.\n\nTypische Fallstricke entstehen bei der Unterscheidung ähnlicher Konzepte. So ist es entscheidend zu verstehen, dass Rückmeldung (Confirmation) dient hauptsächlich:. Die korrekte Einordnung ist: Der Ist-Datenerfassung: Mengen, Zeiten, Ausschuss — Basis für Controlling.\n\nZusammenfassend lässt sich festhalten: PP/DS wird benötigt, wenn: ist korrekt als Komplexe endliche Kapazitätsplanung mit Optimierung erforderlich ist zu verstehen. Dieses Wissen bildet die Grundlage für das Verständnis weiterführender Konzepte und typischer Prüfungsszenarien.\n\n## Praxisrelevanz und Prüfungsfokus\n\nDas Verständnis der Grundkonzepte ist besonders relevant für Finanz- und SAP-Professionals. Typische Prüfungsfragen orientieren sich an praxisnahen Szenarien, in denen mehrere Konzepte gleichzeitig angewendet werden müssen. Ein strukturiertes Vorgehen und die Kenntnis der wichtigsten Fachbegriffe sind dabei entscheidend.\n\nFür die Vertiefung empfiehlt es sich, die folgenden Kernfragen zu beantworten: (1) Wie unterscheidet sich die praktische Anwendung vom theoretischen Modell? (2) Welche Fehler treten in der Praxis am häufigsten? (3) Wie hängen die einzelnen Konzepte miteinander zusammen?\n\nDie Verbindung zwischen den einzelnen Themenbereichen zeigt sich besonders in der Unternehmenspraxis. Finanzentscheidungen, strategische Planung und operative Umsetzung sind stets miteinander verknüpft — ein ganzheitliches Verständnis ist daher entscheidend für nachhaltigen Erfolg.\n\n## Zusammenfassung\n\nDas Kapitel Fertigungsaufträge & Kapazitätsplanung (Production bildet einen wichtigen Baustein im Gesamtverständnis. Für die Prüfung sollte besonderer Wert auf die korrekte Anwendung der Konzepte in verschiedenen Szenarien gelegt werden. Praktische Beispiele und Fallstudien helfen dabei, das theoretische Wissen zu festigen und sicher anzuwenden."
+      "quiz": [],
+      "intro": "Dieses Kapitel befasst sich mit den Grundlagen von Fertigungsaufträge & Kapazitätsplanung (Production Orders & Capacity Planning) — einem Themenbereich, der fuer das Gesamtverstaendnis von Produktionsplanung und -steuerung mit SAP S/4HANA von zentraler Bedeutung ist. Ob in der akademischen Pruefungsvorbereitung oder im beruflichen Alltag: Wer die folgenden Konzepte sicher beherrscht, hat einen deutlichen Vorsprung. Die Erfahrung zeigt, dass das tiefe Verstaendnis — nicht das auswendige Lernen — den Unterschied macht zwischen denen, die bestehen, und denen, die wirklich kompetent handeln.\n\n\nIm Zentrum der Betrachtung steht zunaechst Production Order Lifecycle: Create -> Release -> Goods Issue -> Production Confirmation -> TECO -> Settlement. Dieses Konzept ist insofern grundlegend, als es die Basis fuer fast alle weiteren Ueberlegungen in diesem Kapitel darstellt. Das Verstaendnis dieses Zusammenhangs — nicht nur die Kenntnis der Definition — ist es, was in der Praxis den Unterschied ausmacht. Wenn Studierende oder Professionals Schwierigkeiten mit fortgeschrittenen Themen haben, liegt die Ursache fast immer in einer unzureichenden Durchdringung dieser Grundlagen. Hier lohnt es sich daher, besonders sorgfaeltig zu arbeiten und sich nicht mit einer oberflaechlichen Kenntnis zufrieden zu geben.\n\n\nEin zweiter wichtiger Aspekt betrifft Goods Issue: Materialverbrauch aus Lager, Backflushing (automatic bei RKL). Was zunaechst als separates Thema erscheint, erweist sich bei genauerem Hinsehen als eng mit dem ersten Punkt verknuepft. Diese Verbindung zu erkennen — und nicht nur isolierte Fakten zu lernen — ist das eigentliche Ziel dieser Lerneinheit. In der Pruefungspraxis zeigt sich immer wieder, dass Fragen, die mehrere Konzepte gleichzeitig abfragen, die groesste Herausforderung darstellen. Genau diese Art von Fragen kann nur beantworten wer den Stoff wirklich durchdrungen hat.\n\n\nDarueber hinaus spielt Production Confirmation: Buchung der bearbeiteten Menge inkl. scrap, duration eine erhebliche Rolle im Gesamtverstaendnis. Die Art und Weise, wie dieses Thema mit den anderen Bereichen zusammenhängt, wird hufig unterschätzt, obwohl gerade diese Zusammenhaenge fuer ein nachhaltiges Lernen entscheidend sind. Es geht nicht nur darum zu wissen, was dieses Konzept bedeutet, sondern vor allem darum zu verstehen, warum es in diesen Zusammenhang gehoert und welche Konsequenzen sich daraus ergeben.\n\n\nSchliesslich gehoert auch Capacity Planning: Work Center load, finite/productive/infinite scheduling, leveling zu den Kernthemen, die in diesem Kapitel behandelt werden. Die Besonderheit dieses Punktes liegt darin, dass er hufig als weniger wichtig eingestuft wird, obwohl er in der Praxis einen erheblichen Unterschied machen kann. Gerade diejenigen, die diesen Aspekt sorgfaeltig durcharbeiten, sind anschliessend besser geruestet, wenn es darum geht, komplexere Zusammenhänge zu verstehen und in neuen Situationen korrekt anzuwenden.\n\n\nEin weiterer Bereich verdient Beachtung: PP/DS (Production Planning/Detailed Scheduling): Algorithms for optimal scheduling. Auch wenn dieses Thema manchmal als nebensaechlich erscheint, zeigt die Erfahrung, dass es in der Praxis einen erheblichen Unterschied machen kann. Das Zusammenspiel verschiedener Konzepte — auch jener, die zunaechst nebensaechlich wirken — macht den Unterschied zwischen einem soliden und einem wirklich ausgezeichneten Verstaendnis aus. Gerade in Pruefungssituationen, die mehrere Themen gleichzeitig abfragen, zahlt sich dieses tiefere Verstaendnis aus.\n\n\nDas Gesamtbild, das dieses Kapitel vermittelt, geht weit ueber die einzelnen Themen hinaus. Es geht darum, ein Verstaendnis dafuer zu entwickeln, wie die verschiedenen Aspekte von Fertigungsaufträge & Kapazitätsplanung (Production Orders & Capacity Planning) zusammenwirken und welchen Beitrag sie zum Gesamtverstaendnis von Produktionsplanung und -steuerung mit SAP S/4HANA leisten. Fuer die weitere Arbeit in diesem Kurs — oder in der beruflichen Praxis — bildet dieses Kapitel das Fundament, auf dem alles Weitere aufbaut. Wer diese Grundlagen sicher beherrscht, wird auch mit den komplexeren Themen keine Schwierigkeiten haben.\n"
     }
   ]
 }

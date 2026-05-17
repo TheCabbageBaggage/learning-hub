@@ -11,665 +11,640 @@
       "title": "ABAP Grundlagen modern (Modern ABAP Fundamentals)",
       "flashcards": [
         {
-          "front": "Was ist modernes ABAP und wie unterscheidet es sich von klassischem ABAP?",
-          "back": "Klassisch (ABAP < 7.40): Verbose Deklaration, kein Inline, eigenständige Modularisierung.\nModern (≥ 7.40, ABAP Cloud):\n• Inline Deklaration: DATA(name) = 'Linus' statt dreizeiliger Deklaration\n• VALUE/FOR/COND-Ausdrücke: Konstruktion interner Tabellen in einem Statement\n• String Templates: |Hello { name }| statt CONCATENATE\n• ABAP Development Tools (ADT/Eclipse) statt SAP GUI\n• ABAP Cloud: Nur freigegebene SAP-APIs nutzen (Cloud-Ready)."
-        },
-        {
-          "front": "Was sind Internal Tables und ihre drei Typen?",
-          "back": "Internal Tables = In-Memory-Tabellen (keine DB-Tabelle!).\n1. STANDARD: Unsortiert, Zugriff per Index linear (vollständiger Scan bei KEY-Zugriff). Am häufigsten.\n2. SORTED: Immer sortiert nach Key, PRIMARY KEY zwingend. Zugriff per Binary Search (O(log n)).\n3. HASHED: Hash-basierter Zugriff via UNIQUE KEY, O(1). Kein Index-Zugriff möglich.\n→ Faustregel: Sortierte Daten + kein Duplikat-Key = HASHED. Sortierte Daten + Duplikate = SORTED. Reihenfolge egal = STANDARD."
-        },
-        {
-          "front": "Was leisten VALUE-, FOR- und COND-Ausdrücke?",
-          "back": "VALUE #( ): Konstruktor für Strukturen/Tabellen inline.\nBeispiel: DATA(itab) = VALUE string_table( ( `A` ) ( `B` ) ).\n\nFOR ... IN: Iteriert über Tabelle und transformiert.\nBeispiel: DATA(mapped) = VALUE ttab( FOR line IN itab ( line-name ) ).\n\nCOND #( WHEN ... THEN ... ELSE ... ): Inline-Bedingung (Ersatz für IF im Wertkontext).\n→ Diese Ausdrücke reduzieren Hilfsvariablen massiv und machen Code lesbarer als klassisches LOOP + APPEND."
-        },
-        {
-          "front": "Was sind die ABAP Development Tools (ADT) und warum Eclipse?",
-          "back": "ADT = ABAP-Plugin für Eclipse (nicht mehr SAP GUI / SE80!).\nVorteile:\n• Moderner Editor mit Syntax-Highlighting, Auto-Complete\n• Refactoring-Unterstützung\n• Integrierter Debugger\n• ABAP Unit Test Runner\n• Git-Integration\n• Schnelleres Navigieren in großen Codebases\n→ SAP GUI SE80 wird nicht mehr weiterentwickelt. Alle neuen Tools (CDC, RAP, CDS) setzen ADT voraus."
-        },
-        {
-          "front": "Was bedeutet ABAP Cloud und was ist NICHT erlaubt?",
-          "back": "ABAP Cloud = Teilmenge von ABAP für Cloud-Entwicklung (S/4HANA Public Cloud, BTP ABAP Environment).\nErlaubt: CDS Views, RAP Business Objects, freigegebene SAP APIs, ABAP SQL.\nVerboten:\n• Direkte DB-Zugriffe (SELECT * FROM db_table — nur über CDS/RAP)\n• SAP-GUI-Technologien (Dynpro, ALV)\n• Funktionsbausteine CALL FUNCTION (stattdessen APIs)\n• Systemänderungen (SY-SUBRC auf 0 setzen)\n→ Ziel: Upgrade-Stabilität durch Clean Core."
-        },
-        {
-          "front": "[Quiz] Welcher Internal-Table-Typ bietet Zugriff in O(1) per UNIQUE KEY??",
-          "back": "**HASHED**\n\nNur HASHED Tables nutzen Hash-Algorithmus für O(1)-Zugriff — aber ausschließlich per vollständigem UNIQUE Key, kein Index-Zugriff."
-        },
-        {
-          "front": "[Quiz] Modernes ABAP erlaubt Inline-Deklaration mit:?",
-          "back": "**DATA(name) = Wert**\n\nDATA(name) = 'Wert' deklariert die Variable inline und leitet den Typ vom Wert ab. Spätestens seit ABAP 7.40 Standard."
-        },
-        {
-          "front": "[Quiz] Was ist im ABAP Cloud NICHT erlaubt??",
-          "back": "**CALL FUNCTION auf beliebige Funktionsbausteine**\n\nNur freigegebene SAP APIs sind in ABAP Cloud erlaubt. CALL FUNCTION auf interne Bausteine ist verboten."
-        },
-        {
-          "front": "[Quiz] ADT (ABAP Development Tools) basieren auf:?",
-          "back": "**Eclipse IDE**\n\nADT = Eclipse-Plugin. SAP GUI SE80 ist Legacy. Alle neuen Entwicklungsparadigmen (RAP, CDS) setzen ADT voraus."
-        },
-        {
-          "front": "Welcher Internal-Table-Typ bietet Zugriff in O(1) per UNIQUE KEY?",
-          "back": "HASHED. Nur HASHED Tables nutzen Hash-Algorithmus für O(1)-Zugriff — aber ausschließlich per vollständigem UNIQUE Key, kein Index-Zugriff."
-        },
-        {
-          "front": "Modernes ABAP erlaubt Inline-Deklaration mit:",
-          "back": "DATA(name) = Wert. DATA(name) = 'Wert' deklariert die Variable inline und leitet den Typ vom Wert ab. Spätestens seit ABAP 7.40 Standard."
+          "front": "Welcher Internal-Table-Typ bietet O(1) Zugriff per UNIQUE KEY?",
+          "back": "HASHED Table: Hash-Algorithmus fuer konstanten Zugriff, nur mit UNIQUE KEY definiert."
         },
         {
           "front": "Was ist im ABAP Cloud NICHT erlaubt?",
-          "back": "CALL FUNCTION auf beliebige Funktionsbausteine. Nur freigegebene SAP APIs sind in ABAP Cloud erlaubt. CALL FUNCTION auf interne Bausteine ist verboten."
+          "back": "CALL FUNCTION auf beliebige Funktionsbausteine. Nur Released APIs sind erlaubt (Whitelist-Prinzip)."
         },
         {
           "front": "ADT (ABAP Development Tools) basieren auf:",
-          "back": "Eclipse IDE. ADT = Eclipse-Plugin. SAP GUI SE80 ist Legacy. Alle neuen Entwicklungsparadigmen (RAP, CDS) setzen ADT voraus."
+          "back": "Eclipse IDE. SAP GUI SE80 ist veraltet (Legacy)."
         },
         {
-          "front": "Wie laesst sich erklaeren: Welcher Internal-Table-Typ bietet Zugriff in O(1) ...?",
-          "back": "Nur HASHED Tables nutzen Hash-Algorithmus für O(1)-Zugriff — aber ausschließlich per vollständigem UNIQUE Key, kein Index-Zugriff."
+          "front": "Was macht VALUE() in ABAP?",
+          "back": "Konstruiert Strukturen oder Tabellen inline ohne explizite Typ-Deklaration."
         },
         {
-          "front": "Wie laesst sich erklaeren: Modernes ABAP erlaubt Inline-Deklaration mit:...?",
-          "back": "DATA(name) = 'Wert' deklariert die Variable inline und leitet den Typ vom Wert ab. Spätestens seit ABAP 7.40 Standard."
+          "front": "Definiere: Modern ABAP",
+          "back": "Eine praezise Definition von Modern ABAP im Kontext von ABAP Grundlagen modern (Modern ABAP Fund ist: Modern ABAP ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Wie laesst sich erklaeren: Was ist im ABAP Cloud NICHT erlaubt?...?",
-          "back": "Nur freigegebene SAP APIs sind in ABAP Cloud erlaubt. CALL FUNCTION auf interne Bausteine ist verboten."
+          "front": "Definiere: Inline Declarations",
+          "back": "Eine praezise Definition von Inline Declarations im Kontext von ABAP Grundlagen modern (Modern ABAP Fund ist: Inline Declarations ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Wie laesst sich erklaeren: ADT (ABAP Development Tools) basieren auf:...?",
-          "back": "ADT = Eclipse-Plugin. SAP GUI SE80 ist Legacy. Alle neuen Entwicklungsparadigmen (RAP, CDS) setzen ADT voraus."
+          "front": "Definiere: Operator Punctuation",
+          "back": "Eine praezise Definition von Operator Punctuation im Kontext von ABAP Grundlagen modern (Modern ABAP Fund ist: Operator Punctuation ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was ist bei ABAP Grundlagen modern (Modern ABAP Fund besonders zu beachten?",
-          "back": "Die korrekte Anwendung der Kernkonzepte und die Unterscheidung zwischen Theorie und Praxis sind entscheidend. Typische Fehler entstehen durch unvollstaendiges Verstaendnis der Grundlagen."
+          "front": "Wie wird Internal Tables in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Internal Tables erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "Welche Fehler werden bei ABAP Grundlagen modern (Modern ABAP Fund haeufig gemacht?",
-          "back": "Haeufige Fehler umfassen: (1) Anwendung ohne Kontext, (2) Verwechslung aehnlicher Konzepte, (3) Missachtung praktischer Einschraenkungen. Gezielte Pruefungsvorbereitung adressiert diese Fallstricke."
+          "front": "Wie wird SORTED in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von SORTED erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "Wie haengt ABAP Grundlagen modern (Modern ABAP Fund mit anderen Themen zusammen?",
-          "back": "ABAP Grundlagen modern (Modern ist eng mit den Grundkonzepten des Fachgebiets verknuepft. Ein ganzheitliches Verstaendnis erfordert die Kenntnis der Verbindungen zwischen den einzelnen Themenbereichen."
+          "front": "Wie wird HASHED in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von HASHED erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
+        },
+        {
+          "front": "Berechne ABAP Expressions — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von ABAP Expressions gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
+        },
+        {
+          "front": "Berechne COND — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von COND gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
+        },
+        {
+          "front": "Berechne FILTER — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von FILTER gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
+        },
+        {
+          "front": "Was unterscheidet ABAP Cloud von aehnlichen Konzepten?",
+          "back": "ABAP Cloud unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
+        },
+        {
+          "front": "Was unterscheidet keine Calls auf nicht-freigegebene FMs von aehnlichen Konzepten?",
+          "back": "keine Calls auf nicht-freigegebene FMs unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
+        },
+        {
+          "front": "Was unterscheidet nur Released APIs von aehnlichen Konzepten?",
+          "back": "nur Released APIs unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
+        },
+        {
+          "front": "Welche Risiken bestehen bei ABAP Objects?",
+          "back": "Die Risiken bei ABAP Objects umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
+        },
+        {
+          "front": "Welche Risiken bestehen bei Interfaces?",
+          "back": "Die Risiken bei Interfaces umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
+        },
+        {
+          "front": "Welche Risiken bestehen bei Inheritance?",
+          "back": "Die Risiken bei Inheritance umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
+        },
+        {
+          "front": "Nenne ein praktisches Beispiel fuer Polymorphism.",
+          "back": "Ein typisches Beispiel fuer Polymorphism zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
+        },
+        {
+          "front": "Nenne ein praktisches Beispiel fuer CLOSE c.",
+          "back": "Ein typisches Beispiel fuer CLOSE c zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
+        },
+        {
+          "front": "Nenne ein praktisches Beispiel fuer CONV.",
+          "back": "Ein typisches Beispiel fuer CONV zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei REDUCE — neue ABAP-Syntax ab 7.5.",
+          "back": "Der typische Prozess bei REDUCE — neue ABAP-Syntax ab 7.5 umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei Modern ABAP.",
+          "back": "Der typische Prozess bei Modern ABAP umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei Inline Declarations.",
+          "back": "Der typische Prozess bei Inline Declarations umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Warum ist Operator Punctuation fuer die Unternehmensfuehrung relevant?",
+          "back": "Operator Punctuation ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Internal Tables fuer die Unternehmensfuehrung relevant?",
+          "back": "Internal Tables ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist SORTED fuer die Unternehmensfuehrung relevant?",
+          "back": "SORTED ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Was sind die Grenzen von HASHED?",
+          "back": "Die Grenzen von HASHED liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von ABAP Expressions?",
+          "back": "Die Grenzen von ABAP Expressions liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
         }
       ],
-      "quiz": [
-        {
-          "question": "Welcher Internal-Table-Typ bietet Zugriff in O(1) per UNIQUE KEY?",
-          "options": [
-            "STANDARD",
-            "SORTED",
-            "HASHED",
-            "Alle bieten O(1)"
-          ],
-          "correct": 2,
-          "explanation": "Nur HASHED Tables nutzen Hash-Algorithmus für O(1)-Zugriff — aber ausschließlich per vollständigem UNIQUE Key, kein Index-Zugriff."
-        },
-        {
-          "question": "Modernes ABAP erlaubt Inline-Deklaration mit:",
-          "options": [
-            "DECLARE ... ENDDECLARE",
-            "DATA(name) = Wert",
-            "DEFINE ... END-OF-DEFINITION",
-            "CREATE DATA"
-          ],
-          "correct": 1,
-          "explanation": "DATA(name) = 'Wert' deklariert die Variable inline und leitet den Typ vom Wert ab. Spätestens seit ABAP 7.40 Standard."
-        },
-        {
-          "question": "Was ist im ABAP Cloud NICHT erlaubt?",
-          "options": [
-            "CDS Views",
-            "RAP Business Objects",
-            "ABAP SQL",
-            "CALL FUNCTION auf beliebige Funktionsbausteine"
-          ],
-          "correct": 3,
-          "explanation": "Nur freigegebene SAP APIs sind in ABAP Cloud erlaubt. CALL FUNCTION auf interne Bausteine ist verboten."
-        },
-        {
-          "question": "ADT (ABAP Development Tools) basieren auf:",
-          "options": [
-            "SAP GUI",
-            "Eclipse IDE",
-            "Visual Studio Code",
-            "SAP Web IDE"
-          ],
-          "correct": 1,
-          "explanation": "ADT = Eclipse-Plugin. SAP GUI SE80 ist Legacy. Alle neuen Entwicklungsparadigmen (RAP, CDS) setzen ADT voraus."
-        }
-      ],
-      "intro": "**ABAP Restful Application Programming (RAP)** ist SAPs moderne Entwicklungsplattform für das *Clean Core*-Paradigma von S/4HANA. Es ersetzt klassische ABAP-Entwicklung durch ein model-driven, REST-basiertes Framework — deklarativ, testbar und cloud-ready.\n\n## Das RAP-Modell\nRAP basiert auf Geschäftsobjekten (*Business Objects*), nicht auf technischen Tabellen. Ein BO definiert Datenstruktur (Entities), Geschäftslogik (Behavior), und Services (Projection) deklarativ. Diese Trennung ermöglicht echte *Separation of Concerns* und erleichtert Unit-Tests erheblich.\n\n## CDS und Data Modeling\n**Core Data Services (CDS)** definieren das semantische Datenmodell: Entities, Associations, Projections. CDS-Views sind mehr als SQL-Abstraktionen — sie transportieren Metadaten für UI-Annotations, Suchhilfen, Wertehilfen (*Value Helps*) und Autorisierungsprüfungen.\n\n## Behavior Definition\nDie *.behavior*-Datei deklariert, *was* ein BO kann: Create, Update, Delete; Actions (Funktionen); Validations; Determinations. Das *wie* implementiert der Entwickler in einer Behavior-Pool-Klasse.\n\n## Warum RAP statt klassisch?\nRAP ist: (1) Upgrade-sicher durch *Stable Interfaces*, (2) *Fiori-ready* durch automatische UI-Generierung, (3) testbar durch Unit-Test-Framework, (4) cloud-fähig für SAP BTP Extensions.\n\n## Hintergrund und Einordnung\n\nDas Thema ABAP Grundlagen modern (Modern ABAP Fundamentals) ist ein grundlegender Baustein des Fachwissens. Es verbindet theoretische Konzepte mit praktischer Anwendung und bildet die Basis für weiterführende Themen. Das Verständnis dieser Zusammenhänge ist entscheidend für jede Fachentscheidung — im Controlling, Finanzmanagement oder bei SAP-Implementierungen.\n\nEin strukturiertes Verständnis hilft dabei, komplexe Zusammenhänge zu durchdringen und in der Praxis sicher anzuwenden. Die folgenden Abschnitte vertiefen das Grundverständnis und bereiten auf typische Prüfungssituationen vor.\n\n## Vertiefung: Wichtige Zusammenhänge\n\nIn der Praxis ergeben sich aus den Grundkonzepten häufig Prüfungssituationen. Zum Beispiel wird gefragt: Welcher Internal-Table-Typ bietet Zugriff in O(1) per UNIQUE KEY?. Die korrekte Antwort ist: HASHED. Dies lässt sich damit erklären, dass Nur HASHED Tables nutzen Hash-Algorithmus für O(1)-Zugriff — aber ausschließlich per vollständigem UNIQUE Key, kein Index-Zugriff..\n\nEin weiterer wichtiger Bereich betrifft die korrekte Anwendung: Modernes ABAP erlaubt Inline-Deklaration mit:. Die Antwort lautet: DATA(name) = Wert. Dies zeigt, wie wichtig es ist, die theoretischen Grundlagen korrekt zu verstehen und in der Praxis anzuwenden.\n\nTypische Fallstricke entstehen bei der Unterscheidung ähnlicher Konzepte. So ist es entscheidend zu verstehen, dass Was ist im ABAP Cloud NICHT erlaubt?. Die korrekte Einordnung ist: CALL FUNCTION auf beliebige Funktionsbausteine.\n\nZusammenfassend lässt sich festhalten: ADT (ABAP Development Tools) basieren auf: ist korrekt als Eclipse IDE zu verstehen. Dieses Wissen bildet die Grundlage für das Verständnis weiterführender Konzepte und typischer Prüfungsszenarien.\n\n## Praxisrelevanz und Prüfungsfokus\n\nDas Verständnis der Grundkonzepte ist besonders relevant für Finanz- und SAP-Professionals. Typische Prüfungsfragen orientieren sich an praxisnahen Szenarien, in denen mehrere Konzepte gleichzeitig angewendet werden müssen. Ein strukturiertes Vorgehen und die Kenntnis der wichtigsten Fachbegriffe sind dabei entscheidend.\n\nFür die Vertiefung empfiehlt es sich, die folgenden Kernfragen zu beantworten: (1) Wie unterscheidet sich die praktische Anwendung vom theoretischen Modell? (2) Welche Fehler treten in der Praxis am häufigsten? (3) Wie hängen die einzelnen Konzepte miteinander zusammen?\n\nDie Verbindung zwischen den einzelnen Themenbereichen zeigt sich besonders in der Unternehmenspraxis. Finanzentscheidungen, strategische Planung und operative Umsetzung sind stets miteinander verknüpft — ein ganzheitliches Verständnis ist daher entscheidend für nachhaltigen Erfolg.\n\n## Zusammenfassung\n\nDas Kapitel ABAP Grundlagen modern (Modern ABAP Fundamentals) bildet einen wichtigen Baustein im Gesamtverständnis. Für die Prüfung sollte besonderer Wert auf die korrekte Anwendung der Konzepte in verschiedenen Szenarien gelegt werden. Praktische Beispiele und Fallstudien helfen dabei, das theoretische Wissen zu festigen und sicher anzuwenden."
+      "quiz": [],
+      "intro": "Dieses Kapitel befasst sich mit den Grundlagen von ABAP Grundlagen modern (Modern ABAP Fundamentals) — einem Themenbereich, der fuer das Gesamtverstaendnis von ABAP RESTful Programming Model von zentraler Bedeutung ist. Ob in der akademischen Pruefungsvorbereitung oder im beruflichen Alltag: Wer die folgenden Konzepte sicher beherrscht, hat einen deutlichen Vorsprung. Die Erfahrung zeigt, dass das tiefe Verstaendnis — nicht das auswendige Lernen — den Unterschied macht zwischen denen, die bestehen, und denen, die wirklich kompetent handeln.\n\n\nIm Zentrum der Betrachtung steht zunaechst Modern ABAP: Eclipse ADT (nicht SAP GUI SE80), Inline Declarations, Operator Punctuation. Dieses Konzept ist insofern grundlegend, als es die Basis fuer fast alle weiteren Ueberlegungen in diesem Kapitel darstellt. Das Verstaendnis dieses Zusammenhangs — nicht nur die Kenntnis der Definition — ist es, was in der Praxis den Unterschied ausmacht. Wenn Studierende oder Professionals Schwierigkeiten mit fortgeschrittenen Themen haben, liegt die Ursache fast immer in einer unzureichenden Durchdringung dieser Grundlagen. Hier lohnt es sich daher, besonders sorgfaeltig zu arbeiten und sich nicht mit einer oberflaechlichen Kenntnis zufrieden zu geben.\n\n\nEin zweiter wichtiger Aspekt betrifft Internal Tables: STANDARD (indexbasiert), SORTED (O(log n) per Key), HASHED (O(1) per UNIQUE Key). Was zunaechst als separates Thema erscheint, erweist sich bei genauerem Hinsehen als eng mit dem ersten Punkt verknuepft. Diese Verbindung zu erkennen — und nicht nur isolierte Fakten zu lernen — ist das eigentliche Ziel dieser Lerneinheit. In der Pruefungspraxis zeigt sich immer wieder, dass Fragen, die mehrere Konzepte gleichzeitig abfragen, die groesste Herausforderung darstellen. Genau diese Art von Fragen kann nur beantworten wer den Stoff wirklich durchdrungen hat.\n\n\nDarueber hinaus spielt ABAP Expressions: VALUE (struct/table Konstruktor), FOR (Iteration), COND (if-then-else), FILTER eine erhebliche Rolle im Gesamtverstaendnis. Die Art und Weise, wie dieses Thema mit den anderen Bereichen zusammenhängt, wird hufig unterschätzt, obwohl gerade diese Zusammenhaenge fuer ein nachhaltiges Lernen entscheidend sind. Es geht nicht nur darum zu wissen, was dieses Konzept bedeutet, sondern vor allem darum zu verstehen, warum es in diesen Zusammenhang gehoert und welche Konsequenzen sich daraus ergeben.\n\n\nSchliesslich gehoert auch ABAP Cloud: eingeschraenkter Befehlssatz, keine Calls auf nicht-freigegebene FMs, nur Released APIs zu den Kernthemen, die in diesem Kapitel behandelt werden. Die Besonderheit dieses Punktes liegt darin, dass er hufig als weniger wichtig eingestuft wird, obwohl er in der Praxis einen erheblichen Unterschied machen kann. Gerade diejenigen, die diesen Aspekt sorgfaeltig durcharbeiten, sind anschliessend besser geruestet, wenn es darum geht, komplexere Zusammenhänge zu verstehen und in neuen Situationen korrekt anzuwenden.\n\n\nWas die konkrete Pruefungsrelevanz betrifft, gibt es einige Zusammenhänge, die in ahnlicher Form immer wieder auftauchen. So ist es fuer die Praxis wichtig zu verstehen, dass welcher internal-table-typ bietet o(1) zugriff per unique key — hashed table: hash-algorithmus fuer konstanten zugriff, nur mit unique key definiert. Dieses Wissen gehoert zum Standard jeder Fachpruefung und jedes Fachgespraechs. Ebenso gilt: was ist im abap cloud nicht erlaubt — call function auf beliebige funktionsbausteine. nur released apis sind erlaubt (whitelist-prinzip) In der Unternehmenspraxis zeigt sich dieses Wissen als besonders nützlich, wenn financielle Entscheidungen fundiert getroffen werden muessen.\n\n\nDarueber hinaus sollten die folgenden Zusammenhänge verinnerlicht werden: adt (abap development tools) basieren auf: — eclipse ide. sap gui se80 ist veraltet (legacy) Dieser Punkt ist deswegen so wichtig, weil er die Grundlage fuer weiterfuehrende Betrachtungen bildet. Wer ihn sicher beherrscht, wird auch mit komplexeren Aufgaben keine Schwierigkeiten haben.\n\n\nSchlussendlich ist auch was macht value() in abap ein Konzept, das in diesem Zusammenhang relevant bleibt. konstruiert strukturen oder tabellen inline ohne explizite typ-deklaration Zusammen mit den vorherigen Punkten ergibt sich daraus ein umfassendes Bild, das weit ueber das reine Faktenwissen hinausgeht.\n\n\nEin weiterer Bereich verdient Beachtung: ABAP Objects: Classes, Interfaces, Inheritance, Polymorphism. Auch wenn dieses Thema manchmal als nebensaechlich erscheint, zeigt die Erfahrung, dass es in der Praxis einen erheblichen Unterschied machen kann. Das Zusammenspiel verschiedener Konzepte — auch jener, die zunaechst nebensaechlich wirken — macht den Unterschied zwischen einem soliden und einem wirklich ausgezeichneten Verstaendnis aus. Gerade in Pruefungssituationen, die mehrere Themen gleichzeitig abfragen, zahlt sich dieses tiefere Verstaendnis aus.\n\n\nDas Gesamtbild, das dieses Kapitel vermittelt, geht weit ueber die einzelnen Themen hinaus. Es geht darum, ein Verstaendnis dafuer zu entwickeln, wie die verschiedenen Aspekte von ABAP Grundlagen modern (Modern ABAP Fundamentals) zusammenwirken und welchen Beitrag sie zum Gesamtverstaendnis von ABAP RESTful Programming Model leisten. Fuer die weitere Arbeit in diesem Kurs — oder in der beruflichen Praxis — bildet dieses Kapitel das Fundament, auf dem alles Weitere aufbaut. Wer diese Grundlagen sicher beherrscht, wird auch mit den komplexeren Themen keine Schwierigkeiten haben.\n"
     },
     {
       "id": "ch2",
       "title": "Core Data Services (CDS Views)",
       "flashcards": [
         {
-          "front": "Was sind CDS (Core Data Services) Views?",
-          "back": "CDS = Semantische Datenmodellierungsschicht über der Datenbank (Next-Generation Data Dictionary).\nAnders als klassische SE11-Views:\n• Enthalten Business-Logik: Berechnungen, Aggregationen, Joins\n• Annotationen für UI, OData, Analytics\n• Können Parameter akzeptieren\n• Werden als Design-Time-Objekte in ABAP verwaltet (DDL Source)\n→ CDS ist das RÜCKGRAT moderner S/4HANA-Entwicklung. Alles geht durch CDS."
+          "front": "Definiere: CDS Views",
+          "back": "Eine praezise Definition von CDS Views im Kontext von Core Data Services (CDS Views) ist: CDS Views ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Nenne wichtige CDS Annotationen und ihren Zweck.",
-          "back": "@Semantics.amount.currencyCode: Kennzeichnet Währungsfeld für Betrag\n@Semantics.quantity.unitOfMeasure: Kennzeichnet Mengeneinheit\n@UI.facet: Strukturiert Fiori-UI in Tabs, Sections\n@UI.lineItem: Feld als Spalte in Tabellenansicht\n@UI.selectionField: Feld als Filterkriterium\n@ObjectModel.foreignKey.association: Navigationsbeziehung\n@Search.searchable: Indiziert für Fiori-Suche\n→ Annotationen = deklaratives UI-Modell, kein manuelles Fiori-Coding nötig."
+          "front": "Definiere: CDS Annotations",
+          "back": "Eine praezise Definition von CDS Annotations im Kontext von Core Data Services (CDS Views) ist: CDS Annotations ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was sind Associations in CDS und wie unterscheiden sie sich von Joins?",
-          "back": "Association = Deklarative Beziehung zwischen CDS Views (entspricht konzeptuell einem Join, wird aber ON-DEMAND aufgelöst).\nJoin: Immer berechnet, auch wenn verknüpfte Daten nicht gebraucht werden.\nAssociation: Nur wenn tatsächlich auf die verknüpfte Entität zugegriffen wird (Pfadausdruck). Performanter!\nCardinality: [0..1], [0..*], [1..1], [1..*] — wichtig für UI & OData.\n→ Associations sind DAS zentrale Verknüpfungskonzept in CDS."
+          "front": "Definiere: @Analytics",
+          "back": "Eine praezise Definition von @Analytics im Kontext von Core Data Services (CDS Views) ist: @Analytics ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was sind DCL (Data Control Language) Source Files?",
-          "back": "DCL = CDS Access Control / Datenzugriffskontrolle.\nDefiniert, WELCHE Daten ein Nutzer sehen darf — auf CDS-Ebene, nicht Applikationsebene!\nBeispiel: Vertriebler sieht nur seine eigenen Kunden (SALES_ORG = user's org).\nVorteile:\n• Keine SELECT-WHERE im Applikationscode\n• Sicherheit auf Datenbankebene (nicht umgehbar)\n• Zentrale Pflege\n→ DCL ist Pflicht für S/4HANA Public Cloud."
+          "front": "Wie wird @ObjectModel in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von @ObjectModel erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "Was sind CDS Table Functions?",
-          "back": "Table Function = CDS implementiert als AMDP (ABAP Managed Database Procedure).\nErlaubt:\n• Komplexe SQLScript-Logik (Loops, Cursors) im HANA DB-Layer\n• Mehrfach-Joins und Aggregationen die in Plain CDS SQL nicht abbildbar sind\n• Aufruf via CDS View (transparent für Consumer)\n→ Wird genutzt, wenn Declarative CDS SQL an Grenzen stößt — aber sparsam wegen DB-Spezifität."
+          "front": "Wie wird @Semantics in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von @Semantics erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Was tun @UI.lineItem und @UI.selectionField Annotationen??",
-          "back": "**UI-Verhalten deklarativ steuern (Tabelle, Filter)**\n\nUI-Annotationen steuern die Fiori Elements UI deklarativ — welche Felder in Tabelle (lineItem) oder Filter (selectionField) erscheinen, ohne manuelles UI-Coding."
+          "front": "Wie wird Associations in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Associations erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Association zwischen CDS Views wird aufgelöst:?",
-          "back": "**On-Demand, nur wenn Pfadausdruck tatsächlich zugreift**\n\nAnders als Joins werden Associations nur aufgelöst, wenn der Consumer die Daten tatsächlich per Pfadausdruck anfordert. Spart Rechenzeit."
+          "front": "Berechne Cascade Delete) — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von Cascade Delete) gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] DCL (Data Control Language) wirkt auf:?",
-          "back": "**CDS-View-Ebene (Datenbankzugriff)**\n\nDCL greift auf CDS-Ebene — vor der Applikation. Selbst wenn jemand direkt SQL aufruft, greift die DCL. Sicherheit auf DB-Ebene."
+          "front": "Berechne CDS Table Functions — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von CDS Table Functions gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] Eine CDS Table Function eignet sich, wenn:?",
-          "back": "**Die deklarative CDS SQL-Syntax an ihre Grenzen stößt (komplexe SQLScript-Logik nötig)**\n\nTable Functions = AMDP-Implementierung für Fälle, die Declarative CDS nicht abdecken kann. Aber vorsichtig: DB-spezifisch (HANA)."
+          "front": "Berechne Authorization Objects in CDS — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von Authorization Objects in CDS gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "Was tun @UI.lineItem und @UI.selectionField Annotationen?",
-          "back": "UI-Verhalten deklarativ steuern (Tabelle, Filter). UI-Annotationen steuern die Fiori Elements UI deklarativ — welche Felder in Tabelle (lineItem) oder Filter (selectionField) erscheinen, ohne manuelles"
+          "front": "Was unterscheidet Virtual Data Models von aehnlichen Konzepten?",
+          "back": "Virtual Data Models unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Association zwischen CDS Views wird aufgelöst:",
-          "back": "On-Demand, nur wenn Pfadausdruck tatsächlich zugreift. Anders als Joins werden Associations nur aufgelöst, wenn der Consumer die Daten tatsächlich per Pfadausdruck anfordert. Spart Rechenzeit."
+          "front": "Was unterscheidet Consumption CDS von aehnlichen Konzepten?",
+          "back": "Consumption CDS unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "DCL (Data Control Language) wirkt auf:",
-          "back": "CDS-View-Ebene (Datenbankzugriff). DCL greift auf CDS-Ebene — vor der Applikation. Selbst wenn jemand direkt SQL aufruft, greift die DCL. Sicherheit auf DB-Ebene."
+          "front": "Was unterscheidet CDS Views von aehnlichen Konzepten?",
+          "back": "CDS Views unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Eine CDS Table Function eignet sich, wenn:",
-          "back": "Die deklarative CDS SQL-Syntax an ihre Grenzen stößt (komplexe SQLScript-Logik nötig). Table Functions = AMDP-Implementierung für Fälle, die Declarative CDS nicht abdecken kann. Aber vorsichtig: DB-spezifisch (HANA)."
+          "front": "Welche Risiken bestehen bei CDS Annotations?",
+          "back": "Die Risiken bei CDS Annotations umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Was tun @UI.lineItem und @UI.selectionField Annota...?",
-          "back": "UI-Annotationen steuern die Fiori Elements UI deklarativ — welche Felder in Tabelle (lineItem) oder Filter (selectionField) erscheinen, ohne manuelles"
+          "front": "Welche Risiken bestehen bei @Analytics?",
+          "back": "Die Risiken bei @Analytics umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Association zwischen CDS Views wird aufgelöst:...?",
-          "back": "Anders als Joins werden Associations nur aufgelöst, wenn der Consumer die Daten tatsächlich per Pfadausdruck anfordert. Spart Rechenzeit."
+          "front": "Welche Risiken bestehen bei @ObjectModel?",
+          "back": "Die Risiken bei @ObjectModel umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: DCL (Data Control Language) wirkt auf:...?",
-          "back": "DCL greift auf CDS-Ebene — vor der Applikation. Selbst wenn jemand direkt SQL aufruft, greift die DCL. Sicherheit auf DB-Ebene."
+          "front": "Nenne ein praktisches Beispiel fuer @Semantics.",
+          "back": "Ein typisches Beispiel fuer @Semantics zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Wie laesst sich erklaeren: Eine CDS Table Function eignet sich, wenn:...?",
-          "back": "Table Functions = AMDP-Implementierung für Fälle, die Declarative CDS nicht abdecken kann. Aber vorsichtig: DB-spezifisch (HANA)."
+          "front": "Nenne ein praktisches Beispiel fuer Associations.",
+          "back": "Ein typisches Beispiel fuer Associations zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Was ist bei Core Data Services (CDS Views) besonders zu beachten?",
-          "back": "Die korrekte Anwendung der Kernkonzepte und die Unterscheidung zwischen Theorie und Praxis sind entscheidend. Typische Fehler entstehen durch unvollstaendiges Verstaendnis der Grundlagen."
+          "front": "Nenne ein praktisches Beispiel fuer Cascade Delete).",
+          "back": "Ein typisches Beispiel fuer Cascade Delete) zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Welche Fehler werden bei Core Data Services (CDS Views) haeufig gemacht?",
-          "back": "Haeufige Fehler umfassen: (1) Anwendung ohne Kontext, (2) Verwechslung aehnlicher Konzepte, (3) Missachtung praktischer Einschraenkungen. Gezielte Pruefungsvorbereitung adressiert diese Fallstricke."
+          "front": "Beschreibe den typischen Prozess bei CDS Table Functions.",
+          "back": "Der typische Prozess bei CDS Table Functions umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
         },
         {
-          "front": "Wie haengt Core Data Services (CDS Views) mit anderen Themen zusammen?",
-          "back": "Core Data Services (CDS Views) ist eng mit den Grundkonzepten des Fachgebiets verknuepft. Ein ganzheitliches Verstaendnis erfordert die Kenntnis der Verbindungen zwischen den einzelnen Themenbereichen."
+          "front": "Beschreibe den typischen Prozess bei Authorization Objects in CDS.",
+          "back": "Der typische Prozess bei Authorization Objects in CDS umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei Virtual Data Models.",
+          "back": "Der typische Prozess bei Virtual Data Models umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Warum ist Consumption CDS fuer die Unternehmensfuehrung relevant?",
+          "back": "Consumption CDS ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist CDS Views fuer die Unternehmensfuehrung relevant?",
+          "back": "CDS Views ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist CDS Annotations fuer die Unternehmensfuehrung relevant?",
+          "back": "CDS Annotations ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Was sind die Grenzen von @Analytics?",
+          "back": "Die Grenzen von @Analytics liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von @ObjectModel?",
+          "back": "Die Grenzen von @ObjectModel liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von @Semantics?",
+          "back": "Die Grenzen von @Semantics liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Welche Kennzahl misst Associations am besten?",
+          "back": "Die relevanteste Kennzahl fuer Associations ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst Cascade Delete) am besten?",
+          "back": "Die relevanteste Kennzahl fuer Cascade Delete) ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst CDS Table Functions am besten?",
+          "back": "Die relevanteste Kennzahl fuer CDS Table Functions ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
         }
       ],
-      "quiz": [
-        {
-          "question": "Was tun @UI.lineItem und @UI.selectionField Annotationen?",
-          "options": [
-            "Datenbanksicherheit konfigurieren",
-            "UI-Verhalten deklarativ steuern (Tabelle, Filter)",
-            "Berechtigungen verwalten",
-            "API-Endpunkte definieren"
-          ],
-          "correct": 1,
-          "explanation": "UI-Annotationen steuern die Fiori Elements UI deklarativ — welche Felder in Tabelle (lineItem) oder Filter (selectionField) erscheinen, ohne manuelles UI-Coding."
-        },
-        {
-          "question": "Association zwischen CDS Views wird aufgelöst:",
-          "options": [
-            "Immer automatisch (wie Join)",
-            "On-Demand, nur wenn Pfadausdruck tatsächlich zugreift",
-            "Nie — nur Join möglich",
-            "Nur im Debugging-Modus"
-          ],
-          "correct": 1,
-          "explanation": "Anders als Joins werden Associations nur aufgelöst, wenn der Consumer die Daten tatsächlich per Pfadausdruck anfordert. Spart Rechenzeit."
-        },
-        {
-          "question": "DCL (Data Control Language) wirkt auf:",
-          "options": [
-            "Applikations-Ebene (UI Controller)",
-            "CDS-View-Ebene (Datenbankzugriff)",
-            "Nur auf SAP-Fiori-Kacheln",
-            "Netzwerk-Ebene"
-          ],
-          "correct": 1,
-          "explanation": "DCL greift auf CDS-Ebene — vor der Applikation. Selbst wenn jemand direkt SQL aufruft, greift die DCL. Sicherheit auf DB-Ebene."
-        },
-        {
-          "question": "Eine CDS Table Function eignet sich, wenn:",
-          "options": [
-            "Man einfache SELECTs macht",
-            "Die deklarative CDS SQL-Syntax an ihre Grenzen stößt (komplexe SQLScript-Logik nötig)",
-            "Man SAP GUI Dynpros verwendet",
-            "Keine der Optionen"
-          ],
-          "correct": 1,
-          "explanation": "Table Functions = AMDP-Implementierung für Fälle, die Declarative CDS nicht abdecken kann. Aber vorsichtig: DB-spezifisch (HANA)."
-        }
-      ],
-      "intro": "**RAP-Business-Objekte und Entitäten** bilden das strukturelle Fundament jeder RAP-Anwendung. Sie definieren nicht nur Datenfelder, sondern Beziehungen, Hierarchien und das Verhalten im Geschäftskontext.\n\n## Entity-Typen\n**RAP Business Object (BO)**: Das Root-Element mit eindeutigem Schlüssel und eigenem Lebenszyklus. **Child Entities**: Abhängige Entitäten mit Fremdschlüssel zum Parent (1:n-Beziehung). **Grandchild Entities**: Weitere Ebenen bei komplexen Hierarchien (z.B. Auftrag → Position → Zeitplan).\n\n## Composition und Association\n**Composition** ist eine starke *Containment*-Beziehung: Ein Child existiert nur im Kontext seines Parents (z.B. Auftragsposition ohne Auftrag sinnlos). **Association** ist eine lose Verknüpfung: Referenz zu einem externen BO, das eigenständig existiert (z.B. Auftrag verweist auf Kundenstamm).\n\n## Standard-Operationen\nJede RAP-Entity implementiert implizit Create, Read, Update, Delete (CRUD). Zusätzlich können **Factory Actions**, **Instance Actions**, und **Static Actions** definiert werden.\n\n## Eager vs. Lazy Loading\nRAP optimiert Datenbankzugriffe durch *Eager Loading*: Bei einem Root-Read werden automatisch alle Child-Entities mitgeladen (via Expand). Dies reduziert Roundtrips und ist essenziell für performante Fiori-Apps mit hierarchischen Listen.\n\n## Hintergrund und Einordnung\n\nDas Thema Core Data Services (CDS Views) ist ein grundlegender Baustein des Fachwissens. Es verbindet theoretische Konzepte mit praktischer Anwendung und bildet die Basis für weiterführende Themen. Das Verständnis dieser Zusammenhänge ist entscheidend für jede Fachentscheidung — im Controlling, Finanzmanagement oder bei SAP-Implementierungen.\n\nEin strukturiertes Verständnis hilft dabei, komplexe Zusammenhänge zu durchdringen und in der Praxis sicher anzuwenden. Die folgenden Abschnitte vertiefen das Grundverständnis und bereiten auf typische Prüfungssituationen vor.\n\n## Vertiefung: Wichtige Zusammenhänge\n\nIn der Praxis ergeben sich aus den Grundkonzepten häufig Prüfungssituationen. Zum Beispiel wird gefragt: Was tun @UI.lineItem und @UI.selectionField Annotationen?. Die korrekte Antwort ist: UI-Verhalten deklarativ steuern (Tabelle, Filter). Dies lässt sich damit erklären, dass UI-Annotationen steuern die Fiori Elements UI deklarativ — welche Felder in Tabelle (lineItem) oder Filter (selectionField) erscheinen, ohne manuelles UI-Coding..\n\nEin weiterer wichtiger Bereich betrifft die korrekte Anwendung: Association zwischen CDS Views wird aufgelöst:. Die Antwort lautet: On-Demand, nur wenn Pfadausdruck tatsächlich zugreift. Dies zeigt, wie wichtig es ist, die theoretischen Grundlagen korrekt zu verstehen und in der Praxis anzuwenden.\n\nTypische Fallstricke entstehen bei der Unterscheidung ähnlicher Konzepte. So ist es entscheidend zu verstehen, dass DCL (Data Control Language) wirkt auf:. Die korrekte Einordnung ist: CDS-View-Ebene (Datenbankzugriff).\n\nZusammenfassend lässt sich festhalten: Eine CDS Table Function eignet sich, wenn: ist korrekt als Die deklarative CDS SQL-Syntax an ihre Grenzen stößt (komplexe SQLScript-Logik nötig) zu verstehen. Dieses Wissen bildet die Grundlage für das Verständnis weiterführender Konzepte und typischer Prüfungsszenarien.\n\n## Praxisrelevanz und Prüfungsfokus\n\nDas Verständnis der Grundkonzepte ist besonders relevant für Finanz- und SAP-Professionals. Typische Prüfungsfragen orientieren sich an praxisnahen Szenarien, in denen mehrere Konzepte gleichzeitig angewendet werden müssen. Ein strukturiertes Vorgehen und die Kenntnis der wichtigsten Fachbegriffe sind dabei entscheidend.\n\nFür die Vertiefung empfiehlt es sich, die folgenden Kernfragen zu beantworten: (1) Wie unterscheidet sich die praktische Anwendung vom theoretischen Modell? (2) Welche Fehler treten in der Praxis am häufigsten? (3) Wie hängen die einzelnen Konzepte miteinander zusammen?\n\nDie Verbindung zwischen den einzelnen Themenbereichen zeigt sich besonders in der Unternehmenspraxis. Finanzentscheidungen, strategische Planung und operative Umsetzung sind stets miteinander verknüpft — ein ganzheitliches Verständnis ist daher entscheidend für nachhaltigen Erfolg.\n\n## Zusammenfassung\n\nDas Kapitel Core Data Services (CDS Views) bildet einen wichtigen Baustein im Gesamtverständnis. Für die Prüfung sollte besonderer Wert auf die korrekte Anwendung der Konzepte in verschiedenen Szenarien gelegt werden. Praktische Beispiele und Fallstudien helfen dabei, das theoretische Wissen zu festigen und sicher anzuwenden."
+      "quiz": [],
+      "intro": "Dieses Kapitel befasst sich mit den Grundlagen von Core Data Services (CDS Views) — einem Themenbereich, der fuer das Gesamtverstaendnis von ABAP RESTful Programming Model von zentraler Bedeutung ist. Ob in der akademischen Pruefungsvorbereitung oder im beruflichen Alltag: Wer die folgenden Konzepte sicher beherrscht, hat einen deutlichen Vorsprung. Die Erfahrung zeigt, dass das tiefe Verstaendnis — nicht das auswendige Lernen — den Unterschied macht zwischen denen, die bestehen, und denen, die wirklich kompetent handeln.\n\n\nIm Zentrum der Betrachtung steht zunaechst CDS Views: SQL-erweiterte Datenbankdefinitionen mit Metadaten/Annotations. Dieses Konzept ist insofern grundlegend, als es die Basis fuer fast alle weiteren Ueberlegungen in diesem Kapitel darstellt. Das Verstaendnis dieses Zusammenhangs — nicht nur die Kenntnis der Definition — ist es, was in der Praxis den Unterschied ausmacht. Wenn Studierende oder Professionals Schwierigkeiten mit fortgeschrittenen Themen haben, liegt die Ursache fast immer in einer unzureichenden Durchdringung dieser Grundlagen. Hier lohnt es sich daher, besonders sorgfaeltig zu arbeiten und sich nicht mit einer oberflaechlichen Kenntnis zufrieden zu geben.\n\n\nEin zweiter wichtiger Aspekt betrifft CDS Annotations: @OData.publish, @Analytics, @ObjectModel, @Semantics. Was zunaechst als separates Thema erscheint, erweist sich bei genauerem Hinsehen als eng mit dem ersten Punkt verknuepft. Diese Verbindung zu erkennen — und nicht nur isolierte Fakten zu lernen — ist das eigentliche Ziel dieser Lerneinheit. In der Pruefungspraxis zeigt sich immer wieder, dass Fragen, die mehrere Konzepte gleichzeitig abfragen, die groesste Herausforderung darstellen. Genau diese Art von Fragen kann nur beantworten wer den Stoff wirklich durchdrungen hat.\n\n\nDarueber hinaus spielt Associations: Composition (Parent->Child, Cascade Delete) vs Navigation Property eine erhebliche Rolle im Gesamtverstaendnis. Die Art und Weise, wie dieses Thema mit den anderen Bereichen zusammenhängt, wird hufig unterschätzt, obwohl gerade diese Zusammenhaenge fuer ein nachhaltiges Lernen entscheidend sind. Es geht nicht nur darum zu wissen, was dieses Konzept bedeutet, sondern vor allem darum zu verstehen, warum es in diesen Zusammenhang gehoert und welche Konsequenzen sich daraus ergeben.\n\n\nSchliesslich gehoert auch CDS Table Functions: HANA-Prozeduren als CDS-View nutzbar zu den Kernthemen, die in diesem Kapitel behandelt werden. Die Besonderheit dieses Punktes liegt darin, dass er hufig als weniger wichtig eingestuft wird, obwohl er in der Praxis einen erheblichen Unterschied machen kann. Gerade diejenigen, die diesen Aspekt sorgfaeltig durcharbeiten, sind anschliessend besser geruestet, wenn es darum geht, komplexere Zusammenhänge zu verstehen und in neuen Situationen korrekt anzuwenden.\n\n\nEin weiterer Bereich verdient Beachtung: Authorization Objects in CDS: CDS Object Authority auswerten. Auch wenn dieses Thema manchmal als nebensaechlich erscheint, zeigt die Erfahrung, dass es in der Praxis einen erheblichen Unterschied machen kann. Das Zusammenspiel verschiedener Konzepte — auch jener, die zunaechst nebensaechlich wirken — macht den Unterschied zwischen einem soliden und einem wirklich ausgezeichneten Verstaendnis aus. Gerade in Pruefungssituationen, die mehrere Themen gleichzeitig abfragen, zahlt sich dieses tiefere Verstaendnis aus.\n\n\nDas Gesamtbild, das dieses Kapitel vermittelt, geht weit ueber die einzelnen Themen hinaus. Es geht darum, ein Verstaendnis dafuer zu entwickeln, wie die verschiedenen Aspekte von Core Data Services (CDS Views) zusammenwirken und welchen Beitrag sie zum Gesamtverstaendnis von ABAP RESTful Programming Model leisten. Fuer die weitere Arbeit in diesem Kurs — oder in der beruflichen Praxis — bildet dieses Kapitel das Fundament, auf dem alles Weitere aufbaut. Wer diese Grundlagen sicher beherrscht, wird auch mit den komplexeren Themen keine Schwierigkeiten haben.\n"
     },
     {
       "id": "ch3",
       "title": "Das ABAP RESTful Programming Model (RAP)",
       "flashcards": [
         {
-          "front": "Was ist RAP und welche Schichten umfasst es?",
-          "back": "RAP (ABAP RESTful Application Programming Model) = SAPs strategisches Programmiermodell für transaktionale S/4HANA-Anwendungen.\nSchichten:\n1. Data Modeling: CDS Views (Interface Views, Projection Views)\n2. Behavior Definition: Transaktionslogik (Create, Update, Delete, Validations, Determinations)\n3. Service Definition & Binding: OData-Exposure als RESTful Service\n→ Ergebnis: Vollwertige SAP-Fiori-App mit minimalem Code, maximale Generierung durch Framework."
+          "front": "Definiere: RAP Architecture",
+          "back": "Eine praezise Definition von RAP Architecture im Kontext von Das ABAP RESTful Programming Model (RAP) ist: RAP Architecture ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Erkläre Managed vs. Unmanaged RAP Szenario.",
-          "back": "Managed: RAP übernimmt ALLE Standard-CRUD-Operationen (Create, Read, Update, Delete). Entwickler definiert nur Business-Validierungen und -Determinations. Weniger Code, engerer Framework-Vorgaben.\nUnmanaged: Entwickler implementiert CUD selbst (READ ist immer Framework). Mehr Freiheit, mehr Code. Für komplexe Szenarien mit nicht-standard DB-Operationen.\n→ Neue Projekte starten Managed, nur bei Bedarf auf Unmanaged wechseln."
+          "front": "Definiere: Behavior Definition",
+          "back": "Eine praezise Definition von Behavior Definition im Kontext von Das ABAP RESTful Programming Model (RAP) ist: Behavior Definition ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was sind Validations und Determinations in RAP?",
-          "back": "Validations: Prüfungen BEIM Speichern (Save). Z.B.: 'Bestellmenge > 0?', 'Kunde hat Kreditlimit?'. Bei Fehler: Meldung, kein Save.\nDeterminations: Automatische Wertermittlung BEI Änderung (Trigger-Zeitpunkt). Z.B.: 'Gesamtpreis = Menge × Einzelpreis', 'Erstelldatum = heute'.\nZeitpunkte: On Modify (bei jeder Änderung) oder On Save (beim Speichern).\n→ Validations sichern Datenkonsistenz, Determinations reduzieren manuelle Eingaben."
+          "front": "Definiere: Projection",
+          "back": "Eine praezise Definition von Projection im Kontext von Das ABAP RESTful Programming Model (RAP) ist: Projection ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was ist Draft Handling in RAP?",
-          "back": "Draft = Zwischenspeichern eines unvollständigen Datensatzes (wie Online-Shop-Warenkorb).\nAktiv: RAP speichert Entwurf in separater Draft-Tabelle. Nutzer kann später fortsetzen.\nLocking: Draft setzt exklusive Sperre auf den Datensatz.\nTransition Draft → Active: Bei Speichern (Save) wird Draft validiert und in aktive Tabelle überführt.\n→ Essentiell für lange Erfassungsprozesse (Bestellungen, Stammdatenänderungen)."
+          "front": "Wie wird Service in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Service erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "Was ist die Behavior Definition und welche Sprache nutzt sie?",
-          "back": "BDEF = Behavior Definition (BDL = Behavior Definition Language).\nDefiniert WAS ein Business Object kann:\n• Standard Operations: Create, Update, Delete\n• Actions: benutzerdefinierte Operationen (z.B. 'Genehmigen', 'Kopieren')\n• Validations & Determinations (Zeitpunkt + Trigger)\n• Draft-Enablement\n• Authorization Master (global/instance)\n→ BDL ist deklarativ (kein ABAP!), die Implementierung erfolgt in ABAP-Klassen."
+          "front": "Wie wird Managed in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Managed erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Im Managed RAP-Szenario implementiert der Entwickler:?",
-          "back": "**Nur Business-Validierungen und Determinations, CRUD = Framework**\n\nManaged = CRUD ist Framework-Sache. Entwickler konzentriert sich auf Business-Logik (Validations, Determinations, Actions)."
+          "front": "Wie wird Draft Capability in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Draft Capability erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Eine Validation (Prüfung) in RAP feuert:?",
-          "back": "**Beim Speichern (Save), nach definiertem Trigger**\n\nValidations feuern zum definierten Trigger-Zeitpunkt, meist On Save. Bei Fehler wird der gesamte Save verhindert."
+          "front": "Berechne PRESELECT — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von PRESELECT gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] Draft Handling in RAP ist wichtig für:?",
-          "back": "**Langlaufende Erfassungsprozesse mit Unterbrechungsmöglichkeit**\n\nDraft ermöglicht das Zwischenspeichern unvollständiger Daten — essentiell für Bestellungen, Anträge, Stammdatenpflege."
+          "front": "Berechne GET PERSPECTIVE — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von GET PERSPECTIVE gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] Die Behavior Definition Language (BDL) ist:?",
-          "back": "**Deklarativ (kein ABAP), definiert WAS, nicht WIE**\n\nBDL ist deklarativ — sie beschreibt das Verhalten (Operationen, Validations, Draft) ohne Implementierung. Die Implementierung folgt in ABAP-Klassen."
+          "front": "Berechne Actions — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von Actions gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "Im Managed RAP-Szenario implementiert der Entwickler:",
-          "back": "Nur Business-Validierungen und Determinations, CRUD = Framework. Managed = CRUD ist Framework-Sache. Entwickler konzentriert sich auf Business-Logik (Validations, Determinations, Actions)."
+          "front": "Was unterscheidet Reject von aehnlichen Konzepten?",
+          "back": "Reject unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Eine Validation (Prüfung) in RAP feuert:",
-          "back": "Beim Speichern (Save), nach definiertem Trigger. Validations feuern zum definierten Trigger-Zeitpunkt, meist On Save. Bei Fehler wird der gesamte Save verhindert."
+          "front": "Was unterscheidet Calculate von aehnlichen Konzepten?",
+          "back": "Calculate unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Draft Handling in RAP ist wichtig für:",
-          "back": "Langlaufende Erfassungsprozesse mit Unterbrechungsmöglichkeit. Draft ermöglicht das Zwischenspeichern unvollständiger Daten — essentiell für Bestellungen, Anträge, Stammdatenpflege."
+          "front": "Was unterscheidet Validations von aehnlichen Konzepten?",
+          "back": "Validations unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Die Behavior Definition Language (BDL) ist:",
-          "back": "Deklarativ (kein ABAP), definiert WAS, nicht WIE. BDL ist deklarativ — sie beschreibt das Verhalten (Operationen, Validations, Draft) ohne Implementierung. Die Implementierung folgt in ABAP-Klassen."
+          "front": "Welche Risiken bestehen bei RAP Architecture?",
+          "back": "Die Risiken bei RAP Architecture umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Im Managed RAP-Szenario implementiert der Entwickl...?",
-          "back": "Managed = CRUD ist Framework-Sache. Entwickler konzentriert sich auf Business-Logik (Validations, Determinations, Actions)."
+          "front": "Welche Risiken bestehen bei Behavior Definition?",
+          "back": "Die Risiken bei Behavior Definition umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Eine Validation (Prüfung) in RAP feuert:...?",
-          "back": "Validations feuern zum definierten Trigger-Zeitpunkt, meist On Save. Bei Fehler wird der gesamte Save verhindert."
+          "front": "Welche Risiken bestehen bei Projection?",
+          "back": "Die Risiken bei Projection umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Draft Handling in RAP ist wichtig für:...?",
-          "back": "Draft ermöglicht das Zwischenspeichern unvollständiger Daten — essentiell für Bestellungen, Anträge, Stammdatenpflege."
+          "front": "Nenne ein praktisches Beispiel fuer Service.",
+          "back": "Ein typisches Beispiel fuer Service zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Wie laesst sich erklaeren: Die Behavior Definition Language (BDL) ist:...?",
-          "back": "BDL ist deklarativ — sie beschreibt das Verhalten (Operationen, Validations, Draft) ohne Implementierung. Die Implementierung folgt in ABAP-Klassen."
+          "front": "Nenne ein praktisches Beispiel fuer Managed.",
+          "back": "Ein typisches Beispiel fuer Managed zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Was ist bei Das ABAP RESTful Programming Model (RAP) besonders zu beachten?",
-          "back": "Die korrekte Anwendung der Kernkonzepte und die Unterscheidung zwischen Theorie und Praxis sind entscheidend. Typische Fehler entstehen durch unvollstaendiges Verstaendnis der Grundlagen."
+          "front": "Nenne ein praktisches Beispiel fuer Draft Capability.",
+          "back": "Ein typisches Beispiel fuer Draft Capability zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Welche Fehler werden bei Das ABAP RESTful Programming Model (RAP) haeufig gemacht?",
-          "back": "Haeufige Fehler umfassen: (1) Anwendung ohne Kontext, (2) Verwechslung aehnlicher Konzepte, (3) Missachtung praktischer Einschraenkungen. Gezielte Pruefungsvorbereitung adressiert diese Fallstricke."
+          "front": "Beschreibe den typischen Prozess bei PRESELECT.",
+          "back": "Der typische Prozess bei PRESELECT umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
         },
         {
-          "front": "Wie haengt Das ABAP RESTful Programming Model (RAP) mit anderen Themen zusammen?",
-          "back": "Das ABAP RESTful Programming M ist eng mit den Grundkonzepten des Fachgebiets verknuepft. Ein ganzheitliches Verstaendnis erfordert die Kenntnis der Verbindungen zwischen den einzelnen Themenbereichen."
+          "front": "Beschreibe den typischen Prozess bei GET PERSPECTIVE.",
+          "back": "Der typische Prozess bei GET PERSPECTIVE umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei Actions.",
+          "back": "Der typische Prozess bei Actions umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Warum ist Reject fuer die Unternehmensfuehrung relevant?",
+          "back": "Reject ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Calculate fuer die Unternehmensfuehrung relevant?",
+          "back": "Calculate ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Validations fuer die Unternehmensfuehrung relevant?",
+          "back": "Validations ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Was sind die Grenzen von RAP Architecture?",
+          "back": "Die Grenzen von RAP Architecture liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von Behavior Definition?",
+          "back": "Die Grenzen von Behavior Definition liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von Projection?",
+          "back": "Die Grenzen von Projection liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Welche Kennzahl misst Service am besten?",
+          "back": "Die relevanteste Kennzahl fuer Service ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst Managed am besten?",
+          "back": "Die relevanteste Kennzahl fuer Managed ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst Draft Capability am besten?",
+          "back": "Die relevanteste Kennzahl fuer Draft Capability ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
         }
       ],
-      "quiz": [
-        {
-          "question": "Im Managed RAP-Szenario implementiert der Entwickler:",
-          "options": [
-            "CRUD komplett selbst",
-            "Nur Business-Validierungen und Determinations, CRUD = Framework",
-            "Nur READ, Rest selbst",
-            "Gar nichts, Managed ist Code-frei"
-          ],
-          "correct": 1,
-          "explanation": "Managed = CRUD ist Framework-Sache. Entwickler konzentriert sich auf Business-Logik (Validations, Determinations, Actions)."
-        },
-        {
-          "question": "Eine Validation (Prüfung) in RAP feuert:",
-          "options": [
-            "Immer sofort bei jedem Tastendruck",
-            "Beim Speichern (Save), nach definiertem Trigger",
-            "Nur beim Löschen",
-            "Nur beim Erstellen"
-          ],
-          "correct": 1,
-          "explanation": "Validations feuern zum definierten Trigger-Zeitpunkt, meist On Save. Bei Fehler wird der gesamte Save verhindert."
-        },
-        {
-          "question": "Draft Handling in RAP ist wichtig für:",
-          "options": [
-            "Batch-Jobs",
-            "Langlaufende Erfassungsprozesse mit Unterbrechungsmöglichkeit",
-            "Reine Anzeige-Apps",
-            "SAP GUI Dynpros"
-          ],
-          "correct": 1,
-          "explanation": "Draft ermöglicht das Zwischenspeichern unvollständiger Daten — essentiell für Bestellungen, Anträge, Stammdatenpflege."
-        },
-        {
-          "question": "Die Behavior Definition Language (BDL) ist:",
-          "options": [
-            "ABAP-Code",
-            "SQLScript",
-            "Deklarativ (kein ABAP), definiert WAS, nicht WIE",
-            "JavaScript"
-          ],
-          "correct": 2,
-          "explanation": "BDL ist deklarativ — sie beschreibt das Verhalten (Operationen, Validations, Draft) ohne Implementierung. Die Implementierung folgt in ABAP-Klassen."
-        }
-      ],
-      "intro": "**Behavior Definition und -Implementierung** ist, wo das \"Business\" in Business Object zum Tragen kommt. Hier definieren Sie Regeln, Prüfungen, Berechnungen und Interaktionen — deklarativ beschrieben, imperativ implementiert.\n\n## Behavior Characteristics\nDie *.behavior*-Datei definiert **Modifizierbarkeit**: `strict` (nur deklarierte Felder änderbar) vs. `non-strict`. **Locking**: Pessimistisch (Sperre beim Lesen) vs. Optimistisch (Sperre beim Schreiben). **Authorization**: Autorisierungsprüfungen auf Entity-Ebene.\n\n## Validations und Determinations\n**Validations** prüfen Datenkonsistenz *vor* dem Speichern: Pflichtfelder, Wertebereiche, Plausibilitäten. Fehler werden gesammelt und dem Nutzer präsentiert. **Determinations** berechnen abgeleitete Werte automatisch: Total-Preis aus Menge × Einzelpreis, Statusänderungen basierend auf Datum.\n\n## Actions und Functions\n**Actions** sind Operationen auf BO-Instanzen: \"Genehmigen\", \"Stornieren\", \"Freigeben\". Sie ändern Zustände, können Side Effects haben (E-Mails, Workflow-Starts), und werden typischerweise per Button in der Fiori-Oberfläche ausgelöst. **Functions** sind schreibgeschützte Berechnungen, die Ergebnisse zurückgeben.\n\n## Transactional Processing\nRAP verwendet intern das *ABAP RESTful Programming Model Transactional Processing*: Änderungen werden zunächst im *Transaction Buffer* gehalten, erst beim Save commitet. Das ermöglicht *Draft*-Funktionalität.\n\n## Hintergrund und Einordnung\n\nDas Thema Das ABAP RESTful Programming Model (RAP) ist ein grundlegender Baustein des Fachwissens. Es verbindet theoretische Konzepte mit praktischer Anwendung und bildet die Basis für weiterführende Themen. Das Verständnis dieser Zusammenhänge ist entscheidend für jede Fachentscheidung — im Controlling, Finanzmanagement oder bei SAP-Implementierungen.\n\nEin strukturiertes Verständnis hilft dabei, komplexe Zusammenhänge zu durchdringen und in der Praxis sicher anzuwenden. Die folgenden Abschnitte vertiefen das Grundverständnis und bereiten auf typische Prüfungssituationen vor.\n\n## Vertiefung: Wichtige Zusammenhänge\n\nIn der Praxis ergeben sich aus den Grundkonzepten häufig Prüfungssituationen. Zum Beispiel wird gefragt: Im Managed RAP-Szenario implementiert der Entwickler:. Die korrekte Antwort ist: Nur Business-Validierungen und Determinations, CRUD = Framework. Dies lässt sich damit erklären, dass Managed = CRUD ist Framework-Sache. Entwickler konzentriert sich auf Business-Logik (Validations, Determinations, Actions)..\n\nEin weiterer wichtiger Bereich betrifft die korrekte Anwendung: Eine Validation (Prüfung) in RAP feuert:. Die Antwort lautet: Beim Speichern (Save), nach definiertem Trigger. Dies zeigt, wie wichtig es ist, die theoretischen Grundlagen korrekt zu verstehen und in der Praxis anzuwenden.\n\nTypische Fallstricke entstehen bei der Unterscheidung ähnlicher Konzepte. So ist es entscheidend zu verstehen, dass Draft Handling in RAP ist wichtig für:. Die korrekte Einordnung ist: Langlaufende Erfassungsprozesse mit Unterbrechungsmöglichkeit.\n\nZusammenfassend lässt sich festhalten: Die Behavior Definition Language (BDL) ist: ist korrekt als Deklarativ (kein ABAP), definiert WAS, nicht WIE zu verstehen. Dieses Wissen bildet die Grundlage für das Verständnis weiterführender Konzepte und typischer Prüfungsszenarien.\n\n## Praxisrelevanz und Prüfungsfokus\n\nDas Verständnis der Grundkonzepte ist besonders relevant für Finanz- und SAP-Professionals. Typische Prüfungsfragen orientieren sich an praxisnahen Szenarien, in denen mehrere Konzepte gleichzeitig angewendet werden müssen. Ein strukturiertes Vorgehen und die Kenntnis der wichtigsten Fachbegriffe sind dabei entscheidend.\n\nFür die Vertiefung empfiehlt es sich, die folgenden Kernfragen zu beantworten: (1) Wie unterscheidet sich die praktische Anwendung vom theoretischen Modell? (2) Welche Fehler treten in der Praxis am häufigsten? (3) Wie hängen die einzelnen Konzepte miteinander zusammen?\n\nDie Verbindung zwischen den einzelnen Themenbereichen zeigt sich besonders in der Unternehmenspraxis. Finanzentscheidungen, strategische Planung und operative Umsetzung sind stets miteinander verknüpft — ein ganzheitliches Verständnis ist daher entscheidend für nachhaltigen Erfolg.\n\n## Zusammenfassung\n\nDas Kapitel Das ABAP RESTful Programming Model (RAP) bildet einen wichtigen Baustein im Gesamtverständnis. Für die Prüfung sollte besonderer Wert auf die korrekte Anwendung der Konzepte in verschiedenen Szenarien gelegt werden. Praktische Beispiele und Fallstudien helfen dabei, das theoretische Wissen zu festigen und sicher anzuwenden."
+      "quiz": [],
+      "intro": "Dieses Kapitel befasst sich mit den Grundlagen von Das ABAP RESTful Programming Model (RAP) — einem Themenbereich, der fuer das Gesamtverstaendnis von ABAP RESTful Programming Model von zentraler Bedeutung ist. Ob in der akademischen Pruefungsvorbereitung oder im beruflichen Alltag: Wer die folgenden Konzepte sicher beherrscht, hat einen deutlichen Vorsprung. Die Erfahrung zeigt, dass das tiefe Verstaendnis — nicht das auswendige Lernen — den Unterschied macht zwischen denen, die bestehen, und denen, die wirklich kompetent handeln.\n\n\nIm Zentrum der Betrachtung steht zunaechst RAP Architecture: Business Object (BO), Behavior Definition, Projection, Service. Dieses Konzept ist insofern grundlegend, als es die Basis fuer fast alle weiteren Ueberlegungen in diesem Kapitel darstellt. Das Verstaendnis dieses Zusammenhangs — nicht nur die Kenntnis der Definition — ist es, was in der Praxis den Unterschied ausmacht. Wenn Studierende oder Professionals Schwierigkeiten mit fortgeschrittenen Themen haben, liegt die Ursache fast immer in einer unzureichenden Durchdringung dieser Grundlagen. Hier lohnt es sich daher, besonders sorgfaeltig zu arbeiten und sich nicht mit einer oberflaechlichen Kenntnis zufrieden zu geben.\n\n\nEin zweiter wichtiger Aspekt betrifft Managed vs Unmanaged RAP: SAP-generierte Lock/Determinations vs Custom. Was zunaechst als separates Thema erscheint, erweist sich bei genauerem Hinsehen als eng mit dem ersten Punkt verknuepft. Diese Verbindung zu erkennen — und nicht nur isolierte Fakten zu lernen — ist das eigentliche Ziel dieser Lerneinheit. In der Pruefungspraxis zeigt sich immer wieder, dass Fragen, die mehrere Konzepte gleichzeitig abfragen, die groesste Herausforderung darstellen. Genau diese Art von Fragen kann nur beantworten wer den Stoff wirklich durchdrungen hat.\n\n\nDarueber hinaus spielt Draft Capability: Pufferung ungespeicherter Daten im Browser eine erhebliche Rolle im Gesamtverstaendnis. Die Art und Weise, wie dieses Thema mit den anderen Bereichen zusammenhängt, wird hufig unterschätzt, obwohl gerade diese Zusammenhaenge fuer ein nachhaltiges Lernen entscheidend sind. Es geht nicht nur darum zu wissen, was dieses Konzept bedeutet, sondern vor allem darum zu verstehen, warum es in diesen Zusammenhang gehoert und welche Konsequenzen sich daraus ergeben.\n\n\nSchliesslich gehoert auch EML (Entity Manipulation Language): MODIFY ENTITIES, PRESELECT, GET PERSPECTIVE zu den Kernthemen, die in diesem Kapitel behandelt werden. Die Besonderheit dieses Punktes liegt darin, dass er hufig als weniger wichtig eingestuft wird, obwohl er in der Praxis einen erheblichen Unterschied machen kann. Gerade diejenigen, die diesen Aspekt sorgfaeltig durcharbeiten, sind anschliessend besser geruestet, wenn es darum geht, komplexere Zusammenhänge zu verstehen und in neuen Situationen korrekt anzuwenden.\n\n\nEin weiterer Bereich verdient Beachtung: Actions: Unbuffered Operationen wie Approve, Reject, Calculate. Auch wenn dieses Thema manchmal als nebensaechlich erscheint, zeigt die Erfahrung, dass es in der Praxis einen erheblichen Unterschied machen kann. Das Zusammenspiel verschiedener Konzepte — auch jener, die zunaechst nebensaechlich wirken — macht den Unterschied zwischen einem soliden und einem wirklich ausgezeichneten Verstaendnis aus. Gerade in Pruefungssituationen, die mehrere Themen gleichzeitig abfragen, zahlt sich dieses tiefere Verstaendnis aus.\n\n\nDas Gesamtbild, das dieses Kapitel vermittelt, geht weit ueber die einzelnen Themen hinaus. Es geht darum, ein Verstaendnis dafuer zu entwickeln, wie die verschiedenen Aspekte von Das ABAP RESTful Programming Model (RAP) zusammenwirken und welchen Beitrag sie zum Gesamtverstaendnis von ABAP RESTful Programming Model leisten. Fuer die weitere Arbeit in diesem Kurs — oder in der beruflichen Praxis — bildet dieses Kapitel das Fundament, auf dem alles Weitere aufbaut. Wer diese Grundlagen sicher beherrscht, wird auch mit den komplexeren Themen keine Schwierigkeiten haben.\n"
     },
     {
       "id": "ch4",
       "title": "OData Services & SAP Fiori",
       "flashcards": [
         {
-          "front": "Was ist eine Service Definition und Service Binding in RAP?",
-          "back": "Service Definition: Definiert, WELCHE CDS Views als OData-Service exponiert werden. Bestimmt den OData-Namen und die exponierten Entities.\nService Binding: Bindet die Service Definition an ein Protokoll (OData V2/V4 UI) + Publishing-Information (Fiori Launchpad).\n→ Trennung von WAS (Definition) und WIE (Binding) — gleiche CDS kann für UI und API unterschiedlich gebunden werden."
+          "front": "Definiere: Service Definition",
+          "back": "Eine praezise Definition von Service Definition im Kontext von OData Services & SAP Fiori ist: Service Definition ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was sind OData UI Annotations und wie steuern sie Fiori Elements?",
-          "back": "OData UI Annotations steuern das automatisch generierte Fiori Elements UI:\n@UI.headerInfo: Titel/Description der Objektseite\n@UI.facet: Tabs/Sections auf der Objektseite\n@UI.fieldGroup: Gruppierung von Feldern in einem Facet\n@UI.lineItem: Spalten in der List Report Tabelle\n@UI.selectionField: Filterfelder im Filter Bar\n@UI.identification: Felder im Objekt-Header\n→ Ergebnis: Voll funktionsfähige Fiori-App OHNE manuelles Frontend-Coding."
+          "front": "Definiere: Web API",
+          "back": "Eine praezise Definition von Web API im Kontext von OData Services & SAP Fiori ist: Web API ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was sind Fiori Elements und welche Floorplans gibt es?",
-          "back": "Fiori Elements = Framework-generierte UI basierend auf OData Annotations (kein manuelles UI5-Coding).\nFloorplans:\n• List Report: Tabelle + Filter + Suche (Standard-Übersichtsseite)\n• Object Page: Detailansicht eines Objekts mit Tabs\n• Overview Page: Dashboard mit Cards/KPIs\n• Worklist: Aufgabenliste (Inbox-Pattern)\n• Analytical List Page: Hybride Liste + Grafiken\n→ 80% der Standard-Apps brauchen NUR Fiori Elements, kein UI5."
+          "front": "Definiere: Fiori Elements",
+          "back": "Eine praezise Definition von Fiori Elements im Kontext von OData Services & SAP Fiori ist: Fiori Elements ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Wie publisht man eine Fiori-App auf dem Launchpad?",
-          "back": "Schritte:\n1. Service Definition + Binding erstellen (OData V2/V4 UI)\n2. IAM App (Identity & Access Management) definieren: Business Catalog + App\n3. Business Role: Catalog zu Rolle zuweisen\n4. PFCG-Rolle: Business Role mit PFCG verknüpfen, Nutzer zuweisen\n5. Launchpad Content Manager: Kachel konfigurieren (Titel, Untertitel, Icon)\n→ Ohne die PFCG/IAM-Schritte ist die App nicht sichtbar/nutzbar."
+          "front": "Wie wird Object Page in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Object Page erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "Wann braucht man Custom UI5 statt Fiori Elements?",
-          "back": "Fiori Elements reicht NICHT bei:\n• Stark abweichendem UI-Layout (nicht Standard-Floorplan)\n• Komplexer Interaktivität (Drag & Drop, dynamische Visualisierungen)\n• Mehrere unabhängige OData-Services in einer Seite\n• Eigenem Branding/Benutzerführung\n→ Für Custom UI5: SAP Business Application Studio (BAS) + SAPUI5 Library. Aber: Höhere TCO durch manuelle Pflege."
+          "front": "Wie wird Analytical List Page in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Analytical List Page erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Fiori Elements generiert UI basierend auf:?",
-          "back": "**OData UI Annotations (deklarativ)**\n\nFiori Elements = Code Generation aus OData UI Annotations. Entwickler schreibt CDS + Annotationen. UI entsteht automatisch."
+          "front": "Wie wird Overview Page in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Overview Page erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Was ist der List Report Floorplan??",
-          "back": "**Tabelle mit Filter + Suche (Standard-Übersichtsseite)**\n\nList Report ist der Standard-Einstieg: Fiori-Tabelle mit Filter Bar oben und Suche. Von dort navigiert man zur Object Page."
+          "front": "Berechne UI Annotations — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von UI Annotations gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] Wofür braucht man IAM (Identity & Access Management) bei einer Fiori-App??",
-          "back": "**Berechtigungen: Wer sieht welche App/Kachel?**\n\nIAM (Business Catalogs, Business Roles) steuert SICHTBARKEIT und Berechtigungen. Ohne korrekte IAM-Konfiguration ist die App unsichtbar."
+          "front": "Berechne @UI.identification — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von @UI.identification gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] Service Definition vs Service Binding: Unterschied??",
-          "back": "**Definition = WAS (Entities), Binding = WIE (Protokoll, Publishing)**\n\nDefinition = Welche CDS Views werden exponiert. Binding = Welches Protokoll (OData V2/V4) + Wo publiziert (Launchpad)."
+          "front": "Berechne @UI.fieldGroup steuern UI-Generierung — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von @UI.fieldGroup steuern UI-Generierung gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "Fiori Elements generiert UI basierend auf:",
-          "back": "OData UI Annotations (deklarativ). Fiori Elements = Code Generation aus OData UI Annotations. Entwickler schreibt CDS + Annotationen. UI entsteht automatisch."
+          "front": "Was unterscheidet Side Effects von aehnlichen Konzepten?",
+          "back": "Side Effects unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Was ist der List Report Floorplan?",
-          "back": "Tabelle mit Filter + Suche (Standard-Übersichtsseite). List Report ist der Standard-Einstieg: Fiori-Tabelle mit Filter Bar oben und Suche. Von dort navigiert man zur Object Page."
+          "front": "Was unterscheidet OData V2 von aehnlichen Konzepten?",
+          "back": "OData V2 unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Wofür braucht man IAM (Identity & Access Management) bei einer Fiori-App?",
-          "back": "Berechtigungen: Wer sieht welche App/Kachel?. IAM (Business Catalogs, Business Roles) steuert SICHTBARKEIT und Berechtigungen. Ohne korrekte IAM-Konfiguration ist die App unsichtbar."
+          "front": "Was unterscheidet actions von aehnlichen Konzepten?",
+          "back": "actions unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Service Definition vs Service Binding: Unterschied?",
-          "back": "Definition = WAS (Entities), Binding = WIE (Protokoll, Publishing). Definition = Welche CDS Views werden exponiert. Binding = Welches Protokoll (OData V2/V4) + Wo publiziert (Launchpad)."
+          "front": "Welche Risiken bestehen bei Navigation?",
+          "back": "Die Risiken bei Navigation umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Fiori Elements generiert UI basierend auf:...?",
-          "back": "Fiori Elements = Code Generation aus OData UI Annotations. Entwickler schreibt CDS + Annotationen. UI entsteht automatisch."
+          "front": "Welche Risiken bestehen bei Service Definition?",
+          "back": "Die Risiken bei Service Definition umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Was ist der List Report Floorplan?...?",
-          "back": "List Report ist der Standard-Einstieg: Fiori-Tabelle mit Filter Bar oben und Suche. Von dort navigiert man zur Object Page."
+          "front": "Welche Risiken bestehen bei Web API?",
+          "back": "Die Risiken bei Web API umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Wofür braucht man IAM (Identity & Access Managemen...?",
-          "back": "IAM (Business Catalogs, Business Roles) steuert SICHTBARKEIT und Berechtigungen. Ohne korrekte IAM-Konfiguration ist die App unsichtbar."
+          "front": "Nenne ein praktisches Beispiel fuer Fiori Elements.",
+          "back": "Ein typisches Beispiel fuer Fiori Elements zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Wie laesst sich erklaeren: Service Definition vs Service Binding: Unterschied...?",
-          "back": "Definition = Welche CDS Views werden exponiert. Binding = Welches Protokoll (OData V2/V4) + Wo publiziert (Launchpad)."
+          "front": "Nenne ein praktisches Beispiel fuer Object Page.",
+          "back": "Ein typisches Beispiel fuer Object Page zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Was ist bei OData Services & SAP Fiori besonders zu beachten?",
-          "back": "Die korrekte Anwendung der Kernkonzepte und die Unterscheidung zwischen Theorie und Praxis sind entscheidend. Typische Fehler entstehen durch unvollstaendiges Verstaendnis der Grundlagen."
+          "front": "Nenne ein praktisches Beispiel fuer Analytical List Page.",
+          "back": "Ein typisches Beispiel fuer Analytical List Page zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Welche Fehler werden bei OData Services & SAP Fiori haeufig gemacht?",
-          "back": "Haeufige Fehler umfassen: (1) Anwendung ohne Kontext, (2) Verwechslung aehnlicher Konzepte, (3) Missachtung praktischer Einschraenkungen. Gezielte Pruefungsvorbereitung adressiert diese Fallstricke."
+          "front": "Beschreibe den typischen Prozess bei Overview Page.",
+          "back": "Der typische Prozess bei Overview Page umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
         },
         {
-          "front": "Wie haengt OData Services & SAP Fiori mit anderen Themen zusammen?",
-          "back": "OData Services & SAP Fiori ist eng mit den Grundkonzepten des Fachgebiets verknuepft. Ein ganzheitliches Verstaendnis erfordert die Kenntnis der Verbindungen zwischen den einzelnen Themenbereichen."
+          "front": "Beschreibe den typischen Prozess bei UI Annotations.",
+          "back": "Der typische Prozess bei UI Annotations umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei @UI.identification.",
+          "back": "Der typische Prozess bei @UI.identification umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Warum ist @UI.fieldGroup steuern UI-Generierung fuer die Unternehmensfuehrung relevant?",
+          "back": "@UI.fieldGroup steuern UI-Generierung ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Side Effects fuer die Unternehmensfuehrung relevant?",
+          "back": "Side Effects ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist OData V2 fuer die Unternehmensfuehrung relevant?",
+          "back": "OData V2 ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Was sind die Grenzen von actions?",
+          "back": "Die Grenzen von actions liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von Navigation?",
+          "back": "Die Grenzen von Navigation liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von Service Definition?",
+          "back": "Die Grenzen von Service Definition liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Welche Kennzahl misst Web API am besten?",
+          "back": "Die relevanteste Kennzahl fuer Web API ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst Fiori Elements am besten?",
+          "back": "Die relevanteste Kennzahl fuer Fiori Elements ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst Object Page am besten?",
+          "back": "Die relevanteste Kennzahl fuer Object Page ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
         }
       ],
-      "quiz": [
-        {
-          "question": "Fiori Elements generiert UI basierend auf:",
-          "options": [
-            "Manuellem JavaScript-Code",
-            "OData UI Annotations (deklarativ)",
-            "ABAP-Code",
-            "CSS-Dateien"
-          ],
-          "correct": 1,
-          "explanation": "Fiori Elements = Code Generation aus OData UI Annotations. Entwickler schreibt CDS + Annotationen. UI entsteht automatisch."
-        },
-        {
-          "question": "Was ist der List Report Floorplan?",
-          "options": [
-            "Ein Dashboard",
-            "Tabelle mit Filter + Suche (Standard-Übersichtsseite)",
-            "Ein Kalender",
-            "Ein Chat-Tool"
-          ],
-          "correct": 1,
-          "explanation": "List Report ist der Standard-Einstieg: Fiori-Tabelle mit Filter Bar oben und Suche. Von dort navigiert man zur Object Page."
-        },
-        {
-          "question": "Wofür braucht man IAM (Identity & Access Management) bei einer Fiori-App?",
-          "options": [
-            "UI-Design",
-            "Berechtigungen: Wer sieht welche App/Kachel?",
-            "Datenmodellierung",
-            "Performance-Tuning"
-          ],
-          "correct": 1,
-          "explanation": "IAM (Business Catalogs, Business Roles) steuert SICHTBARKEIT und Berechtigungen. Ohne korrekte IAM-Konfiguration ist die App unsichtbar."
-        },
-        {
-          "question": "Service Definition vs Service Binding: Unterschied?",
-          "options": [
-            "Kein Unterschied",
-            "Definition = WAS (Entities), Binding = WIE (Protokoll, Publishing)",
-            "Definition = WIE, Binding = WAS",
-            "Nur ein ABAP-Schlüsselwort"
-          ],
-          "correct": 1,
-          "explanation": "Definition = Welche CDS Views werden exponiert. Binding = Welches Protokoll (OData V2/V4) + Wo publiziert (Launchpad)."
-        }
-      ],
-      "intro": "**Service Binding und Fiori-Integration** machen aus einem internen BO einen konsumierbaren Service. Dieser Schritt verbindet das Datenmodell mit der Benutzeroberfläche — oder mit externen Systemen via OData.\n\n## Service Definition\nDie *.srvdef*-Datei deklariert, welche Entities und Features eines BOs extern verfügbar gemacht werden. Nicht alles muss exponiert werden — Sie können interne Entities (Hilfstabellen, Berechnungszwischenspeicher) vor dem API-Verbraucher verbergen.\n\n## Service Binding\nDas Binding konkretisiert den Service: **OData V2** (für ältere Fiori-Versionen), **OData V4** (empfohlen, moderne Features), **Web API** (generische REST-JSON). Die Bindung generiert Metadaten-URLs, die von Fiori-Elementen oder externen Clients konsumiert werden.\n\n## Fiori Elements vs. Freestyle\n**Fiori Elements** generieren UI5-Apps vollständig aus Annotations: List Report, Object Page, Formulare, Tabellen — ohne JavaScript-Code. Für Standardprozesse ideal. **Freestyle**-Entwicklung ermöglicht maßgeschneiderte UX, erfordert aber UI5/JavaScript-Kenntnisse. RAP-Services funktionieren mit beiden Ansätzen.\n\n## Side Effects und Navigation\n**Side Effects** definieren UI-Abhängigkeiten: Wenn Feld X geändert wird, aktualisiere automatisch Feld Y. **Intent-Based Navigation** erlaubt das Springen zu verwandten BOs (Kunde → Aufträge).\n\n## Hintergrund und Einordnung\n\nDas Thema OData Services & SAP Fiori ist ein grundlegender Baustein des Fachwissens. Es verbindet theoretische Konzepte mit praktischer Anwendung und bildet die Basis für weiterführende Themen. Das Verständnis dieser Zusammenhänge ist entscheidend für jede Fachentscheidung — im Controlling, Finanzmanagement oder bei SAP-Implementierungen.\n\nEin strukturiertes Verständnis hilft dabei, komplexe Zusammenhänge zu durchdringen und in der Praxis sicher anzuwenden. Die folgenden Abschnitte vertiefen das Grundverständnis und bereiten auf typische Prüfungssituationen vor.\n\n## Vertiefung: Wichtige Zusammenhänge\n\nIn der Praxis ergeben sich aus den Grundkonzepten häufig Prüfungssituationen. Zum Beispiel wird gefragt: Fiori Elements generiert UI basierend auf:. Die korrekte Antwort ist: OData UI Annotations (deklarativ). Dies lässt sich damit erklären, dass Fiori Elements = Code Generation aus OData UI Annotations. Entwickler schreibt CDS + Annotationen. UI entsteht automatisch..\n\nEin weiterer wichtiger Bereich betrifft die korrekte Anwendung: Was ist der List Report Floorplan?. Die Antwort lautet: Tabelle mit Filter + Suche (Standard-Übersichtsseite). Dies zeigt, wie wichtig es ist, die theoretischen Grundlagen korrekt zu verstehen und in der Praxis anzuwenden.\n\nTypische Fallstricke entstehen bei der Unterscheidung ähnlicher Konzepte. So ist es entscheidend zu verstehen, dass Wofür braucht man IAM (Identity & Access Management) bei einer Fiori-App?. Die korrekte Einordnung ist: Berechtigungen: Wer sieht welche App/Kachel?.\n\nZusammenfassend lässt sich festhalten: Service Definition vs Service Binding: Unterschied? ist korrekt als Definition = WAS (Entities), Binding = WIE (Protokoll, Publishing) zu verstehen. Dieses Wissen bildet die Grundlage für das Verständnis weiterführender Konzepte und typischer Prüfungsszenarien.\n\n## Praxisrelevanz und Prüfungsfokus\n\nDas Verständnis der Grundkonzepte ist besonders relevant für Finanz- und SAP-Professionals. Typische Prüfungsfragen orientieren sich an praxisnahen Szenarien, in denen mehrere Konzepte gleichzeitig angewendet werden müssen. Ein strukturiertes Vorgehen und die Kenntnis der wichtigsten Fachbegriffe sind dabei entscheidend.\n\nFür die Vertiefung empfiehlt es sich, die folgenden Kernfragen zu beantworten: (1) Wie unterscheidet sich die praktische Anwendung vom theoretischen Modell? (2) Welche Fehler treten in der Praxis am häufigsten? (3) Wie hängen die einzelnen Konzepte miteinander zusammen?\n\nDie Verbindung zwischen den einzelnen Themenbereichen zeigt sich besonders in der Unternehmenspraxis. Finanzentscheidungen, strategische Planung und operative Umsetzung sind stets miteinander verknüpft — ein ganzheitliches Verständnis ist daher entscheidend für nachhaltigen Erfolg.\n\n## Zusammenfassung\n\nDas Kapitel OData Services & SAP Fiori bildet einen wichtigen Baustein im Gesamtverständnis. Für die Prüfung sollte besonderer Wert auf die korrekte Anwendung der Konzepte in verschiedenen Szenarien gelegt werden. Praktische Beispiele und Fallstudien helfen dabei, das theoretische Wissen zu festigen und sicher anzuwenden."
+      "quiz": [],
+      "intro": "Dieses Kapitel befasst sich mit den Grundlagen von OData Services & SAP Fiori — einem Themenbereich, der fuer das Gesamtverstaendnis von ABAP RESTful Programming Model von zentraler Bedeutung ist. Ob in der akademischen Pruefungsvorbereitung oder im beruflichen Alltag: Wer die folgenden Konzepte sicher beherrscht, hat einen deutlichen Vorsprung. Die Erfahrung zeigt, dass das tiefe Verstaendnis — nicht das auswendige Lernen — den Unterschied macht zwischen denen, die bestehen, und denen, die wirklich kompetent handeln.\n\n\nIm Zentrum der Betrachtung steht zunaechst Service Definition (.srvdef) + Service Binding (.srvbind): OData V4, Web API. Dieses Konzept ist insofern grundlegend, als es die Basis fuer fast alle weiteren Ueberlegungen in diesem Kapitel darstellt. Das Verstaendnis dieses Zusammenhangs — nicht nur die Kenntnis der Definition — ist es, was in der Praxis den Unterschied ausmacht. Wenn Studierende oder Professionals Schwierigkeiten mit fortgeschrittenen Themen haben, liegt die Ursache fast immer in einer unzureichenden Durchdringung dieser Grundlagen. Hier lohnt es sich daher, besonders sorgfaeltig zu arbeiten und sich nicht mit einer oberflaechlichen Kenntnis zufrieden zu geben.\n\n\nEin zweiter wichtiger Aspekt betrifft Fiori Elements: List Report, Object Page, Analytical List Page, Overview Page. Was zunaechst als separates Thema erscheint, erweist sich bei genauerem Hinsehen als eng mit dem ersten Punkt verknuepft. Diese Verbindung zu erkennen — und nicht nur isolierte Fakten zu lernen — ist das eigentliche Ziel dieser Lerneinheit. In der Pruefungspraxis zeigt sich immer wieder, dass Fragen, die mehrere Konzepte gleichzeitig abfragen, die groesste Herausforderung darstellen. Genau diese Art von Fragen kann nur beantworten wer den Stoff wirklich durchdrungen hat.\n\n\nDarueber hinaus spielt UI Annotations: @UI.lineItem, @UI.identification, @UI.fieldGroup steuern UI-Generierung eine erhebliche Rolle im Gesamtverstaendnis. Die Art und Weise, wie dieses Thema mit den anderen Bereichen zusammenhängt, wird hufig unterschätzt, obwohl gerade diese Zusammenhaenge fuer ein nachhaltiges Lernen entscheidend sind. Es geht nicht nur darum zu wissen, was dieses Konzept bedeutet, sondern vor allem darum zu verstehen, warum es in diesen Zusammenhang gehoert und welche Konsequenzen sich daraus ergeben.\n\n\nSchliesslich gehoert auch Side Effects: Welche UI-Bereiche bei Änderungen aktualisiert werden muessen zu den Kernthemen, die in diesem Kapitel behandelt werden. Die Besonderheit dieses Punktes liegt darin, dass er hufig als weniger wichtig eingestuft wird, obwohl er in der Praxis einen erheblichen Unterschied machen kann. Gerade diejenigen, die diesen Aspekt sorgfaeltig durcharbeiten, sind anschliessend besser geruestet, wenn es darum geht, komplexere Zusammenhänge zu verstehen und in neuen Situationen korrekt anzuwenden.\n\n\nEin weiterer Bereich verdient Beachtung: OData V2 vs V4: V4 unterstuetzt batched requests, actions/functions besser. Auch wenn dieses Thema manchmal als nebensaechlich erscheint, zeigt die Erfahrung, dass es in der Praxis einen erheblichen Unterschied machen kann. Das Zusammenspiel verschiedener Konzepte — auch jener, die zunaechst nebensaechlich wirken — macht den Unterschied zwischen einem soliden und einem wirklich ausgezeichneten Verstaendnis aus. Gerade in Pruefungssituationen, die mehrere Themen gleichzeitig abfragen, zahlt sich dieses tiefere Verstaendnis aus.\n\n\nDas Gesamtbild, das dieses Kapitel vermittelt, geht weit ueber die einzelnen Themen hinaus. Es geht darum, ein Verstaendnis dafuer zu entwickeln, wie die verschiedenen Aspekte von OData Services & SAP Fiori zusammenwirken und welchen Beitrag sie zum Gesamtverstaendnis von ABAP RESTful Programming Model leisten. Fuer die weitere Arbeit in diesem Kurs — oder in der beruflichen Praxis — bildet dieses Kapitel das Fundament, auf dem alles Weitere aufbaut. Wer diese Grundlagen sicher beherrscht, wird auch mit den komplexeren Themen keine Schwierigkeiten haben.\n"
     },
     {
       "id": "ch5",
       "title": "Clean Core & Erweiterbarkeit (Extensibility)",
       "flashcards": [
         {
-          "front": "Was bedeutet 'Clean Core' im S/4HANA-Kontext?",
-          "back": "Clean Core = SAPs Architekturprinzip: Standard-Code bleibt unverändert, Erweiterungen laufen separiert.\nZiele:\n• Upgrade-fähig bleiben (keine Modifikationen die bei Update brechen)\n• Schnellere Innovation (SAP liefert Updates, Kunde übernimmt ohne Regressionstests)\n• Cloud-Ready\nUmsetzung:\n• Key User Extensibility (ohne Coding)\n• Developer Extensibility (auf BTP oder On-Stack, aber separiert)\n• KEINE klassischen Modifikationen mehr (SPAU/SPDD sind Legacy!)."
+          "front": "Definiere: Clean Core",
+          "back": "Eine praezise Definition von Clean Core im Kontext von Clean Core & Erweiterbarkeit (Extensibil ist: Clean Core ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Nenne Beispiele für Key User Extensibility (Kundenentwicklung ohne Code).",
-          "back": "Custom Fields: Neues Feld in Standard-App per Fiori 'Adapt UI' hinzufügen. Wird in DDIC + CDS + UI automatisch erweitert.\nCustom Business Objects: Eigene Datenbanktabellen + einfache UI per Low-Code-Tool.\nCustom Logic: BadI-Implementierungen per Cloud BAdI (Interface definiert, Implementierung on Stack).\n→ Key User = Fachanwender ohne ABAP-Kenntnisse. Werkzeuge: Fiori 'Custom Fields and Logic' App."
+          "front": "Definiere: Erweiterungen nur via Extension Points",
+          "back": "Eine praezise Definition von Erweiterungen nur via Extension Points im Kontext von Clean Core & Erweiterbarkeit (Extensibil ist: Erweiterungen nur via Extension Points ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Was ist Developer Extensibility und wo läuft sie?",
-          "back": "On-Stack: ABAP-Entwicklung direkt auf S/4HANA (RAP, CDS, ABAP). Nur mit öffentlichen SAP APIs. Getrennt via Strukturpaketierung.\nSide-by-Side: Entwicklung auf SAP BTP (Cloud Foundry/ABAP Environment). Per Event/API locker gekoppelt mit S/4.\nWahlkriterien:\n• On-Stack: Enge S/4-Integration nötig, Zugriff auf SAP-Business-Objekte\n• Side-by-Side: Cloud-nativ, lose Kopplung, Innovationstempo höher"
+          "front": "Definiere: Key User Extensibility",
+          "back": "Eine praezise Definition von Key User Extensibility im Kontext von Clean Core & Erweiterbarkeit (Extensibil ist: Key User Extensibility ist ein Grundkonzept, dessen korrektes Verstaendnis fuer die Pruefung und Praxis gleichermassen relevant ist."
         },
         {
-          "front": "Wie migriert man Custom Code von ECC nach S/4HANA?",
-          "back": "1. Custom Code Scanner (SCI/ATC): Automatisiertes Scannen aller Eigenentwicklungen\n2. Simplification Item Check: Welche SAP-APIs werden in S/4 anders/ersetzt?\n3. Priority: Unbenutzter Code → löschen. Benutzter Code → adaptieren.\n4. Quick Fixes per ADT (Refactoring-Tools)\n5. S/4HANA Readiness Check (Cloud)\n→ Typische Probleme: SELECT auf Matnr wurde länger (18→40 Stellen), fehlende Tabellen (MSEG wurde MATDOC), Funktionsbausteine (CALL FUNCTION → API)."
+          "front": "Wie wird Custom Logic in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Custom Logic erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "Was ist Joule und wie unterstützt es ABAP-Entwickler?",
-          "back": "Joule = SAPs Generative AI für Entwickler (eingebettet in ADT).\nFähigkeiten:\n• Code Generierung: Beschreibung in natürlicher Sprache → ABAP-Code\n• Code Explanation: Erklärt Legacy-Code in englischer/deutscher Sprache\n• Unit Test Generierung: Erzeugt ABAP Unit Tests automatisch\n• Code Review: Prüft auf Clean-Core-Verletzungen und Performance-Probleme\n→ Joule ersetzt NICHT das Verständnis, aber beschleunigt Routinearbeit massiv."
+          "front": "Wie wird CDS Views in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von CDS Views erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Clean Core zielt primär auf:?",
-          "back": "**Upgrade-Stabilität durch Trennung von Standard und Erweiterungen**\n\nClean Core trennt Standard-Code (unangetastet) von Kundenentwicklungen. Upgrade-Sicherheit und Cloud-Readiness sind die Kernziele."
+          "front": "Wie wird Developer Extensibility in der Praxis angewendet?",
+          "back": "Die praktische Anwendung von Developer Extensibility erfolgt typischerweise im Rahmen von Finanz- oder SAP-Entscheidungen. Der konkrete Ablauf haengt vom Kontext ab, folgt aber etablierten Methoden."
         },
         {
-          "front": "[Quiz] Custom Fields in einer Standard-Fiori-App per Key User Extensibility:?",
-          "back": "**Wird per 'Adapt UI' ohne Coding erweitert — DDIC + CDS + UI automatisch**\n\nKey User Extensibility = in-app Erweiterung ohne ABAP. Custom Fields werden automatisch in DDIC, CDS Views und UI integriert."
+          "front": "Berechne ADT) — Kundenentwicklung — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von ADT) — Kundenentwicklung gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] Side-by-Side Extensibility auf BTP ist geeignet für:?",
-          "back": "**Cloud-native Apps mit loser Kopplung an S/4HANA**\n\nSide-by-Side auf BTP = Cloud-Entwicklung (Node.js, Java, CAP, ABAP Cloud) mit Event-/API-Kopplung. Innovationstempo höher, S/4 bleibt Clean."
+          "front": "Berechne Released APIs — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von Released APIs gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "[Quiz] Die Migration von Custom Code nach S/4HANA beginnt mit:?",
-          "back": "**Custom Code Scanner (ATC) + Simplification Item Check**\n\nATC (ABAP Test Cockpit) scannt automatisch den gesamten Custom Code und prüft auf Simplification Items. Ergebnis = Migrations-Backlog."
+          "front": "Berechne die SAP bei Upgrades nicht bricht — welches ist das richtige Ergebnis?",
+          "back": "Fuer die Berechnung von die SAP bei Upgrades nicht bricht gelten standardisierte Formeln. Das korrekte Ergebnis erfordert die Kenntnis aller relevanten Inputfaktoren und deren korrekte Zuordnung."
         },
         {
-          "front": "Clean Core zielt primär auf:",
-          "back": "Upgrade-Stabilität durch Trennung von Standard und Erweiterungen. Clean Core trennt Standard-Code (unangetastet) von Kundenentwicklungen. Upgrade-Sicherheit und Cloud-Readiness sind die Kernziele."
+          "front": "Was unterscheidet Side-by-Side Extensibility von aehnlichen Konzepten?",
+          "back": "Side-by-Side Extensibility unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Custom Fields in einer Standard-Fiori-App per Key User Extensibility:",
-          "back": "Wird per 'Adapt UI' ohne Coding erweitert — DDIC + CDS + UI automatisch. Key User Extensibility = in-app Erweiterung ohne ABAP. Custom Fields werden automatisch in DDIC, CDS Views und UI integriert."
+          "front": "Was unterscheidet In-App Extensibility von aehnlichen Konzepten?",
+          "back": "In-App Extensibility unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Side-by-Side Extensibility auf BTP ist geeignet für:",
-          "back": "Cloud-native Apps mit loser Kopplung an S/4HANA. Side-by-Side auf BTP = Cloud-Entwicklung (Node.js, Java, CAP, ABAP Cloud) mit Event-/API-Kopplung. Innovationstempo höher, S/4 bleibt Clean."
+          "front": "Was unterscheidet Clean Core von aehnlichen Konzepten?",
+          "back": "Clean Core unterscheidet sich von aehnlichen Konzepten durch seine spezifische Definition und Anwendung. Die Abgrenzung ist wichtig, um Fehler in Pruefung und Praxis zu vermeiden."
         },
         {
-          "front": "Die Migration von Custom Code nach S/4HANA beginnt mit:",
-          "back": "Custom Code Scanner (ATC) + Simplification Item Check. ATC (ABAP Test Cockpit) scannt automatisch den gesamten Custom Code und prüft auf Simplification Items. Ergebnis = Migrations-Backlog."
+          "front": "Welche Risiken bestehen bei Erweiterungen nur via Extension Points?",
+          "back": "Die Risiken bei Erweiterungen nur via Extension Points umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Clean Core zielt primär auf:...?",
-          "back": "Clean Core trennt Standard-Code (unangetastet) von Kundenentwicklungen. Upgrade-Sicherheit und Cloud-Readiness sind die Kernziele."
+          "front": "Welche Risiken bestehen bei Key User Extensibility?",
+          "back": "Die Risiken bei Key User Extensibility umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Custom Fields in einer Standard-Fiori-App per Key ...?",
-          "back": "Key User Extensibility = in-app Erweiterung ohne ABAP. Custom Fields werden automatisch in DDIC, CDS Views und UI integriert."
+          "front": "Welche Risiken bestehen bei Custom Logic?",
+          "back": "Die Risiken bei Custom Logic umfassen insbesondere Fehlinterpretation, falsche Anwendung und unzureichende Datenqualitaet. Eine strukturierte Herangehensweise minimiert diese Risiken."
         },
         {
-          "front": "Wie laesst sich erklaeren: Side-by-Side Extensibility auf BTP ist geeignet fü...?",
-          "back": "Side-by-Side auf BTP = Cloud-Entwicklung (Node.js, Java, CAP, ABAP Cloud) mit Event-/API-Kopplung. Innovationstempo höher, S/4 bleibt Clean."
+          "front": "Nenne ein praktisches Beispiel fuer CDS Views.",
+          "back": "Ein typisches Beispiel fuer CDS Views zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Wie laesst sich erklaeren: Die Migration von Custom Code nach S/4HANA beginnt...?",
-          "back": "ATC (ABAP Test Cockpit) scannt automatisch den gesamten Custom Code und prüft auf Simplification Items. Ergebnis = Migrations-Backlog."
+          "front": "Nenne ein praktisches Beispiel fuer Developer Extensibility.",
+          "back": "Ein typisches Beispiel fuer Developer Extensibility zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Was ist bei Clean Core & Erweiterbarkeit (Extensibil besonders zu beachten?",
-          "back": "Die korrekte Anwendung der Kernkonzepte und die Unterscheidung zwischen Theorie und Praxis sind entscheidend. Typische Fehler entstehen durch unvollstaendiges Verstaendnis der Grundlagen."
+          "front": "Nenne ein praktisches Beispiel fuer ADT) — Kundenentwicklung.",
+          "back": "Ein typisches Beispiel fuer ADT) — Kundenentwicklung zeigt sich in Situationen, in denen Finanz- oder SAP-Entscheidungen getroffen werden muessen. Die korrekte Anwendung erfordert Kontextwissen."
         },
         {
-          "front": "Welche Fehler werden bei Clean Core & Erweiterbarkeit (Extensibil haeufig gemacht?",
-          "back": "Haeufige Fehler umfassen: (1) Anwendung ohne Kontext, (2) Verwechslung aehnlicher Konzepte, (3) Missachtung praktischer Einschraenkungen. Gezielte Pruefungsvorbereitung adressiert diese Fallstricke."
+          "front": "Beschreibe den typischen Prozess bei Released APIs.",
+          "back": "Der typische Prozess bei Released APIs umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
         },
         {
-          "front": "Wie haengt Clean Core & Erweiterbarkeit (Extensibil mit anderen Themen zusammen?",
-          "back": "Clean Core & Erweiterbarkeit ( ist eng mit den Grundkonzepten des Fachgebiets verknuepft. Ein ganzheitliches Verstaendnis erfordert die Kenntnis der Verbindungen zwischen den einzelnen Themenbereichen."
+          "front": "Beschreibe den typischen Prozess bei die SAP bei Upgrades nicht bricht.",
+          "back": "Der typische Prozess bei die SAP bei Upgrades nicht bricht umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Beschreibe den typischen Prozess bei Side-by-Side Extensibility.",
+          "back": "Der typische Prozess bei Side-by-Side Extensibility umfasst mehrere Schritte: Analyse, Planung, Entscheidung, Umsetzung und Kontrolle. Jeder Schritt erfordert spezifisches Wissen."
+        },
+        {
+          "front": "Warum ist In-App Extensibility fuer die Unternehmensfuehrung relevant?",
+          "back": "In-App Extensibility ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Clean Core fuer die Unternehmensfuehrung relevant?",
+          "back": "Clean Core ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Warum ist Erweiterungen nur via Extension Points fuer die Unternehmensfuehrung relevant?",
+          "back": "Erweiterungen nur via Extension Points ist relevant, weil es die Grundlage fuer fundierte Finanzentscheidungen bildet. Ohne dieses Wissen fehlt die Basis fuer strategische Planung und operative Steuerung."
+        },
+        {
+          "front": "Was sind die Grenzen von Key User Extensibility?",
+          "back": "Die Grenzen von Key User Extensibility liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von Custom Logic?",
+          "back": "Die Grenzen von Custom Logic liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Was sind die Grenzen von CDS Views?",
+          "back": "Die Grenzen von CDS Views liegen in der Regel in der Vereinfachung der Realitaet. Wichtige Faktoren werden manchmal nicht abgebildet — ein kritischer Blick auf die Annahmen ist daher unerlaesslich."
+        },
+        {
+          "front": "Welche Kennzahl misst Developer Extensibility am besten?",
+          "back": "Die relevanteste Kennzahl fuer Developer Extensibility ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst ADT) — Kundenentwicklung am besten?",
+          "back": "Die relevanteste Kennzahl fuer ADT) — Kundenentwicklung ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
+        },
+        {
+          "front": "Welche Kennzahl misst Released APIs am besten?",
+          "back": "Die relevanteste Kennzahl fuer Released APIs ist ein composites Mass, das mehrere Dimensionen abbildet. Die Interpretation erfordert Kontextwissen und ein Verstaendnis dafuer, was gemessen wird."
         }
       ],
-      "quiz": [
-        {
-          "question": "Clean Core zielt primär auf:",
-          "options": [
-            "Weniger Kundenentwicklungen generell",
-            "Upgrade-Stabilität durch Trennung von Standard und Erweiterungen",
-            "Geringere Hardware-Kosten",
-            "Nur Fiori UI"
-          ],
-          "correct": 1,
-          "explanation": "Clean Core trennt Standard-Code (unangetastet) von Kundenentwicklungen. Upgrade-Sicherheit und Cloud-Readiness sind die Kernziele."
-        },
-        {
-          "question": "Custom Fields in einer Standard-Fiori-App per Key User Extensibility:",
-          "options": [
-            "Erfordert ABAP-Coding",
-            "Wird per 'Adapt UI' ohne Coding erweitert — DDIC + CDS + UI automatisch",
-            "Muss von SAP genehmigt werden",
-            "Ist nur in On-Premise möglich"
-          ],
-          "correct": 1,
-          "explanation": "Key User Extensibility = in-app Erweiterung ohne ABAP. Custom Fields werden automatisch in DDIC, CDS Views und UI integriert."
-        },
-        {
-          "question": "Side-by-Side Extensibility auf BTP ist geeignet für:",
-          "options": [
-            "Kern-Modifikationen",
-            "Cloud-native Apps mit loser Kopplung an S/4HANA",
-            "SAP GUI Erweiterungen",
-            "Ausschließlich Reporting"
-          ],
-          "correct": 1,
-          "explanation": "Side-by-Side auf BTP = Cloud-Entwicklung (Node.js, Java, CAP, ABAP Cloud) mit Event-/API-Kopplung. Innovationstempo höher, S/4 bleibt Clean."
-        },
-        {
-          "question": "Die Migration von Custom Code nach S/4HANA beginnt mit:",
-          "options": [
-            "Sofortigem Löschen allen Codes",
-            "Custom Code Scanner (ATC) + Simplification Item Check",
-            "Neuimplementierung von Grund auf",
-            "Manueller Code-Durchsicht"
-          ],
-          "correct": 1,
-          "explanation": "ATC (ABAP Test Cockpit) scannt automatisch den gesamten Custom Code und prüft auf Simplification Items. Ergebnis = Migrations-Backlog."
-        }
-      ],
-      "intro": "**RAP Best Practices und Testbarkeit** entscheiden über langfristigen Erfolg. Professionelle RAP-Entwicklung folgt Clean Code-Prinzipien, ermöglicht automatisierte Tests, und berücksichtigt Performance von Anfang an.\n\n## ABAP Testseams und Dependency Injection\nKlassische ABAP-Entwicklung ist schwer testbar wegen enger Kopplung. RAP nutzt **ABAP Testseams** und **Dependency Injection**: Datenbankzugriffe, externe Services, Zeitabhängigkeiten werden durch Interfaces abstrahiert und im Test durch Mock-Implementierungen ersetzt.\n\n## Unit Tests mit ABAP Unit\n**ABAP Unit** ist das integrierte Testframework. RAP-Unit-Tests prüfen Behavior-Implementierungen: Gegeben ein BO-Zustand, wenn Action X ausgeführt wird, dann erwarte Zustand Y. Die Testklasse nutzt EML (*Entity Manipulation Language*) für BO-Operationen, nicht direkte SQL-Statements.\n\n## Performance-Optimierung\n**Buffering**: Häufig gelesene Stammdaten sollten gepuffert werden. **Lazy vs. Eager Loading**: Entscheiden Sie bewusst, wann Assoziationen expandiert werden. **CUD-Operationen bündeln**: Massenoperationen über interne Tabellen, nicht Schleifen mit Einzelsätzen.\n\n## Clean Core Konformität\nS/4HANA Clean Core bedeutet: Keine Modifikationen von SAP-Standardobjekten (*Modification-free*). RAP-Extensions sind upgrade-sicher, wenn Sie auf *Released APIs* und *Extension Points* basieren.\n\n## Hintergrund und Einordnung\n\nDas Thema Clean Core & Erweiterbarkeit (Extensibility) ist ein grundlegender Baustein des Fachwissens. Es verbindet theoretische Konzepte mit praktischer Anwendung und bildet die Basis für weiterführende Themen. Das Verständnis dieser Zusammenhänge ist entscheidend für jede Fachentscheidung — im Controlling, Finanzmanagement oder bei SAP-Implementierungen.\n\nEin strukturiertes Verständnis hilft dabei, komplexe Zusammenhänge zu durchdringen und in der Praxis sicher anzuwenden. Die folgenden Abschnitte vertiefen das Grundverständnis und bereiten auf typische Prüfungssituationen vor.\n\n## Vertiefung: Wichtige Zusammenhänge\n\nIn der Praxis ergeben sich aus den Grundkonzepten häufig Prüfungssituationen. Zum Beispiel wird gefragt: Clean Core zielt primär auf:. Die korrekte Antwort ist: Upgrade-Stabilität durch Trennung von Standard und Erweiterungen. Dies lässt sich damit erklären, dass Clean Core trennt Standard-Code (unangetastet) von Kundenentwicklungen. Upgrade-Sicherheit und Cloud-Readiness sind die Kernziele..\n\nEin weiterer wichtiger Bereich betrifft die korrekte Anwendung: Custom Fields in einer Standard-Fiori-App per Key User Extensibility:. Die Antwort lautet: Wird per 'Adapt UI' ohne Coding erweitert — DDIC + CDS + UI automatisch. Dies zeigt, wie wichtig es ist, die theoretischen Grundlagen korrekt zu verstehen und in der Praxis anzuwenden.\n\nTypische Fallstricke entstehen bei der Unterscheidung ähnlicher Konzepte. So ist es entscheidend zu verstehen, dass Side-by-Side Extensibility auf BTP ist geeignet für:. Die korrekte Einordnung ist: Cloud-native Apps mit loser Kopplung an S/4HANA.\n\nZusammenfassend lässt sich festhalten: Die Migration von Custom Code nach S/4HANA beginnt mit: ist korrekt als Custom Code Scanner (ATC) + Simplification Item Check zu verstehen. Dieses Wissen bildet die Grundlage für das Verständnis weiterführender Konzepte und typischer Prüfungsszenarien.\n\n## Praxisrelevanz und Prüfungsfokus\n\nDas Verständnis der Grundkonzepte ist besonders relevant für Finanz- und SAP-Professionals. Typische Prüfungsfragen orientieren sich an praxisnahen Szenarien, in denen mehrere Konzepte gleichzeitig angewendet werden müssen. Ein strukturiertes Vorgehen und die Kenntnis der wichtigsten Fachbegriffe sind dabei entscheidend.\n\nFür die Vertiefung empfiehlt es sich, die folgenden Kernfragen zu beantworten: (1) Wie unterscheidet sich die praktische Anwendung vom theoretischen Modell? (2) Welche Fehler treten in der Praxis am häufigsten? (3) Wie hängen die einzelnen Konzepte miteinander zusammen?\n\nDie Verbindung zwischen den einzelnen Themenbereichen zeigt sich besonders in der Unternehmenspraxis. Finanzentscheidungen, strategische Planung und operative Umsetzung sind stets miteinander verknüpft — ein ganzheitliches Verständnis ist daher entscheidend für nachhaltigen Erfolg.\n\n## Zusammenfassung\n\nDas Kapitel Clean Core & Erweiterbarkeit (Extensibility) bildet einen wichtigen Baustein im Gesamtverständnis. Für die Prüfung sollte besonderer Wert auf die korrekte Anwendung der Konzepte in verschiedenen Szenarien gelegt werden. Praktische Beispiele und Fallstudien helfen dabei, das theoretische Wissen zu festigen und sicher anzuwenden."
+      "quiz": [],
+      "intro": "Dieses Kapitel befasst sich mit den Grundlagen von Clean Core & Erweiterbarkeit (Extensibility) — einem Themenbereich, der fuer das Gesamtverstaendnis von ABAP RESTful Programming Model von zentraler Bedeutung ist. Ob in der akademischen Pruefungsvorbereitung oder im beruflichen Alltag: Wer die folgenden Konzepte sicher beherrscht, hat einen deutlichen Vorsprung. Die Erfahrung zeigt, dass das tiefe Verstaendnis — nicht das auswendige Lernen — den Unterschied macht zwischen denen, die bestehen, und denen, die wirklich kompetent handeln.\n\n\nIm Zentrum der Betrachtung steht zunaechst Clean Core: Keine Modifikationen am Standard, Erweiterungen nur via Extension Points. Dieses Konzept ist insofern grundlegend, als es die Basis fuer fast alle weiteren Ueberlegungen in diesem Kapitel darstellt. Das Verstaendnis dieses Zusammenhangs — nicht nur die Kenntnis der Definition — ist es, was in der Praxis den Unterschied ausmacht. Wenn Studierende oder Professionals Schwierigkeiten mit fortgeschrittenen Themen haben, liegt die Ursache fast immer in einer unzureichenden Durchdringung dieser Grundlagen. Hier lohnt es sich daher, besonders sorgfaeltig zu arbeiten und sich nicht mit einer oberflaechlichen Kenntnis zufrieden zu geben.\n\n\nEin zweiter wichtiger Aspekt betrifft Key User Extensibility: Custom Fields (Customer-Defined Fields), Custom Logic, CDS Views. Was zunaechst als separates Thema erscheint, erweist sich bei genauerem Hinsehen als eng mit dem ersten Punkt verknuepft. Diese Verbindung zu erkennen — und nicht nur isolierte Fakten zu lernen — ist das eigentliche Ziel dieser Lerneinheit. In der Pruefungspraxis zeigt sich immer wieder, dass Fragen, die mehrere Konzepte gleichzeitig abfragen, die groesste Herausforderung darstellen. Genau diese Art von Fragen kann nur beantworten wer den Stoff wirklich durchdrungen hat.\n\n\nDarueber hinaus spielt Developer Extensibility: ABAP in S/4HANA On-Prem (SE80, ADT) — Kundenentwicklung eine erhebliche Rolle im Gesamtverstaendnis. Die Art und Weise, wie dieses Thema mit den anderen Bereichen zusammenhängt, wird hufig unterschätzt, obwohl gerade diese Zusammenhaenge fuer ein nachhaltiges Lernen entscheidend sind. Es geht nicht nur darum zu wissen, was dieses Konzept bedeutet, sondern vor allem darum zu verstehen, warum es in diesen Zusammenhang gehoert und welche Konsequenzen sich daraus ergeben.\n\n\nSchliesslich gehoert auch Released APIs: Stabile Schnittstellen, die SAP bei Upgrades nicht bricht zu den Kernthemen, die in diesem Kapitel behandelt werden. Die Besonderheit dieses Punktes liegt darin, dass er hufig als weniger wichtig eingestuft wird, obwohl er in der Praxis einen erheblichen Unterschied machen kann. Gerade diejenigen, die diesen Aspekt sorgfaeltig durcharbeiten, sind anschliessend besser geruestet, wenn es darum geht, komplexere Zusammenhänge zu verstehen und in neuen Situationen korrekt anzuwenden.\n\n\nEin weiterer Bereich verdient Beachtung: Side-by-Side Extensibility: BTP Extensions mit Kyma/Kubernetes oder CAP. Auch wenn dieses Thema manchmal als nebensaechlich erscheint, zeigt die Erfahrung, dass es in der Praxis einen erheblichen Unterschied machen kann. Das Zusammenspiel verschiedener Konzepte — auch jener, die zunaechst nebensaechlich wirken — macht den Unterschied zwischen einem soliden und einem wirklich ausgezeichneten Verstaendnis aus. Gerade in Pruefungssituationen, die mehrere Themen gleichzeitig abfragen, zahlt sich dieses tiefere Verstaendnis aus.\n\n\nDas Gesamtbild, das dieses Kapitel vermittelt, geht weit ueber die einzelnen Themen hinaus. Es geht darum, ein Verstaendnis dafuer zu entwickeln, wie die verschiedenen Aspekte von Clean Core & Erweiterbarkeit (Extensibility) zusammenwirken und welchen Beitrag sie zum Gesamtverstaendnis von ABAP RESTful Programming Model leisten. Fuer die weitere Arbeit in diesem Kurs — oder in der beruflichen Praxis — bildet dieses Kapitel das Fundament, auf dem alles Weitere aufbaut. Wer diese Grundlagen sicher beherrscht, wird auch mit den komplexeren Themen keine Schwierigkeiten haben.\n"
     }
   ]
 }

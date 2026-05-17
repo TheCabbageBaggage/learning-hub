@@ -663,3 +663,62 @@ body {
   font-size: 0.88rem;
   line-height: 1.6;
 }
+
+/* ── Larger flashcards with more padding ── */
+.flashcard {
+  min-height: 260px;
+  height: auto !important;
+  min-height: 260px;
+  padding: 0;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.18), 0 2px 8px rgba(0,0,0,0.1);
+  border: 2px solid rgba(255,255,255,0.08);
+}
+.flashcard-inner {
+  padding: 28px 32px;
+  min-height: 260px;
+}
+.flashcard-front,
+.flashcard-back {
+  padding: 0;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+}
+.flashcard-front > div,
+.flashcard-back > div {
+  width: 100%;
+}
+@media (max-width: 600px) {
+  .flashcard-inner {
+    padding: 22px 24px;
+    min-height: 220px;
+  }
+  .flashcard-front,
+  .flashcard-back {
+    font-size: 1rem;
+    min-height: 180px;
+  }
+}
+
+/* ── Quiz cards ── */
+.quiz-card {
+  padding: 28px 32px;
+  border-radius: var(--radius-xl);
+  font-size: 1rem;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.14);
+}
+@media (max-width: 600px) {
+  .quiz-card { padding: 20px 22px; }
+}
+
+/* ── Chapter intro spacing ── */
+.chapter-intro {
+  padding: 26px 30px;
+  border-radius: var(--radius-xl);
+}
+@media (max-width: 600px) {
+  .chapter-intro { padding: 18px 22px; }
+}
